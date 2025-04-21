@@ -2,6 +2,16 @@
 #include "Enemy_StandState.h"
 #include "Scene.h"
 
+C_Enemy::C_Enemy()
+{
+
+}
+
+C_Enemy::~C_Enemy()
+{
+	ebulletTex.Release();
+}
+
 void C_Enemy::Init()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
@@ -11,6 +21,14 @@ void C_Enemy::Init()
 
 	// 初期状態のステートをセット
 	m_stateMachine.ChangeState<C_Enemy_StandState>();
+
+	ebulletTex.Load("Texture/ebullet.png");
+
+	for (int i = 0;i < ebulletNum;i++)
+	{
+		m_bullet[i].SetTex(&ebulletTex);
+		m_bullet[i].Init();
+	}
 
 	m_circleRadius = 305.0f;		// 円の半径
 	m_deg = systm->RndBtwn(0,360);		// 角度
@@ -33,6 +51,11 @@ void C_Enemy::Draw()
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 	
+	for (int i = 0;i < ebulletNum;i++)
+	{
+		m_bullet[i].Draw();
+	}
+
 }
 
 void C_Enemy::Update()
@@ -49,6 +72,11 @@ void C_Enemy::Update()
 
 	m_stateMachine.Update();
 
+	for (int i = 0;i < ebulletNum;i++)
+	{
+		m_bullet[i].Update();
+	}
+
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -59,4 +87,9 @@ void C_Enemy::Action()
 
 	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
 	m_bsst.pos.y = sin(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
+
+	for (int i = 0;i < ebulletNum;i++)
+	{
+		m_bullet[i].Action();
+	}
 }

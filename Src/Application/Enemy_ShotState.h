@@ -10,7 +10,8 @@ public:
 	void OnUpdate(C_Enemy* a_pEnemy)override;
 	void OnExit(C_Enemy* a_pEnemy)override;
 
+private:
 
-
-
+	int m_shotStateCnt; // 撃つ状態のステート
+	eEnemyMovCmd m_movepattern;  // 動くパターン
 };

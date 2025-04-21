@@ -201,7 +201,7 @@
     <ClInclude Include="Src\Application\Enemy_ShotState.h">
       <Filter>Src\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_Bullet.h">
+    <ClInclude Include="Src\Application\Enemy_HighMoveState.h">
       <Filter>Src\Application</Filter>
     </ClInclude>
   </ItemGroup>
@@ -326,7 +326,7 @@
     <ClCompile Include="Src\Application\Enemy_ShotState.cpp">
       <Filter>Src\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_Bullet.cpp">
+    <ClCompile Include="Src\Application\Enemy_HighMoveState.cpp">
       <Filter>Src\Application</Filter>
     </ClCompile>
   </ItemGroup>

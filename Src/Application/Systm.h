@@ -12,10 +12,14 @@
 #define ScrnRht 640
 #define ScrnLft -640
 #define BulletNum 18
+#define ebulletNum 6
 #define DropBulletNum 18
 #define pHighSpd 5.0f
 #define pDefaultSpd 2.0f
 #define pSlowSpd 0.8f
+#define eHighSpd 4.0f
+#define eDefaultSpd 2.0f
+#define eSlowSpd 0.8f
 #define ZeroLifescl 0.0f
 #define OneLifescl 0.25f
 #define TwoLifescl 0.5f
@@ -41,6 +45,11 @@ enum ePlayerLife
 	FiveLife,
 };
 
+enum eEnemyMovCmd
+{
+	DefaultMov,
+	HighMov
+};
 // çsóÒ
 struct tMat
 {

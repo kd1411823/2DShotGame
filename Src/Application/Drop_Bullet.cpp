@@ -5,8 +5,6 @@ void C_Drop_Bullet::Init(int a_no)
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
-	//m_dropBulletRadius = 5;  // 弾(取得オブジェクト)の半径
-
 	m_no = a_no;
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
