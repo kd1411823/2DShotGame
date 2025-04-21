@@ -29,7 +29,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszArgs, int
 // アプリケーション初期設定
 bool Application::Init(int w, int h)
 {
-	m_test = 3;
 	//===================================================================
 	// ウィンドウ作成
 	//===================================================================
