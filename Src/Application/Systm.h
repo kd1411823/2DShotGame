@@ -45,10 +45,18 @@ enum ePlayerLife
 	FiveLife,
 };
 
+// 敵の行動パターン
 enum eEnemyMovCmd
 {
 	DefaultMov,
 	HighMov
+};
+
+// 敵の動き(方向)
+enum eEnemyMovDir
+{
+	LeftDir,
+	RightDir
 };
 // 行列
 struct tMat

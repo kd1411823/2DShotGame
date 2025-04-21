@@ -11,6 +11,9 @@ public:
 	void OnExit(C_Enemy* a_pEnemy)override;
 
 
+private:
 
+	int m_highmoveStateCnt; // 早く動く状態のステートカウント
+	eEnemyMovDir m_dir; // 動く方向
 
 };

@@ -7,8 +7,17 @@ void C_Enemy_ShotState::OnStart(C_Enemy* a_pEnemy)
 {
 	Scene* scene = a_pEnemy->GetPowner();
 	C_Systm* systm = scene->GetSystm();
+	C_Bullet* bullet[ebulletNum];
+	// すべて装填済みにする
+	for (int i = 0;i < ebulletNum;i++)
+	{
+		bullet[i] = a_pEnemy->GetBullet(i);
+
+		bullet[i]->SetLoadOkFlg(true);
+	}
 	m_shotStateCnt = systm->RndBtwn(90, 180); // 撃つ状態のステート
 	m_movepattern = (eEnemyMovCmd)systm->RndBtwn(DefaultMov,HighMov);  // 動くパターン
+	m_dir = (eEnemyMovDir)systm->RndBtwn(LeftDir,RightDir);	// 動く方向
 	m_shotEndFlg = false;  // 撃ち終わったかフラグ
 	m_shotIntervalCnt = 0; // 弾の間隔カウント
 }
@@ -24,24 +33,42 @@ void C_Enemy_ShotState::OnUpdate(C_Enemy* a_pEnemy)
 	m_shotIntervalCnt++;
 	m_shotStateCnt--;
 
-	for (int i = 0;i < ebulletNum;i++)
+	// 左右移動する(ゆっくり)
+	switch (m_dir)
 	{
-		// 弾が発射していない
-		if (!bullet[i]->GetAlive())
+	case LeftDir:
+		a_pEnemy->SetMovDeg(-eSlowSpd);
+		break;
+	case RightDir:
+		a_pEnemy->SetMovDeg(eSlowSpd);
+		break;
+	}
+
+
+	if (!m_shotEndFlg)
+	{
+		for (int i = 0;i < ebulletNum;i++)
 		{
-			// 弾の間隔制御
-			if (m_shotIntervalCnt > ShotInterval)
+			// 弾が発射していない
+			if (!bullet[i]->GetAlive())
 			{
-				// カウントリセットし、弾を発射する
-				m_shotIntervalCnt = 0;
-				bullet[i]->ShotBullet(a_pEnemy->GetPos(), systm->GetDeg(initPos, a_pEnemy->GetPos()),a_pEnemy->GetEBulletSpdScl());
-				break;
+				// 弾の間隔制御
+				if (m_shotIntervalCnt > ShotInterval)
+				{
+					// カウントリセットし、弾を発射する
+					m_shotIntervalCnt = 0;
+					bullet[i]->ShotBullet(a_pEnemy->GetPos(), systm->GetDeg(initPos, a_pEnemy->GetPos()), a_pEnemy->GetEBulletSpdScl());
+					break;
+				}
 			}
 		}
 	}
 
+	// すべて装填フラグがfalse(準備状態)になったらendflgをtrueにする
+	m_shotEndFlg = std::all_of(bullet, bullet + ebulletNum, [](auto* b) { return !b->GetLoadOkFlg(); });
 
-	if (m_shotStateCnt <= 0)
+
+	if (m_shotStateCnt <= 0 && m_shotEndFlg)
 	{
 		switch (m_movepattern)
 		{
