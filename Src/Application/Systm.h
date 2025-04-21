@@ -11,6 +11,7 @@
 #define ScrnBtm -360
 #define ScrnRht 640
 #define ScrnLft -640
+#define EnemyMax 5
 #define BulletNum 18
 #define ebulletNum 6
 #define DropBulletNum 18

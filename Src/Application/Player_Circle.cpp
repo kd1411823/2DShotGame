@@ -69,9 +69,7 @@ void C_Player_Circle::Action()
 
 void C_Player_Circle::EnemyBulletHit()
 {
-	C_Enemy* enemy = m_p0wner->GetEnemy();
-	C_Bullet* ebullet[ebulletNum];
-	for (int i = 0;i < ebulletNum;i++)ebullet[i] = enemy->GetBullet(i);
+	
 
 
 	

@@ -7,7 +7,7 @@ void Scene::Draw2D()
 	m_back_circle.Draw();
 	m_player_circle.Draw();
 	m_player.Draw();
-	m_enemy.Draw();
+	m_enemy_manager.Draw();
 }
 
 void Scene::Update()
@@ -33,14 +33,13 @@ void Scene::Update()
 	m_back_circle.Action();
 	m_player_circle.Action();
 	m_player.Action();
-	m_enemy.Action();
+	m_enemy_manager.Action();
 
 	m_player.Update();
 	m_player_circle.Update();
 	m_backgroud.Update();
 	m_back_circle.Update();
-	m_enemy.Update();
-
+	m_enemy_manager.Update();
 }
 
 void Scene::Init()
@@ -57,7 +56,6 @@ void Scene::Init()
 	backgroundTex.Load("Texture/background.png");
 	backcircleTex.Load("Texture/backcircle.png");
 	playerTex.Load("Texture/player.png");
-	enemyTex.Load("Texture/enemy.png");
 	sunTex.Load("Texture/Sun.png");
 
 	m_sun.SetTex(&sunTex);
@@ -65,7 +63,7 @@ void Scene::Init()
 	m_back_circle.SetTex(&backcircleTex);
 	m_player_circle.SetTex(&backcircleTex);
 	m_player.SetTex(&playerTex);
-	m_enemy.SetTex(&enemyTex);
+	
 	
 	m_sun.SetP0wner(this);
 	m_sound.SetP0wner(this);
@@ -73,7 +71,7 @@ void Scene::Init()
 	m_back_circle.SetP0wner(this);
 	m_player_circle.SetP0wner(this);
 	m_player.SetP0wner(this);
-	m_enemy.SetP0wner(this);
+	m_enemy_manager.SetP0wner(this);
 	
 
 	m_sun.Init();
@@ -82,7 +80,7 @@ void Scene::Init()
 	m_back_circle.Init();
 	m_player_circle.Init();
 	m_player.Init();
-	m_enemy.Init();
+	m_enemy_manager.Init();
 }
 
 void Scene::Release()
@@ -91,7 +89,6 @@ void Scene::Release()
 	backgroundTex.Release();
 	backcircleTex.Release();
 	playercircleTex.Release();
-	enemyTex.Release();
 	sunTex.Release();
 	m_cons.destroy();
 

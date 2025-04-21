@@ -4,23 +4,15 @@
 
 C_Enemy::C_Enemy()
 {
-
-}
-
-C_Enemy::~C_Enemy()
-{
-	ebulletTex.Release();
-}
-
-void C_Enemy::Init()
-{
 	C_Systm* systm = m_p0wner->GetSystm();
-
+	C_EnemyManager* enemymanager = m_p0wner->GetEnemyManager();
 	// 初期化時にインスタンスのポインタを渡す
 	m_stateMachine.Start(this);
 
 	// 初期状態のステートをセット
 	m_stateMachine.ChangeState<C_Enemy_StandState>();
+
+	enemyTex.Load("Texture/enemy.png");
 
 	ebulletTex.Load("Texture/ebullet.png");
 
@@ -31,18 +23,31 @@ void C_Enemy::Init()
 	}
 
 	m_circleRadius = 305.0f;		// 円の半径
-	m_deg = systm->RndBtwn(0,360);		// 角度
+	m_deg = systm->RndBtwn(0, 360);		// 角度
 	m_movDeg = 0;				// 移動量(角度)
 	m_ebulletSpdScl = 0.4f;		// 敵の弾のスピード倍率
 
-	m_bsst.pos = { 0,0 };
+	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
+	m_bsst.pos.y = sin(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
 	m_bsst.mov = { 0,0 };
 	m_bsst.scl = { 0.5f,0.5f };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
+	m_bsst.draw.pTex = &enemyTex;
 	m_bsst.draw.rct = { 0, 0, BIT64, BIT64 };
 	m_bsst.draw.clr = WHITE;
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
+}
+
+C_Enemy::~C_Enemy()
+{
+	enemyTex.Release();
+	ebulletTex.Release();
+}
+
+void C_Enemy::Init()
+{
+	
 }
 
 void C_Enemy::Draw()

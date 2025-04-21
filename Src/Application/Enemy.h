@@ -26,6 +26,7 @@ public:
 private:
 
 	// テクスチャ
+	KdTexture enemyTex;
 	KdTexture ebulletTex;
 
 	// ステートマシン

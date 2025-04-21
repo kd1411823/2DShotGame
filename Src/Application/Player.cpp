@@ -143,7 +143,7 @@ void C_Player::Mouse()
 
 void C_Player::BulletHit()
 {
-	C_Systm* systm = m_p0wner->GetSystm();
+	/*C_Systm* systm = m_p0wner->GetSystm();
 	C_Enemy* enemy = m_p0wner->GetEnemy();
 
 	for (int i = 0; i < BulletNum;i++)
@@ -158,7 +158,7 @@ void C_Player::BulletHit()
 			m_bullet[i].Hit();
 			enemy->Hit();
 		}
-	}
+	}*/
 }
 
 void C_Player::LoadBullet()
