@@ -41,8 +41,6 @@ void C_Player_Circle::Action()
 {
 	C_Player* player = m_p0wner->GetPlayer();
 
-	//m_playerLife = ThreeLife;
-
 	switch (m_playerLife)
 	{
 	case ZeroLife:
@@ -67,4 +65,15 @@ void C_Player_Circle::Action()
 		break;
 	}
 	
+}
+
+void C_Player_Circle::EnemyBulletHit()
+{
+	C_Enemy* enemy = m_p0wner->GetEnemy();
+	C_Bullet* ebullet[ebulletNum];
+	for (int i = 0;i < ebulletNum;i++)ebullet[i] = enemy->GetBullet(i);
+
+
+	
+
 }

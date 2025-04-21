@@ -6,7 +6,7 @@ void C_Enemy_StandState::OnStart(C_Enemy* a_pEnemy)
 {
 	Scene* scene = a_pEnemy->GetPowner();
 	C_Systm* systm = scene->GetSystm();
-	m_standStateCnt = systm->RndBtwn(30,180); // 通常状態のステートカウント
+	m_standStateCnt = systm->RndBtwn(30,70); // 通常状態のステートカウント
 	a_pEnemy->SetMovDeg(0);
 }
 

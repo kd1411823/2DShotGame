@@ -6,7 +6,7 @@ void C_Enemy_MoveState::OnStart(C_Enemy* a_pEnemy)
 {
 	Scene* scene = a_pEnemy->GetPowner();
 	C_Systm* systm = scene->GetSystm();
-	m_moveStateCnt = systm->RndBtwn(50, 120); // 動く状態のステートカウント
+	m_moveStateCnt = systm->RndBtwn(30, 60); // 動く状態のステートカウント
 	m_dir = (eEnemyMovDir)systm->RndBtwn(LeftDir,RightDir); // 動く方向
 }
 

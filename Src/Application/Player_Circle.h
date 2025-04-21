@@ -12,6 +12,7 @@ public:
 	void Draw()override;
 	void Update()override;
 	void Action()override;
+	void EnemyBulletHit();
 
 	void SetPlayerLife(ePlayerLife a_playerLife) { m_playerLife = a_playerLife; }
 

@@ -17,8 +17,8 @@
 #define pHighSpd 5.0f
 #define pDefaultSpd 2.0f
 #define pSlowSpd 0.8f
-#define eHighSpd 4.0f
-#define eDefaultSpd 2.0f
+#define eHighSpd 2.0f
+#define eDefaultSpd 1.5f
 #define eSlowSpd 0.8f
 #define ZeroLifescl 0.0f
 #define OneLifescl 0.25f

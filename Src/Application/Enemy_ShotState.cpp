@@ -15,7 +15,7 @@ void C_Enemy_ShotState::OnStart(C_Enemy* a_pEnemy)
 
 		bullet[i]->SetLoadOkFlg(true);
 	}
-	m_shotStateCnt = systm->RndBtwn(90, 180); // 撃つ状態のステート
+	m_shotStateCnt = systm->RndBtwn(60, 120); // 撃つ状態のステート
 	m_movepattern = (eEnemyMovCmd)systm->RndBtwn(DefaultMov,HighMov);  // 動くパターン
 	m_dir = (eEnemyMovDir)systm->RndBtwn(LeftDir,RightDir);	// 動く方向
 	m_shotEndFlg = false;  // 撃ち終わったかフラグ
