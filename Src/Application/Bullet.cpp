@@ -46,12 +46,12 @@ void C_Bullet::Action()
 	
 }
 
-void C_Bullet::ShotBullet(Math::Vector2 a_pos, float a_deg)
+void C_Bullet::ShotBullet(Math::Vector2 a_pos, float a_deg, float a_spdScl)
 {
 	m_bsst.pos = a_pos;
 	m_bsst.rot = a_deg - 90.0f;
-	m_bsst.mov.x = cos(DirectX::XMConvertToRadians(a_deg)) * m_bulletSpd;
-	m_bsst.mov.y = sin(DirectX::XMConvertToRadians(a_deg)) * m_bulletSpd;
+	m_bsst.mov.x = cos(DirectX::XMConvertToRadians(a_deg)) * (m_bulletSpd * a_spdScl);
+	m_bsst.mov.y = sin(DirectX::XMConvertToRadians(a_deg)) * (m_bulletSpd * a_spdScl);
 	m_bsst.alive = true;
 	m_loadOkFlg = false;
 }

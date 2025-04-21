@@ -14,4 +14,6 @@ private:
 
 	int m_shotStateCnt; // 撃つ状態のステート
 	eEnemyMovCmd m_movepattern;  // 動くパターン
+	bool m_shotEndFlg;  // 撃ち終わったかフラグ
+	int  m_shotIntervalCnt; // 弾の間隔カウント
 };

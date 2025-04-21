@@ -13,7 +13,7 @@ public:
 	void Update()override;
 	void Action()override;
 
-	void ShotBullet(Math::Vector2 a_pos,float a_deg);
+	void ShotBullet(Math::Vector2 a_pos,float a_deg,float a_spdScl = 1.0f);
 	void IsEndPoint();
 
 	// ÉQÉbÉ^Å[

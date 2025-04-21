@@ -9,15 +9,36 @@ void C_Enemy_ShotState::OnStart(C_Enemy* a_pEnemy)
 	C_Systm* systm = scene->GetSystm();
 	m_shotStateCnt = systm->RndBtwn(90, 180); // 撃つ状態のステート
 	m_movepattern = (eEnemyMovCmd)systm->RndBtwn(DefaultMov,HighMov);  // 動くパターン
+	m_shotEndFlg = false;  // 撃ち終わったかフラグ
+	m_shotIntervalCnt = 0; // 弾の間隔カウント
 }
 
 void C_Enemy_ShotState::OnUpdate(C_Enemy* a_pEnemy)
 {
+	Scene* scene = a_pEnemy->GetPowner();
+	C_Systm* systm = scene->GetSystm();
 	C_Bullet* bullet[ebulletNum];
+	for (int i = 0;i < ebulletNum;i++)bullet[i] = a_pEnemy->GetBullet(i);
 
+	// 弾間隔カウント加算
+	m_shotIntervalCnt++;
 	m_shotStateCnt--;
 
-
+	for (int i = 0;i < ebulletNum;i++)
+	{
+		// 弾が発射していない
+		if (!bullet[i]->GetAlive())
+		{
+			// 弾の間隔制御
+			if (m_shotIntervalCnt > ShotInterval)
+			{
+				// カウントリセットし、弾を発射する
+				m_shotIntervalCnt = 0;
+				bullet[i]->ShotBullet(a_pEnemy->GetPos(), systm->GetDeg(initPos, a_pEnemy->GetPos()),a_pEnemy->GetEBulletSpdScl());
+				break;
+			}
+		}
+	}
 
 
 	if (m_shotStateCnt <= 0)

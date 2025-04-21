@@ -17,6 +17,7 @@ public:
 
 	float GetRadius()override { return m_enemyRadius; }
 	C_Bullet* GetBullet(int a_no) { return &m_bullet[a_no]; }
+	float GetEBulletSpdScl() { return m_ebulletSpdScl; }
 
 	void SetMovDeg(float a_movDeg) { m_movDeg = a_movDeg; }
 
@@ -36,4 +37,5 @@ private:
 	float m_deg;				// Šp“x
 	float m_movDeg;				// ˆÚ“®—Ê(Šp“x)
 	float m_circleRadius;		// ‰~‚Ì”¼Œa
+	float m_ebulletSpdScl;		// “G‚Ì’e‚ÌƒXƒs[ƒh”{—¦
 };

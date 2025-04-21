@@ -33,6 +33,7 @@ void C_Enemy::Init()
 	m_circleRadius = 305.0f;		// 円の半径
 	m_deg = systm->RndBtwn(0,360);		// 角度
 	m_movDeg = 0;				// 移動量(角度)
+	m_ebulletSpdScl = 0.4f;		// 敵の弾のスピード倍率
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
