@@ -19,6 +19,7 @@ private:
 	KdTexture playerTex;
 	KdTexture playercircleTex;
 	KdTexture sunTex;
+	KdTexture sun2Tex;
 
 	// インスタンス
 	C_Background m_backgroud;

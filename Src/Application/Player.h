@@ -16,7 +16,6 @@ public:
 	void Update()override;
 	void Action()override;
 	void Mouse();
-	void BulletHit();
 	void LoadBullet();
 
 	// セッター

@@ -50,12 +50,12 @@ void C_Player::Init()
 	m_movDeg = 0;													// プレイヤーの移動量(deg)
 	m_playerRadius= 25.0f;// プレイヤーの半径
 	m_playerSpeed = 2.0f;// プレイヤーのスピード
-	m_circleRadius= 100.0f;// プレイヤー円の半径
+	m_circleRadius= 0.0f;// プレイヤー円の半径
 
 	// プレイヤーのステータス
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 0.2f,0.2f };
+	m_bsst.scl = { 0.25f,0.25f };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, BIT128, BIT128 };
@@ -79,8 +79,6 @@ void C_Player::Update()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 	C_Sun* m_sun = m_p0wner->GetSun();
-
-	BulletHit();
 
 	LoadBullet();
 	
@@ -139,26 +137,6 @@ void C_Player::Mouse()
 
 	m_pMousePos = systm->GetMousePos(m_pMousePos);					// POINT型マウス座標
 	m_vMousePos = { (float)m_pMousePos.x,(float)m_pMousePos.y };	// vector2型マウス座標
-}
-
-void C_Player::BulletHit()
-{
-	/*C_Systm* systm = m_p0wner->GetSystm();
-	C_Enemy* enemy = m_p0wner->GetEnemy();
-
-	for (int i = 0; i < BulletNum;i++)
-	{
-		if (!m_bullet[i].GetAlive() || !enemy->GetAlive())continue;
-		const tTry BulletEnemyDis = systm->CalcPythag(enemy->GetPos(), m_bullet[i].GetPos());
-
-		const float bulletenemyhypn = m_bullet[i].GetRadius() + enemy->GetRadius();
-
-		if (BulletEnemyDis.hypn < bulletenemyhypn)
-		{
-			m_bullet[i].Hit();
-			enemy->Hit();
-		}
-	}*/
 }
 
 void C_Player::LoadBullet()

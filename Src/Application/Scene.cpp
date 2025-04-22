@@ -57,6 +57,7 @@ void Scene::Init()
 	backcircleTex.Load("Texture/backcircle.png");
 	playerTex.Load("Texture/player.png");
 	sunTex.Load("Texture/Sun.png");
+	sun2Tex.Load("Texture/Sun2.png");
 
 	m_sun.SetTex(&sunTex);
 	m_backgroud.SetTex(&backgroundTex);
@@ -90,6 +91,7 @@ void Scene::Release()
 	backcircleTex.Release();
 	playercircleTex.Release();
 	sunTex.Release();
+	sun2Tex.Release();
 	m_cons.destroy();
 
 }

@@ -15,6 +15,8 @@ public:
 	void Update()override;
 	void Action()override;
 
+	void EnemyBulletPlayerCircleHit();
+
 	float GetRadius()override { return m_enemyRadius; }
 	C_Bullet* GetBullet(int a_no) { return &m_bullet[a_no]; }
 	float GetEBulletSpdScl() { return m_ebulletSpdScl; }

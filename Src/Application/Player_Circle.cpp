@@ -7,6 +7,7 @@ void C_Player_Circle::Init()
 
 	m_playerLife      = TwoLife; // プレイヤーのライフ
 	m_playerCircleScl = TwoLifescl;  // プレイヤー円の大きさ
+	m_circleRadius = TwoRadius;
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
@@ -45,33 +46,32 @@ void C_Player_Circle::Action()
 	{
 	case ZeroLife:
 		m_playerCircleScl = ZeroLifescl;
-		player->SetCircleRadius(0.0f);
+		player->SetCircleRadius(ZeroRadius);
+		m_circleRadius = ZeroRadius; 
 		break;
 	case OneLife:
 		m_playerCircleScl = OneLifescl;
-		player->SetCircleRadius(85.0f);
+		player->SetCircleRadius(OneRadius);
+		m_circleRadius = OneRadius; 
 		break;
 	case TwoLife:
 		m_playerCircleScl = TwoLifescl;
-		player->SetCircleRadius(170.0f);
+		player->SetCircleRadius(TwoRadius);
+		m_circleRadius = TwoRadius; 
 		break;
 	case ThreeLife:
 		m_playerCircleScl = ThreeLifescl;
-		player->SetCircleRadius(240.0f);
+		player->SetCircleRadius(ThreeRadius);
+		m_circleRadius = ThreeRadius;
 		break;
 	case FourLife:
 		m_playerCircleScl = FourLifescl;
-		player->SetCircleRadius(305.0f);
+		player->SetCircleRadius(FourRadius);
+		m_circleRadius = FourRadius; 
 		break;
 	}
 	
-}
-
-void C_Player_Circle::EnemyBulletHit()
-{
-	
-
-
-	
 
 }
+
+

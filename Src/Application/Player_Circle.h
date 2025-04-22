@@ -12,16 +12,17 @@ public:
 	void Draw()override;
 	void Update()override;
 	void Action()override;
-	void EnemyBulletHit();
 
 	void SetPlayerLife(ePlayerLife a_playerLife) { m_playerLife = a_playerLife; }
 
 	ePlayerLife GetPlayerLife() { return m_playerLife; }
-
+	float GetCircleRadius() { return m_circleRadius; }
+	float GetPlayerCircleScl() { return m_playerCircleScl; }
 
 private:
 
 	ePlayerLife m_playerLife; // プレイヤーのライフ
+	float m_circleRadius; // 半径
 	float m_playerCircleScl;  // プレイヤー円の大きさ
 
 };

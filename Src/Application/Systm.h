@@ -26,6 +26,11 @@
 #define TwoLifescl 0.5f
 #define ThreeLifescl 0.7f
 #define FourLifescl 0.9f
+#define ZeroRadius 0.0f
+#define OneRadius 85.0f
+#define TwoRadius 170.0f
+#define ThreeRadius 238.0f
+#define FourRadius 305.0f
 #define ShotInterval 4
 #define initPos { 0, 0 }
 #define WHITE { 1.0f,1.0f,1.0f,1.0f }

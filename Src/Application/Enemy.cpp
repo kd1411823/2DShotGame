@@ -22,7 +22,7 @@ C_Enemy::C_Enemy()
 		m_bullet[i].Init();
 	}
 
-	m_circleRadius = 305.0f;		// ‰~‚Ì”¼Œa
+	m_circleRadius = FourRadius;		// ‰~‚Ì”¼Œa
 	m_deg = systm->RndBtwn(0, 360);		// Šp“x
 	m_movDeg = 0;				// ˆÚ“®—Ê(Šp“x)
 	m_ebulletSpdScl = 0.4f;		// “G‚Ì’e‚ÌƒXƒs[ƒh”{—¦
@@ -90,6 +90,8 @@ void C_Enemy::Action()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
+	EnemyBulletPlayerCircleHit();
+
 
 	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
 	m_bsst.pos.y = sin(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
@@ -97,5 +99,23 @@ void C_Enemy::Action()
 	for (int i = 0;i < ebulletNum;i++)
 	{
 		m_bullet[i].Action();
+	}
+
+}
+
+void C_Enemy::EnemyBulletPlayerCircleHit()
+{
+	C_Systm* systm = m_p0wner->GetSystm();
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
+	for (int i = 0;i < ebulletNum;i++)
+	{
+		if (!m_bullet[i].GetAlive())continue;
+		const tTry enemybulletPlayercircletTry = systm->CalcPythag(initPos, m_bullet[i].GetPos());
+
+		const float bulletCirclehypn =  m_bullet[i].GetRadius() + playercircle->GetCircleRadius();
+
+		if()
+		
 	}
 }

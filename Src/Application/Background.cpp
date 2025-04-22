@@ -11,7 +11,7 @@ void C_Background::Init()
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, ScrnHgt, ScrnWid };
-	m_bsst.draw.clr = { 0.00f, 0.12f, 0.20f, 1.0f};
+	m_bsst.draw.clr = BLACK;
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
