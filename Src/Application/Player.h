@@ -15,6 +15,8 @@ public:
 	void Draw()override;
 	void Update()override;
 	void Action()override;
+	void Animation()override;
+	void ScaleManager();
 	void Mouse();
 	void LoadBullet();
 

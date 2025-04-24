@@ -46,7 +46,7 @@ void C_Player::Init()
 	// メンバ変数
 	m_pMousePos = systm->GetMousePos(m_pMousePos);					// POINT型マウス座標
 	m_vMousePos = { (float)m_pMousePos.x,(float)m_pMousePos.y };	// vector2型マウス座標
-	m_deg = 10;														// 角度
+	m_deg = 0;														// 角度
 	m_movDeg = 0;													// プレイヤーの移動量(deg)
 	m_playerRadius= 25.0f;// プレイヤーの半径
 	m_playerSpeed = 2.0f;// プレイヤーのスピード
@@ -55,11 +55,11 @@ void C_Player::Init()
 	// プレイヤーのステータス
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 0.25f,0.25f };
+	m_bsst.scl = { 0.15f,0.15f };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
-	m_bsst.draw.rct = { 0, 0, BIT128, BIT128 };
-	m_bsst.draw.clr = WHITE;
+	m_bsst.draw.rct = {0, 0, BIT256, BIT256 };
+	m_bsst.draw.clr = GREEN;
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -115,7 +115,6 @@ void C_Player::Action()
 
 	Mouse();
 
-	
 	m_bsst.rot = systm->GetDeg(initPos, m_bsst.pos) - 90.0f;
 
 	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
@@ -129,6 +128,16 @@ void C_Player::Action()
 	{
 		m_drop_bullet[i].Action(m_circleRadius);
 	}
+}
+
+void C_Player::Animation()
+{
+
+}
+
+void C_Player::ScaleManager()
+{
+
 }
 
 void C_Player::Mouse()

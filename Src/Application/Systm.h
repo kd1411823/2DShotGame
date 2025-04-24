@@ -3,6 +3,9 @@
 #define BIT24 24
 #define BIT64 64
 #define BIT128 128
+#define BIT240 240
+#define BIT256 256
+#define BIT512 512
 #define WhlUp 120
 #define WhlDwn -120
 #define ScrnHgt 1280
@@ -11,16 +14,18 @@
 #define ScrnBtm -360
 #define ScrnRht 640
 #define ScrnLft -640
-#define EnemyMax 5
+#define EnemyMax 3
+#define EnemyHpCircleScl 0.3f
 #define BulletNum 18
 #define ebulletNum 6
 #define DropBulletNum 18
-#define pHighSpd 5.0f
+#define pHighSpd 3.0f
 #define pDefaultSpd 2.0f
 #define pSlowSpd 0.8f
 #define eHighSpd 2.0f
 #define eDefaultSpd 1.5f
 #define eSlowSpd 0.8f
+#define EnemyHp 5.0f
 #define ZeroLifescl 0.0f
 #define OneLifescl 0.25f
 #define TwoLifescl 0.5f
@@ -89,6 +94,20 @@ struct Bsst
 	Math::Vector2 scl;
 	float rot;
 	bool alive;
+	tMat mat;
+	tDraw draw;
+};
+
+// パーティクルステータス
+struct ParticleSt
+{
+	Math::Vector2 pos;
+	Math::Vector2 mov;
+	Math::Vector2 scl;
+	float rot;
+	bool alive;
+	int  lifespan;
+	bool repeat;
 	tMat mat;
 	tDraw draw;
 };

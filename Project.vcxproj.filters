@@ -207,6 +207,18 @@
     <ClInclude Include="Src\Application\EnemyManager.h">
       <Filter>Src\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\ParticleBase.h">
+      <Filter>Src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Player_TriangleParticle.h">
+      <Filter>Src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Enemy_Circle.h">
+      <Filter>Src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Enemy_HPCircle.h">
+      <Filter>Src\Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -333,6 +345,18 @@
       <Filter>Src\Application</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\EnemyManager.cpp">
+      <Filter>Src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\ParticleBase.cpp">
+      <Filter>Src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Player_TriangleParticle.cpp">
+      <Filter>Src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Enemy_Circle.cpp">
+      <Filter>Src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Enemy_HPCircle.cpp">
       <Filter>Src\Application</Filter>
     </ClCompile>
   </ItemGroup>

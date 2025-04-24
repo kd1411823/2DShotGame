@@ -50,7 +50,7 @@ void C_Enemy_ShotState::OnUpdate(C_Enemy* a_pEnemy)
 		for (int i = 0;i < ebulletNum;i++)
 		{
 			// ’e‚ª”­ŽË‚µ‚Ä‚¢‚È‚¢
-			if (!bullet[i]->GetAlive())
+			if (!bullet[i]->GetAlive() && bullet[i]->GetLoadOkFlg())
 			{
 				// ’e‚ÌŠÔŠu§Œä
 				if (m_shotIntervalCnt > ShotInterval)

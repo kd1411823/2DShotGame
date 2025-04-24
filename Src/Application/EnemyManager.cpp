@@ -71,7 +71,7 @@ void C_EnemyManager::PlayerBulletHit()
 
 		for (int i = 0; i < BulletNum; ++i)
 		{
-			if (!pbullet[i]->GetAlive() || !(*enemy)->GetAlive()) continue;
+			if (!pbullet[i]->GetAlive()) continue;
 
 			const tTry playerbulletEnemytTry = systm->CalcPythag((*enemy)->GetPos(), pbullet[i]->GetPos());
 			const float bulletEnemyhypn = pbullet[i]->GetRadius() + (*enemy)->GetRadius();
@@ -79,13 +79,18 @@ void C_EnemyManager::PlayerBulletHit()
 			if (playerbulletEnemytTry.hypn < bulletEnemyhypn)
 			{
 				pbullet[i]->Hit();
-				(*enemy)->Hit();
-
-				// 敵を削除し、イテレータを更新してループを抜ける
-				enemy = m_enemies.erase(enemy);
-				erased = true;
+				(*enemy)->TakeDamage();
+				
+				if (!(*enemy)->GetAlive())
+				{
+					// 敵を削除し、イテレータを更新してループを抜ける
+					enemy = m_enemies.erase(enemy);
+					erased = true;
+					
+				}
 				break;
 			}
+
 		}
 		// 倒されてなかったらイテレータをまわす
 		if (!erased)

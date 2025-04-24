@@ -1,3 +1,4 @@
+#include "ParticleBase.h"
 #include "main.h"
 #include "Scene.h"
 
@@ -48,6 +49,7 @@ void Scene::Init()
 	srand(timeGetTime());
 	system("cls");
 
+
 	m_cons.create();
 
 	m_sound.SeLoad();
@@ -65,7 +67,7 @@ void Scene::Init()
 	m_player_circle.SetTex(&backcircleTex);
 	m_player.SetTex(&playerTex);
 	
-	
+
 	m_sun.SetP0wner(this);
 	m_sound.SetP0wner(this);
 	m_backgroud.SetP0wner(this);
@@ -93,7 +95,6 @@ void Scene::Release()
 	sunTex.Release();
 	sun2Tex.Release();
 	m_cons.destroy();
-
 }
 
 void Scene::ImGuiUpdate()

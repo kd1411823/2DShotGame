@@ -15,6 +15,7 @@ public:
 	virtual void Draw(){}
 	virtual void Update(){}
 	virtual void Action(){}
+	virtual void Animation(){}
 
 	void SetP0wner(Scene* a_p0wner) { m_p0wner = a_p0wner; }
 	void SetTex(KdTexture* a_pTex) { m_bsst.draw.pTex = a_pTex; }
