@@ -68,6 +68,7 @@ void Scene::Init()
 	m_player.SetTex(&playerTex);
 	
 
+	m_particlebase.SetP0wner(this);
 	m_sun.SetP0wner(this);
 	m_sound.SetP0wner(this);
 	m_backgroud.SetP0wner(this);

@@ -40,7 +40,7 @@ void C_Enemy_HPCircle::Action(bool a_alive, float a_hpPoint)
 {
 	const float ratio = ((EnemyHp  - a_hpPoint) / EnemyHp);
 	
-	m_bsst.scl.x =  EnemyHpCircleScl * ratio ;
+	m_bsst.scl.x =  EnemyHpCircleScl * ratio;
 	m_bsst.scl.y =  EnemyHpCircleScl * ratio;
 
 	printf("%.2f\n", ratio);

@@ -25,7 +25,7 @@
 #define eHighSpd 2.0f
 #define eDefaultSpd 1.5f
 #define eSlowSpd 0.8f
-#define EnemyHp 5.0f
+#define EnemyHp 7.0f
 #define ZeroLifescl 0.0f
 #define OneLifescl 0.25f
 #define TwoLifescl 0.5f

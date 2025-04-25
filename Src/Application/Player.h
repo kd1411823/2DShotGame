@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObjectBase.h"
+#include "Player_TriangleParticle.h"
 #include "Bullet.h"
 #include "Drop_Bullet.h"
 #include "StateMachine.h"
@@ -22,6 +23,7 @@ public:
 
 	// セッター
 	void SetClr(Math::Color a_clr) { m_bsst.draw.clr = a_clr; }
+	void SetbMoveFlg(bool a_bMoveFlg) { m_bMoveFlg = a_bMoveFlg; }
 	void SetMovDeg(float a_movDeg) { m_movDeg = a_movDeg; }
 	void SetPlayerSpeed(float a_playerSpeed) { m_playerSpeed = a_playerSpeed; }
 	void SetCircleRadius(float a_circleRadius) { m_circleRadius = a_circleRadius; }
@@ -35,8 +37,11 @@ public:
 
 private:
 
+	static const int triangleParticleNum = 30;
+
 	KdTexture bulletTex;
 	KdTexture dropbulletTex;
+	KdTexture triangleTex;
 
 	// ステートマシン
 	C_StateMachine<C_Player> m_stateMachine;
@@ -44,12 +49,16 @@ private:
 	// 弾のインスタンスを作成
 	C_Bullet m_bullet[BulletNum];
 	C_Drop_Bullet m_drop_bullet[DropBulletNum];
-	
-	POINT		  m_pMousePos;  // POINT型マウス座標
-	Math::Vector2 m_vMousePos;	// vector2型マウス座標
-	float		  m_deg;		// 角度
-	float         m_movDeg;		// プレイヤーの移動量(deg)
-	float		  m_playerRadius;// プレイヤーの半径
-	float		  m_playerSpeed;// プレイヤーのスピード
-	float		  m_circleRadius;// プレイヤー円の半径
+
+	// プレイヤーの三角形パーティクル
+	C_Player_TriangleParticle m_player_triangleParticle[triangleParticleNum];
+
+	POINT		  m_pMousePos;		// POINT型マウス座標
+	Math::Vector2 m_vMousePos;		// vector2型マウス座標
+	bool		  m_bMoveFlg;		// 動いているかフラグ
+	float		  m_deg;			// 角度
+	float         m_movDeg;			// プレイヤーの移動量(deg)
+	float		  m_playerRadius;	// プレイヤーの半径
+	float		  m_playerSpeed;	// プレイヤーのスピード
+	float		  m_circleRadius;	// プレイヤー円の半径
 };

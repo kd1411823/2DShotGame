@@ -12,11 +12,15 @@ public:
 
 	virtual void Init(){}
 	virtual void Draw(){}
-	virtual void Update(){}
+	virtual void Update(Math::Vector2 a_pos , bool a_bMoveFlg) {}
 	void Emit(Math::Vector2 a_pos, Math::Vector2 a_mov, Math::Vector2 a_scl, float a_rot, bool a_alive,
-			  int a_lifespan, bool a_repeat, tDraw a_draw);
+		int a_lifespan, bool a_repeat, Math::Rectangle a_rct,Math::Color a_clr);
+
+	//0.0`1.0‚Ì—”‚ğ‹‚ß‚é
+	float Rnd();
 
 	void SetP0wner(Scene* a_p0wner) { m_p0wner = a_p0wner; }
+	void SetTex(KdTexture* a_pTex) { m_particle.draw.pTex = a_pTex; }
 
 protected:
 

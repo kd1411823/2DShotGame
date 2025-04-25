@@ -25,10 +25,12 @@ void C_Player_ShotBulletState::OnUpdate(C_Player* a_pPlayer)
 	if (GetAsyncKeyState('D') & 0x8000)
 	{
 		a_pPlayer->SetMovDeg(a_pPlayer->GetPlayerSpeed());
+		a_pPlayer->SetbMoveFlg(true);
 	}
 	else if (GetAsyncKeyState('A') & 0x8000)
 	{
 		a_pPlayer->SetMovDeg(-(a_pPlayer->GetPlayerSpeed()));
+		a_pPlayer->SetbMoveFlg(true);
 	}
 
 	// 弾を貯めるフェーズ終了(弾取得オブジェクトを表示)

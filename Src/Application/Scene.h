@@ -4,6 +4,7 @@
 #include "Background.h"
 #include "Back_Circle.h"
 #include "EnemyManager.h"
+#include "ParticleBase.h"
 #include "Sun.h"
 #include "Systm.h"
 #include "Sound.h"
@@ -32,6 +33,7 @@ private:
 	C_Sound  m_sound;
 	C_Systm  m_systm;
 	C_EnemyManager m_enemy_manager;
+	C_ParticleBase m_particlebase;
 
 public:
 

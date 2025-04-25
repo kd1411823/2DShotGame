@@ -12,6 +12,7 @@ C_Player::~C_Player()
 {
 	bulletTex.Release();
 	dropbulletTex.Release();
+	triangleTex.Release();
 }
 
 void C_Player::Init()
@@ -21,6 +22,7 @@ void C_Player::Init()
 	// 弾画像
 	bulletTex.Load("Texture/bullet.png");
 	dropbulletTex.Load("Texture/dropbullet.png");
+	triangleTex.Load("Texture/player.png");
 
 	// 初期化時にインスタンスのポインタを渡す
 	m_stateMachine.Start(this);
@@ -28,7 +30,11 @@ void C_Player::Init()
 	// 初期状態のステートをセット
 	m_stateMachine.ChangeState<C_Player_StandState>();
 
-
+	for (int i = 0;i < triangleParticleNum; i++)
+	{
+		m_player_triangleParticle[i].SetTex(&triangleTex);
+		m_player_triangleParticle[i].Init();
+	}
 	// 弾
 	for (int i = 0; i < BulletNum;i++)
 	{
@@ -46,6 +52,7 @@ void C_Player::Init()
 	// メンバ変数
 	m_pMousePos = systm->GetMousePos(m_pMousePos);					// POINT型マウス座標
 	m_vMousePos = { (float)m_pMousePos.x,(float)m_pMousePos.y };	// vector2型マウス座標
+	m_bMoveFlg = false;												// 動いているかフラグ
 	m_deg = 0;														// 角度
 	m_movDeg = 0;													// プレイヤーの移動量(deg)
 	m_playerRadius= 25.0f;// プレイヤーの半径
@@ -71,6 +78,12 @@ void C_Player::Draw()
 	C_Sun* m_sun = m_p0wner->GetSun();
 	m_sun->Draw();
 	D3D.SetBlendState(BlendMode::Alpha);
+
+	for (int i = 0;i < triangleParticleNum; i++)
+	{
+		m_player_triangleParticle[i].Draw();
+	}
+
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 }
@@ -82,6 +95,8 @@ void C_Player::Update()
 
 	LoadBullet();
 	
+	//ScaleManager();
+
 	m_bsst.pos += m_bsst.mov;
 
 	m_deg += m_movDeg;
@@ -92,7 +107,37 @@ void C_Player::Update()
 
 	m_movDeg = 0;
 
+	m_bMoveFlg = false;
+
 	m_stateMachine.Update();
+		
+	if (m_bMoveFlg)
+	{
+		for (int i = 0;i < triangleParticleNum; i++)
+		{
+			if (!m_player_triangleParticle[i].GetAlive())
+			{
+				m_player_triangleParticle[i].Emit(
+					{ 0, 0 },
+					{ 0 ,0 },
+					{ 0.0f ,0.0f },
+					0.0f,
+					true,
+					0,
+					true,
+					{ 0,0,0,0 },
+					{ 0.0f,0.0f,0.0f,0.0f }
+				);
+			}
+		}
+	}
+
+	
+	for (int i = 0;i < triangleParticleNum; i++)
+	{
+		m_player_triangleParticle[i].Update(m_bsst.pos,m_bMoveFlg);
+	}
+
 
 	for (int i = 0; i < BulletNum;i++)
 	{
@@ -137,6 +182,31 @@ void C_Player::Animation()
 
 void C_Player::ScaleManager()
 {
+	if (m_bMoveFlg)
+	{
+		if (m_bsst.scl.x <= 0.15f)
+		{
+			m_bsst.scl.x += 0.002f;
+		}
+		else
+		{
+			m_bsst.scl.x -= 0.002f;
+		}
+
+		if (m_bsst.scl.y >= 0.15f)
+		{
+			m_bsst.scl.y -= 0.002f;
+		}
+		else
+		{
+			m_bsst.scl.y += 0.002f;
+		}
+
+	}
+
+
+
+	
 
 }
 

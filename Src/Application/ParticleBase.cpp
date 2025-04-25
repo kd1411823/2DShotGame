@@ -7,7 +7,8 @@ void C_ParticleBase::Emit(Math::Vector2 a_pos,
 						  bool a_alive,
 						  int a_lifespan,
 						  bool a_repeat,
-						  tDraw a_draw)
+						  Math::Rectangle a_rct,
+						  Math::Color a_clr)
 {
 	m_particle.pos = a_pos;
 	m_particle.mov = a_mov;
@@ -16,5 +17,11 @@ void C_ParticleBase::Emit(Math::Vector2 a_pos,
 	m_particle.alive = a_alive;
 	m_particle.lifespan = a_lifespan;
 	m_particle.repeat = a_repeat;
-	m_particle.draw = a_draw;
+	m_particle.draw.rct = a_rct;
+	m_particle.draw.clr = a_clr;
+}
+
+float C_ParticleBase::Rnd()
+{
+	return rand() / (float)RAND_MAX;
 }
