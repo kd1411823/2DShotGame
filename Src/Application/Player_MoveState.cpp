@@ -5,6 +5,7 @@
 void C_Player_MoveState::OnStart(C_Player* a_pPlayer)
 {
 	a_pPlayer->SetPlayerSpeed(pDefaultSpd);
+	a_pPlayer->SetDrawBulletPredictionFlg(false);
 }
 
 void C_Player_MoveState::OnUpdate(C_Player* a_pPlayer)

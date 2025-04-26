@@ -10,6 +10,7 @@ C_Player::C_Player()
 
 C_Player::~C_Player()
 {
+	playerTex.Release();
 	bulletTex.Release();
 	dropbulletTex.Release();
 	triangleTex.Release();
@@ -20,6 +21,7 @@ void C_Player::Init()
 	C_Systm* systm = m_p0wner->GetSystm();
 
 	// 弾画像
+	playerTex.Load("Texture/player.png");
 	bulletTex.Load("Texture/bullet.png");
 	dropbulletTex.Load("Texture/dropbullet.png");
 	triangleTex.Load("Texture/player.png");
@@ -38,16 +40,29 @@ void C_Player::Init()
 	// 弾
 	for (int i = 0; i < BulletNum;i++)
 	{
-		m_bullet[i].Init();
 		m_bullet[i].SetTex(&bulletTex);
+		m_bullet[i].Init();
 	}
 
 	// 弾(取得オブジェクト)
 	for (int i = 0;i < DropBulletNum;i++)
 	{
-		m_drop_bullet[i].Init(i);
 		m_drop_bullet[i].SetTex(&dropbulletTex);
+		m_drop_bullet[i].Init(i);
 	}
+
+	for (int i = 0;i < pBulletLineNum;i++)
+	{
+		m_player_bulletpredictionline[i].SetTex(&playerTex);
+		m_player_bulletpredictionline[i].SetP0wner(m_p0wner);
+		m_player_bulletpredictionline[i].Init(i);
+	}
+
+	m_player_bulletpredictiontriangle.SetTex(&playerTex);
+	m_player_bulletpredictiontriangle.SetP0wner(m_p0wner);
+	m_player_bulletpredictiontriangle.Init();
+
+	m_bsst.draw.pTex = &playerTex;
 
 	// メンバ変数
 	m_pMousePos = systm->GetMousePos(m_pMousePos);					// POINT型マウス座標
@@ -58,6 +73,7 @@ void C_Player::Init()
 	m_playerRadius= 25.0f;// プレイヤーの半径
 	m_playerSpeed = 2.0f;// プレイヤーのスピード
 	m_circleRadius= 0.0f;// プレイヤー円の半径
+	m_drawBulletPredictionFlg = false;  // プレイヤーの弾予測描画フラグ
 
 	// プレイヤーのステータス
 	m_bsst.pos = { 0,0 };
@@ -72,20 +88,39 @@ void C_Player::Init()
 
 void C_Player::Draw()
 {
-	for (int i = 0;i < DropBulletNum;i++)m_drop_bullet[i].Draw();
-
-	for (int i = 0; i < BulletNum;i++)m_bullet[i].Draw();
+	for (int i = 0;i < DropBulletNum;i++)
+	{
+		m_drop_bullet[i].Draw();
+	}
+	for (int i = 0; i < BulletNum;i++)
+	{
+		m_bullet[i].Draw();
+	}
 	C_Sun* m_sun = m_p0wner->GetSun();
+
+	D3D.SetBlendState(BlendMode::Add);
+
+
 	m_sun->Draw();
-	D3D.SetBlendState(BlendMode::Alpha);
 
 	for (int i = 0;i < triangleParticleNum; i++)
 	{
 		m_player_triangleParticle[i].Draw();
 	}
+	D3D.SetBlendState(BlendMode::Alpha);
+
 
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
+
+	if (m_drawBulletPredictionFlg)
+	{
+		for (int i = 0;i < pBulletLineNum;i++)
+		{
+			m_player_bulletpredictionline[i].Draw();
+		}
+		m_player_bulletpredictiontriangle.Draw();
+	}
 }
 
 void C_Player::Update()
@@ -95,7 +130,7 @@ void C_Player::Update()
 
 	LoadBullet();
 	
-	//ScaleManager();
+	ScaleManager();
 
 	m_bsst.pos += m_bsst.mov;
 
@@ -149,6 +184,14 @@ void C_Player::Update()
 		m_drop_bullet[i].Update();
 	}
 
+	
+	for (int i = 0;i < pBulletLineNum;i++)
+	{
+		m_player_bulletpredictionline[i].Update(m_bsst.pos);
+	}
+
+	m_player_bulletpredictiontriangle.Update();
+	
 	m_sun->Update(m_bsst.pos, { 0.6f,0.6f }, GREEN);
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
@@ -173,6 +216,15 @@ void C_Player::Action()
 	{
 		m_drop_bullet[i].Action(m_circleRadius);
 	}
+
+	
+	for (int i = 0;i < pBulletLineNum;i++)
+	{
+		m_player_bulletpredictionline[i].Action(m_bsst.pos, m_bsst.rot, m_deg, m_circleRadius);
+	}
+	
+	m_player_bulletpredictiontriangle.Action(m_bsst.pos, m_bsst.rot, m_deg, m_circleRadius);
+
 }
 
 void C_Player::Animation()
@@ -182,32 +234,43 @@ void C_Player::Animation()
 
 void C_Player::ScaleManager()
 {
+	static bool _ExFlg = false;
+	float m_Ex = 0.007f;
+	float Max = 0.0f;
+	float Min = 0.0f;
+
 	if (m_bMoveFlg)
 	{
-		if (m_bsst.scl.x <= 0.15f)
-		{
-			m_bsst.scl.x += 0.002f;
-		}
-		else
-		{
-			m_bsst.scl.x -= 0.002f;
-		}
-
-		if (m_bsst.scl.y >= 0.15f)
-		{
-			m_bsst.scl.y -= 0.002f;
-		}
-		else
-		{
-			m_bsst.scl.y += 0.002f;
-		}
-
+		Max = 0.18f;
+		Min = 0.13f;
+	}
+	else
+	{
+		Max = 0.16f;
+		Min = 0.14f;
 	}
 
+		if (m_bsst.scl.x >= Max && m_bsst.scl.y <= Min )
+		{
+			_ExFlg = false;
+		}
 
-
+		if (m_bsst.scl.x <= Min && m_bsst.scl.y >= Max)
+		{
+			_ExFlg = true;
+		}
+		
+		if (_ExFlg)
+		{
+			m_bsst.scl.x += m_Ex;
+			m_bsst.scl.y -= m_Ex;
+		}
+		else
+		{
+			m_bsst.scl.x -= m_Ex;
+			m_bsst.scl.y += m_Ex;
+		}
 	
-
 }
 
 void C_Player::Mouse()

@@ -1,13 +1,11 @@
-#include "Player_TriangleParticle.h"
+#include "Enemy_SquareParticle.h"
 #include "Scene.h"
 
-void C_Player_TriangleParticle::Init()
+void C_Enemy_SquareParticle::Init()
 {
-	
-	
 }
 
-void C_Player_TriangleParticle::Draw()
+void C_Enemy_SquareParticle::Draw()
 {
 	if (m_particle.lifespan <= 0)return;
 	SHADER.m_spriteShader.SetMatrix(m_particle.mat.compmat);
@@ -15,11 +13,9 @@ void C_Player_TriangleParticle::Draw()
 
 }
 
-void C_Player_TriangleParticle::Update(Math::Vector2 a_pos, bool a_bMoveFlg)
+void C_Enemy_SquareParticle::Update(Math::Vector2 a_pos, bool a_bMoveFlg)
 {
 	C_Systm* systm = m_p0wner->GetSystm();
-
-	
 
 	m_particle.lifespan--;
 
@@ -64,4 +60,5 @@ void C_Player_TriangleParticle::Update(Math::Vector2 a_pos, bool a_bMoveFlg)
 	m_particle.pos += m_particle.mov;
 
 	m_particle.mat = systm->CreateMat(m_particle.scl, m_particle.rot, m_particle.pos);
+
 }

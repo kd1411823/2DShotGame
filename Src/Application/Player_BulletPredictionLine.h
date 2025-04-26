@@ -1,0 +1,21 @@
+#pragma once
+#include "GameObjectBase.h"
+
+class C_Player_BulletPredictionLine :public C_GameObject
+{
+public:
+
+	C_Player_BulletPredictionLine(){}
+	~C_Player_BulletPredictionLine(){}
+
+	void Init(int a_no);
+	void Draw();
+	void Update(Math::Vector2 a_pos);
+	void Action(Math::Vector2 a_pos,float a_rot,float a_deg,float a_circleRadius);
+
+
+private:
+
+	int m_no;	// 予測ラインのナンバー
+
+};

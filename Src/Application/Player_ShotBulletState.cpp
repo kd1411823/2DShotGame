@@ -5,6 +5,7 @@
 void C_Player_ShotBulletState::OnStart(C_Player* a_pPlayer)
 {
 	a_pPlayer->SetPlayerSpeed(pSlowSpd); // 通常のスピードに戻す
+	a_pPlayer->SetDrawBulletPredictionFlg(false);
 	m_shotEndFlg = false;  // 撃ち終わったかフラグ
 	m_shotIntervalCnt = 0; // 弾の間隔カウント
 }

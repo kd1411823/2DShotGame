@@ -5,6 +5,7 @@
 void C_Player_StandState::OnStart(C_Player* a_pPlayer)
 {
 	a_pPlayer->SetMovDeg(0.0f);
+	a_pPlayer->SetDrawBulletPredictionFlg(false);
 }
 
 void C_Player_StandState::OnUpdate(C_Player* a_pPlayer)

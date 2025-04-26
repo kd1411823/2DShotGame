@@ -17,7 +17,6 @@ void C_Sun::Init()
 
 void C_Sun::Draw()
 {
-	D3D.SetBlendState(BlendMode::Add);
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 }

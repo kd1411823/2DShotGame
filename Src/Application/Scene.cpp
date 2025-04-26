@@ -7,8 +7,8 @@ void Scene::Draw2D()
 	m_backgroud.Draw();
 	m_back_circle.Draw();
 	m_player_circle.Draw();
-	m_player.Draw();
 	m_enemy_manager.Draw();
+	m_player.Draw();
 }
 
 void Scene::Update()
@@ -57,7 +57,6 @@ void Scene::Init()
 
 	backgroundTex.Load("Texture/background.png");
 	backcircleTex.Load("Texture/backcircle.png");
-	playerTex.Load("Texture/player.png");
 	sunTex.Load("Texture/Sun.png");
 	sun2Tex.Load("Texture/Sun2.png");
 
@@ -65,7 +64,6 @@ void Scene::Init()
 	m_backgroud.SetTex(&backgroundTex);
 	m_back_circle.SetTex(&backcircleTex);
 	m_player_circle.SetTex(&backcircleTex);
-	m_player.SetTex(&playerTex);
 	
 
 	m_particlebase.SetP0wner(this);
@@ -89,7 +87,6 @@ void Scene::Init()
 
 void Scene::Release()
 {
-	playerTex.Release();
 	backgroundTex.Release();
 	backcircleTex.Release();
 	playercircleTex.Release();

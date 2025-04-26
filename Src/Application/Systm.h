@@ -18,6 +18,7 @@
 #define EnemyHpCircleScl 0.3f
 #define BulletNum 18
 #define ebulletNum 6
+#define pBulletLineNum 10
 #define DropBulletNum 18
 #define pHighSpd 3.0f
 #define pDefaultSpd 2.0f
@@ -36,6 +37,7 @@
 #define TwoRadius 170.0f
 #define ThreeRadius 238.0f
 #define FourRadius 305.0f
+#define PredictionLineDistance 42.0f
 #define ShotInterval 4
 #define initPos { 0, 0 }
 #define WHITE { 1.0f,1.0f,1.0f,1.0f }

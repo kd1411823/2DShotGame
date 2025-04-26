@@ -5,9 +5,10 @@ void C_Player_Circle::Init()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
-	m_playerLife      = TwoLife; // プレイヤーのライフ
-	m_playerCircleScl = TwoLifescl;  // プレイヤー円の大きさ
-	m_circleRadius = TwoRadius;
+	m_playerLife      = OneLife; // プレイヤーのライフ
+	m_playerCircleScl = OneLifescl;  // プレイヤー円の大きさ
+	m_circleRadius = OneRadius;
+	m_bulletPredictionLineDeleteNo = 0;//  弾予測線オブジェクトをどこのナンバー以降消すか
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
@@ -53,16 +54,19 @@ void C_Player_Circle::Action()
 		m_playerCircleScl = OneLifescl;
 		player->SetCircleRadius(OneRadius);
 		m_circleRadius = OneRadius; 
+		m_bulletPredictionLineDeleteNo = 6;
 		break;
 	case TwoLife:
 		m_playerCircleScl = TwoLifescl;
 		player->SetCircleRadius(TwoRadius);
 		m_circleRadius = TwoRadius; 
+		m_bulletPredictionLineDeleteNo = 8;
 		break;
 	case ThreeLife:
 		m_playerCircleScl = ThreeLifescl;
 		player->SetCircleRadius(ThreeRadius);
 		m_circleRadius = ThreeRadius;
+		m_bulletPredictionLineDeleteNo = 10;
 		break;
 	case FourLife:
 		m_playerCircleScl = FourLifescl;

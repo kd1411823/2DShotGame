@@ -1,19 +1,17 @@
 #pragma once
 #include "ParticleBase.h"
 
-class C_Player_TriangleParticle :public C_ParticleBase
+class C_Enemy_SquareParticle :public C_ParticleBase
 {
 public:
 
-	C_Player_TriangleParticle(){}
-	~C_Player_TriangleParticle(){}
+	C_Enemy_SquareParticle(){}
+	~C_Enemy_SquareParticle(){}
 
 	void Init()override;
 	void Draw()override;
 	void Update(Math::Vector2 a_pos = { 0, 0 }, bool a_bMoveFlg = true)override;
 
-	bool GetAlive() { return m_particle.alive; }
 
 private:
-
 };

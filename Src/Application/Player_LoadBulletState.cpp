@@ -5,6 +5,7 @@
 void C_Player_LoadBulletState::OnStart(C_Player* a_pPlayer)
 {
 	a_pPlayer->SetPlayerSpeed(pHighSpd);
+	a_pPlayer->SetDrawBulletPredictionFlg(true);
 }
 
 void C_Player_LoadBulletState::OnUpdate(C_Player* a_pPlayer)

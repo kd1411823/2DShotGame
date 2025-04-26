@@ -18,7 +18,6 @@ private:
 	// テクスチャ
 	KdTexture backgroundTex;
 	KdTexture backcircleTex;
-	KdTexture playerTex;
 	KdTexture playercircleTex;
 	KdTexture sunTex;
 	KdTexture sun2Tex;

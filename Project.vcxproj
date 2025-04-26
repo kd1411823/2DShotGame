@@ -171,10 +171,13 @@
     <ClInclude Include="Src\Application\Enemy_HPCircle.h" />
     <ClInclude Include="Src\Application\Enemy_MoveState.h" />
     <ClInclude Include="Src\Application\Enemy_ShotState.h" />
+    <ClInclude Include="Src\Application\Enemy_SquareParticle.h" />
     <ClInclude Include="Src\Application\Enemy_StandState.h" />
     <ClInclude Include="Src\Application\GameObjectBase.h" />
     <ClInclude Include="Src\Application\ParticleBase.h" />
     <ClInclude Include="Src\Application\Player.h" />
+    <ClInclude Include="Src\Application\Player_BulletPredictionLine.h" />
+    <ClInclude Include="Src\Application\Player_BulletPredictionTriangle.h" />
     <ClInclude Include="Src\Application\Player_Circle.h" />
     <ClInclude Include="Src\Application\Player_LoadBulletState.h" />
     <ClInclude Include="Src\Application\Player_MoveState.h" />
@@ -183,6 +186,7 @@
     <ClInclude Include="Src\Application\Player_TriangleParticle.h" />
     <ClInclude Include="Src\Application\Scene.h" />
     <ClInclude Include="Src\Application\main.h" />
+    <ClInclude Include="Src\Application\ScoreManager.h" />
     <ClInclude Include="Src\Application\Sound.h" />
     <ClInclude Include="Src\Application\StateBase.h" />
     <ClInclude Include="Src\Application\StateMachine.h" />
@@ -223,10 +227,13 @@
     <ClCompile Include="Src\Application\Enemy_HPCircle.cpp" />
     <ClCompile Include="Src\Application\Enemy_MoveState.cpp" />
     <ClCompile Include="Src\Application\Enemy_ShotState.cpp" />
+    <ClCompile Include="Src\Application\Enemy_SquareParticle.cpp" />
     <ClCompile Include="Src\Application\Enemy_StandState.cpp" />
     <ClCompile Include="Src\Application\GameObjectBase.cpp" />
     <ClCompile Include="Src\Application\ParticleBase.cpp" />
     <ClCompile Include="Src\Application\Player.cpp" />
+    <ClCompile Include="Src\Application\Player_BulletPredictionLine.cpp" />
+    <ClCompile Include="Src\Application\Player_BulletPredictionTriangle.cpp" />
     <ClCompile Include="Src\Application\Player_Circle.cpp" />
     <ClCompile Include="Src\Application\Player_LoadBulletState.cpp" />
     <ClCompile Include="Src\Application\Player_MoveState.cpp" />
@@ -235,6 +242,7 @@
     <ClCompile Include="Src\Application\Player_TriangleParticle.cpp" />
     <ClCompile Include="Src\Application\Scene.cpp" />
     <ClCompile Include="Src\Application\main.cpp" />
+    <ClCompile Include="Src\Application\ScoreManager.cpp" />
     <ClCompile Include="Src\Application\Sound.cpp" />
     <ClCompile Include="Src\Application\Sun.cpp" />
     <ClCompile Include="Src\Application\Systm.cpp" />
