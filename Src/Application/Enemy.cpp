@@ -121,9 +121,13 @@ void C_Enemy::Action()
 	if (!m_bsst.alive)return;
 
 	C_Systm* systm = m_p0wner->GetSystm();
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 
-	if (m_enemyHitpoint <= 0.0f)m_bsst.alive = false;
-
+	if (m_enemyHitpoint <= 0.0f)
+	{
+		scoremanager->AddScore();
+		m_bsst.alive = false;
+	}
 	// ‘Ì—Í‚ªŒ¸‚Á‚Ä‚¢‚½‚çŽ©‘R‰ñ•œ‚·‚é
 	if (m_enemyHitpoint < EnemyHp)
 	{
@@ -149,6 +153,7 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 
 	for (int i = 0;i < ebulletNum;i++)
 	{
@@ -160,6 +165,10 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 
 		if (enemybulletPlayercircletTry.hypn < bulletCirclehypn)
 		{
+			if (scoremanager->GetScore() > 0)
+			{
+				scoremanager->DecreaseScore();
+			}
 			m_bullet[i].Hit();
 		}
 		

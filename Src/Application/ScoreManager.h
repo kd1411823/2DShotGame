@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObjectBase.h"
+#include "Score_Circle.h"
 
 class C_ScoreManager :public C_GameObject
 {
@@ -15,10 +16,14 @@ public:
 	void AddScore();
 	void DecreaseScore();
 
+	C_Score_Circle* GetScoreCircle() { return &m_scorecircle; }
+	float GetScore() { return m_score; }
 
 private:
 
-	int m_score; // スコア
+	C_Score_Circle m_scorecircle;
+
+	float m_score; // スコア
 
 };
 

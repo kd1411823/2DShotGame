@@ -5,6 +5,7 @@
 #include "Back_Circle.h"
 #include "EnemyManager.h"
 #include "ParticleBase.h"
+#include "ScoreManager.h"
 #include "Sun.h"
 #include "Systm.h"
 #include "Sound.h"
@@ -33,6 +34,7 @@ private:
 	C_Systm  m_systm;
 	C_EnemyManager m_enemy_manager;
 	C_ParticleBase m_particlebase;
+	C_ScoreManager m_scoremanager;
 
 public:
 
@@ -59,6 +61,7 @@ public:
 	C_Back_Circle* GetBack_Circle() { return &m_back_circle; }
 	C_Sun* GetSun() { return &m_sun; }
 	C_EnemyManager* GetEnemyManager() { return &m_enemy_manager; }
+	C_ScoreManager* GetScoreManager() { return &m_scoremanager;}
 
 private:
 

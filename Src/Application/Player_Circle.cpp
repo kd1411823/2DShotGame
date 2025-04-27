@@ -42,6 +42,8 @@ void C_Player_Circle::Update()
 void C_Player_Circle::Action()
 {
 	C_Player* player = m_p0wner->GetPlayer();
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
 
 	switch (m_playerLife)
 	{
@@ -55,26 +57,34 @@ void C_Player_Circle::Action()
 		player->SetCircleRadius(OneRadius);
 		m_circleRadius = OneRadius; 
 		m_bulletPredictionLineDeleteNo = 6;
+		scorecircle->SetGetScore(0.0f);
+		scorecircle->SetTargetScore(oneTargetScore);
 		break;
 	case TwoLife:
 		m_playerCircleScl = TwoLifescl;
 		player->SetCircleRadius(TwoRadius);
 		m_circleRadius = TwoRadius; 
 		m_bulletPredictionLineDeleteNo = 8;
+		scorecircle->SetGetScore(oneTargetScore);
+		scorecircle->SetTargetScore(twoTargetScore);
 		break;
 	case ThreeLife:
 		m_playerCircleScl = ThreeLifescl;
 		player->SetCircleRadius(ThreeRadius);
 		m_circleRadius = ThreeRadius;
 		m_bulletPredictionLineDeleteNo = 10;
+		scorecircle->SetGetScore(twoTargetScore);
+		scorecircle->SetTargetScore(threeTargetScore);
 		break;
 	case FourLife:
 		m_playerCircleScl = FourLifescl;
 		player->SetCircleRadius(FourRadius);
+		//scorecircle->SetGetScore(threeTargetScore);
 		m_circleRadius = FourRadius; 
 		break;
 	}
 	
+	printf("life %d\n", m_playerLife);
 
 }
 

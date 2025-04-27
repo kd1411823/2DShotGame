@@ -231,6 +231,9 @@
     <ClInclude Include="Src\Application\ScoreManager.h">
       <Filter>Src\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Score_Circle.h">
+      <Filter>Src\Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -381,6 +384,9 @@
       <Filter>Src\Application</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\ScoreManager.cpp">
+      <Filter>Src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Score_Circle.cpp">
       <Filter>Src\Application</Filter>
     </ClCompile>
   </ItemGroup>

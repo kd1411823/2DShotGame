@@ -6,6 +6,7 @@ void Scene::Draw2D()
 {
 	m_backgroud.Draw();
 	m_back_circle.Draw();
+	m_scoremanager.Draw();
 	m_player_circle.Draw();
 	m_enemy_manager.Draw();
 	m_player.Draw();
@@ -33,11 +34,13 @@ void Scene::Update()
 	m_backgroud.Action();
 	m_back_circle.Action();
 	m_player_circle.Action();
+	m_scoremanager.Action();
 	m_player.Action();
 	m_enemy_manager.Action();
 
 	m_player.Update();
 	m_player_circle.Update();
+	m_scoremanager.Update();
 	m_backgroud.Update();
 	m_back_circle.Update();
 	m_enemy_manager.Update();
@@ -72,6 +75,7 @@ void Scene::Init()
 	m_backgroud.SetP0wner(this);
 	m_back_circle.SetP0wner(this);
 	m_player_circle.SetP0wner(this);
+	m_scoremanager.SetP0wner(this);
 	m_player.SetP0wner(this);
 	m_enemy_manager.SetP0wner(this);
 	
@@ -81,6 +85,7 @@ void Scene::Init()
 	m_backgroud.Init();
 	m_back_circle.Init();
 	m_player_circle.Init();
+	m_scoremanager.Init();
 	m_player.Init();
 	m_enemy_manager.Init();
 }

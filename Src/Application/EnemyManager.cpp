@@ -83,10 +83,10 @@ void C_EnemyManager::PlayerBulletHit()
 				
 				if (!(*enemy)->GetAlive())
 				{
+					
 					// 敵を削除し、イテレータを更新してループを抜ける
 					enemy = m_enemies.erase(enemy);
 					erased = true;
-					
 				}
 				break;
 			}
