@@ -4,15 +4,35 @@
 
 void Scene::Draw2D()
 {
-	m_backgroud.Draw();
-	m_back_circle.Draw();
-	m_scoremanager.Draw();
-	m_player_circle.Draw();
-	m_enemy_manager.Draw();
-	m_player.Draw();
+	switch (m_nowScene)
+	{
+	case TitleScene:
+		TitleDraw();
+		break;
+	case GameScene:
+		GameDraw();
+		break;
+	}
+
+
+	
+
 }
 
-void Scene::Update()
+void Scene::TitleUpdate()
+{
+	if (GetAsyncKeyState('G') & 0x8000)
+	{
+		m_nowScene = GameScene;
+	}
+}
+
+void Scene::TitleDraw()
+{
+
+}
+
+void Scene::GameUpdate()
 {
 	if (GetAsyncKeyState('1') & 0x8000)
 	{
@@ -31,6 +51,11 @@ void Scene::Update()
 		m_player_circle.SetPlayerLife(FourLife);
 	}
 
+	if (GetAsyncKeyState('T') & 0x8000)
+	{
+		m_nowScene = TitleScene;
+	}
+
 	m_backgroud.Action();
 	m_back_circle.Action();
 	m_player_circle.Action();
@@ -38,12 +63,56 @@ void Scene::Update()
 	m_player.Action();
 	m_enemy_manager.Action();
 
+	m_renderwipe.ActionWipe();
+
 	m_player.Update();
 	m_player_circle.Update();
 	m_scoremanager.Update();
 	m_backgroud.Update();
 	m_back_circle.Update();
 	m_enemy_manager.Update();
+
+	m_renderwipe.UpdateWipe();
+}
+
+void Scene::GameDraw()
+{
+	//描画先をバックバッファに切り替え
+	D3D.SetBackBuffer();
+
+	m_backgroud.Draw();
+	m_renderwipe.DrawWipe();
+}
+
+void Scene::Update()
+{
+
+	switch (m_nowScene)
+	{
+	case TitleScene:
+		TitleUpdate();
+		break;
+	case GameScene:
+		GameUpdate();
+		break;
+	}
+	
+}
+
+void Scene::DynamicDraw2D()
+{
+	// クリア
+	tmpTex.ClearRenerTarget(Math::Color(0.0f, 0.0f, 0.0f, 0.0f));
+
+	//描画先をテクスチャへ切り替え
+	tmpTex.SetRenderTarget();
+
+	m_backgroud.Draw();
+	m_back_circle.Draw();
+	m_scoremanager.Draw();
+	m_player_circle.Draw();
+	m_enemy_manager.Draw();
+	m_player.Draw();
 }
 
 void Scene::Init()
@@ -51,6 +120,14 @@ void Scene::Init()
 	// 乱数初期化
 	srand(timeGetTime());
 	system("cls");
+
+	m_nowScene = GameScene;
+
+	//描画ターゲット用テクスチャ作成
+	tmpTex.CreateRenderTarget(ScrnWid, ScrnHgt);
+	m_renderwipe.SetP0wner(this);
+	m_renderwipe.SetTex(&tmpTex);
+	m_renderwipe.InitWipe();
 
 
 	m_cons.create();
@@ -60,17 +137,13 @@ void Scene::Init()
 
 	backgroundTex.Load("Texture/background.png");
 	backcircleTex.Load("Texture/backcircle.png");
-	sunTex.Load("Texture/Sun.png");
-	sun2Tex.Load("Texture/Sun2.png");
 
-	m_sun.SetTex(&sunTex);
 	m_backgroud.SetTex(&backgroundTex);
 	m_back_circle.SetTex(&backcircleTex);
 	m_player_circle.SetTex(&backcircleTex);
 	
 
 	m_particlebase.SetP0wner(this);
-	m_sun.SetP0wner(this);
 	m_sound.SetP0wner(this);
 	m_backgroud.SetP0wner(this);
 	m_back_circle.SetP0wner(this);
@@ -80,7 +153,6 @@ void Scene::Init()
 	m_enemy_manager.SetP0wner(this);
 	
 
-	m_sun.Init();
 	m_sound.Init();
 	m_backgroud.Init();
 	m_back_circle.Init();
@@ -92,11 +164,10 @@ void Scene::Init()
 
 void Scene::Release()
 {
+	tmpTex.Release();
 	backgroundTex.Release();
 	backcircleTex.Release();
 	playercircleTex.Release();
-	sunTex.Release();
-	sun2Tex.Release();
 	m_cons.destroy();
 }
 

@@ -18,6 +18,7 @@ void C_Score_Circle::Init()
 	m_rctY = 0; // 画像切り取り座標Y
 	m_targetScore = 0; // 次に目指すスコア
 	m_getScore = 0; // 取得スコア分
+	m_loadBulletFlg = false; // 弾をチャージしているかフラグ
 
 	scorecircleTex.Load("Texture/scorecircle.png");
 
@@ -28,13 +29,17 @@ void C_Score_Circle::Init()
 	m_bsst.scl = { playercircle->GetPlayerCircleScl(),playercircle->GetPlayerCircleScl()};
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
-	m_bsst.draw.rct = { 0,  ScrnWid, ScrnWid,  -m_rctY };
-	m_bsst.draw.clr = YELLOW;
+	m_bsst.draw.rct = { 0,  ScrnHgt, ScrnHgt,  -m_rctY };
+	m_bsst.draw.clr = WHITE;
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
 void C_Score_Circle::Draw()
 {
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
+	if (playercircle->GetPlayerLife() == FourLife)return;
+
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 
@@ -56,16 +61,29 @@ void C_Score_Circle::Action(int a_score)
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 
 	// スコアに応じて切り取り座標Yを変える
-	m_rctY = ScrnWid *  (((float)a_score - m_getScore) / (m_targetScore - m_getScore));
-
-	printf("%.0f\n",m_targetScore);
+	m_rctY = ScrnHgt *  (((float)a_score - m_getScore) / (m_targetScore - m_getScore));
 
 	// 切り取り座標Yに応じて座標をずらす
-	m_bsst.pos.y = (- ScrnWid * playercircle->GetPlayerCircleScl() * 0.5f) + (m_rctY * playercircle->GetPlayerCircleScl() * 0.5f);
+	m_bsst.pos.y = (- ScrnHgt * playercircle->GetPlayerCircleScl() * 0.5f) + (m_rctY * playercircle->GetPlayerCircleScl() * 0.5f);
 
 	// 大きさをプレイヤーのライフレベルに応じて反映させる
 	m_bsst.scl = { playercircle->GetPlayerCircleScl(),playercircle->GetPlayerCircleScl() };
 
+	// 切り取り座標を超えないように補正
+	if (m_rctY > ScrnHgt)
+	{
+		m_rctY = ScrnHgt;
+	}
+
 	// 切り取り座標反映
-	m_bsst.draw.rct = { 0,  ScrnWid, ScrnWid, - m_rctY };
+	m_bsst.draw.rct = { 0,  ScrnHgt, ScrnHgt, - m_rctY };
+
+	if (m_loadBulletFlg)
+	{
+		m_bsst.draw.clr.A(0.3f);
+	}
+	else
+	{
+		m_bsst.draw.clr.A(1.0f);
+	}
 }

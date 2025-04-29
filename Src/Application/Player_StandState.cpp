@@ -1,9 +1,16 @@
 #include "Player_StandState.h"
 #include "Player_MoveState.h"
 #include "Player_LoadBulletState.h"
+#include "Scene.h"
 
 void C_Player_StandState::OnStart(C_Player* a_pPlayer)
 {
+	Scene* scene = a_pPlayer->GetPowner();
+	C_ScoreManager* scoremanager = scene->GetScoreManager();
+	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
+
+	scorecircle->SetLoadBulletFlg(false);
+
 	a_pPlayer->SetMovDeg(0.0f);
 	a_pPlayer->SetDrawBulletPredictionFlg(false);
 }

@@ -6,16 +6,21 @@ void C_ScoreManager::Init()
 
 	m_scorecircle.SetP0wner(m_p0wner);
 	m_scorecircle.Init();
+
+	m_scoretextstring.SetP0wner(m_p0wner);
+	m_scoretextstring.Init();
 }
 
 void C_ScoreManager::Draw()
 {
 	m_scorecircle.Draw();
+	m_scoretextstring.Draw();
 }
 
 void C_ScoreManager::Update()
 {
 	m_scorecircle.Update();
+	m_scoretextstring.Update();
 	printf("score: %.0f\n", m_score);
 
 }
@@ -43,6 +48,8 @@ void C_ScoreManager::Action()
 		playercircle->SetPlayerLife(FourLife);
 	}
 
+	m_scoretextstring.Action();
+
 	m_scorecircle.Action(m_score);
 
 	
@@ -55,5 +62,5 @@ void C_ScoreManager::AddScore()
 
 void C_ScoreManager::DecreaseScore()
 {
-	m_score -= 20.0f;
+	m_score -= 2.0f;
 }

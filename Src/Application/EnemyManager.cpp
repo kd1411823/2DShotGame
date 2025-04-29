@@ -62,6 +62,7 @@ void C_EnemyManager::PlayerBulletHit()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 	C_Player* player = m_p0wner->GetPlayer();
+	C_RenderWipe* renderwipe = m_p0wner->GetRenderWipe();
 	C_Bullet* pbullet[BulletNum];
 	for (int i = 0;i < BulletNum;i++)pbullet[i] = player->GetBullet(i);
 	
@@ -80,7 +81,8 @@ void C_EnemyManager::PlayerBulletHit()
 			{
 				pbullet[i]->Hit();
 				(*enemy)->TakeDamage();
-				
+				renderwipe->SetShakeTime(10);
+
 				if (!(*enemy)->GetAlive())
 				{
 					

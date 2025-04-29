@@ -37,15 +37,18 @@ void C_Enemy::Init()
 	for (int i = 0;i < ebulletNum;i++)
 	{
 		m_bullet[i].SetTex(&ebulletTex);
+		m_bullet[i].SetP0wner(m_p0wner);
 		m_bullet[i].Init();
 	}
 
 	// 敵のHP円初期化
 	m_enemyhpCircle.SetTex(&hpCircleTex);
+	m_enemyhpCircle.SetP0wner(m_p0wner);
 	m_enemyhpCircle.Init();
 
 	
 	m_enemyframeCircle.SetTex(&frameCircleTex);
+	m_enemyframeCircle.SetP0wner(m_p0wner);
 	m_enemyframeCircle.Init();
 
 
@@ -73,7 +76,7 @@ void C_Enemy::Init()
 
 void C_Enemy::Draw()
 {
-	if (!m_bsst.alive)return;
+	//if (!m_bsst.alive)return;
 
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
@@ -123,16 +126,13 @@ void C_Enemy::Action()
 	C_Systm* systm = m_p0wner->GetSystm();
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 
-	if (m_enemyHitpoint <= 0.0f)
-	{
-		scoremanager->AddScore();
-		m_bsst.alive = false;
-	}
 	// 体力が減っていたら自然回復する
-	if (m_enemyHitpoint < EnemyHp)
+	if (m_enemyHitpoint > 0.0f && m_enemyHitpoint < EnemyHp)
 	{
 		m_enemyHitpoint += m_autoRecoveryRate;
 	}
+
+	printf("%.2f\n", m_enemyHitpoint);
 
 	EnemyBulletPlayerCircleHit();
 
@@ -177,6 +177,14 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 
 void C_Enemy::TakeDamage()
 {
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+
 	// HPをダメージ分減らす
 	m_enemyHitpoint -= m_damagePoint;
+
+	if (m_enemyHitpoint <= 0.0f)
+	{
+		scoremanager->AddScore();
+		m_bsst.alive = false;
+	}
 }

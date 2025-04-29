@@ -15,9 +15,10 @@ public:
 
 	void SetTargetScore(float a_targetScore) { m_targetScore = a_targetScore; }
 	void SetGetScore(float a_getScore) { m_getScore = a_getScore; }
+	void SetLoadBulletFlg(bool a_loadBulletFlg) { m_loadBulletFlg = a_loadBulletFlg; }
 
 	float GetTargetScore() { return m_targetScore; }
-
+	bool  GetLoadBulletFlg() { return m_loadBulletFlg; }
 
 private:
 
@@ -27,5 +28,6 @@ private:
 
 	float m_targetScore; // 次に目指すスコア
 	float m_getScore; // 取得スコア分
+	bool  m_loadBulletFlg; // 弾をチャージしているかフラグ
 };
 

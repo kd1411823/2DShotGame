@@ -18,6 +18,9 @@ void C_Drop_Bullet::Init(int a_no)
 
 void C_Drop_Bullet::Draw()
 {
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
+	if (playercircle->GetPlayerLife() == FourLife)return;
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 }
@@ -35,7 +38,10 @@ void C_Drop_Bullet::Action(float a_circleRadius)
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 	C_Player* player = m_p0wner->GetPlayer();
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 	
+	if (playercircle->GetPlayerLife() == FourLife)return;
+
 	// ’e‚ÌŠÔŠu
 	const int degDis = 360 / DropBulletNum;
 

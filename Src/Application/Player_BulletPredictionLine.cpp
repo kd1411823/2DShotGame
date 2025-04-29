@@ -9,10 +9,10 @@ void C_Player_BulletPredictionLine::Init(int a_no)
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = {0.07f,0.07f };
+	m_bsst.scl = { 0.1f,0.1f };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
-	m_bsst.draw.rct = { 0, 0, BIT256, BIT256 };
+	m_bsst.draw.rct = { 0, 0, BIT128, BIT128 };
 	m_bsst.draw.clr = GREEN;
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }

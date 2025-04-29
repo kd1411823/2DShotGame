@@ -7,7 +7,7 @@ void C_Player_BulletPredictionTriangle::Init()
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 0.13f,0.13f };
+	m_bsst.scl = { 0.15f,0.15f };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, BIT256, BIT256 };

@@ -1,9 +1,23 @@
 #include "Sun.h"
 #include "Scene.h"
 
+C_Sun::C_Sun()
+{
+
+}
+
+C_Sun::~C_Sun()
+{
+	sunTex.Release();
+}
+
 void C_Sun::Init()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
+
+	sunTex.Load("Texture/Sun.png");
+
+	m_bsst.draw.pTex = &sunTex;
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };

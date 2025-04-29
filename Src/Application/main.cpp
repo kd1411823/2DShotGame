@@ -202,6 +202,7 @@ void Application::Execute()
 
 		// ƒQ[ƒ€•`‰æˆ—
 		SHADER.m_spriteShader.Begin();
+		SCENE.DynamicDraw2D();
 		SCENE.Draw2D();
 		SHADER.m_spriteShader.End();
 

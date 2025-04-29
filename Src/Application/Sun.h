@@ -5,8 +5,8 @@ class C_Sun :public C_GameObject
 {
 public:
 
-	C_Sun(){}
-	virtual ~C_Sun(){}
+	C_Sun();
+	~C_Sun();
 
 	void Init();
 	void Draw();
@@ -14,6 +14,7 @@ public:
 
 private:
 
+	KdTexture sunTex;
 };
 
 

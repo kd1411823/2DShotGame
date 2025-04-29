@@ -2,23 +2,24 @@
 #define BIT18 18
 #define BIT24 24
 #define BIT64 64
+#define BIT72 72
 #define BIT128 128
 #define BIT240 240
 #define BIT256 256
 #define BIT512 512
 #define WhlUp 120
 #define WhlDwn -120
-#define ScrnHgt 1280
-#define ScrnWid 720
+#define ScrnWid 1280
+#define ScrnHgt 720
 #define ScrnTop 360
 #define ScrnBtm -360
 #define ScrnRht 640
 #define ScrnLft -640
-#define EnemyMax 3
+#define EnemyMax 10
 #define EnemyHpCircleScl 0.3f
 #define BulletNum 18
 #define ebulletNum 6
-#define pBulletLineNum 10
+#define pBulletLineNum 14
 #define DropBulletNum 18
 #define pHighSpd 3.0f
 #define pDefaultSpd 2.0f
@@ -26,21 +27,19 @@
 #define eHighSpd 2.0f
 #define eDefaultSpd 1.5f
 #define eSlowSpd 0.8f
-#define EnemyHp 7.0f
-#define ZeroLifescl 0.0f
-#define OneLifescl 0.25f
-#define TwoLifescl 0.5f
-#define ThreeLifescl 0.7f
-#define FourLifescl 0.9f
-#define ZeroRadius 0.0f
-#define OneRadius 85.0f
-#define TwoRadius 170.0f
-#define ThreeRadius 238.0f
-#define FourRadius 305.0f
-#define oneTargetScore 1000.0f
-#define twoTargetScore 4000.0f
-#define threeTargetScore 5000.0f
-#define PredictionLineDistance 42.0f
+#define EnemyHp 2.0f
+#define OneLifescl 0.2f
+#define TwoLifescl 0.4f
+#define ThreeLifescl 0.6f
+#define FourLifescl 0.8f
+#define OneRadius 68.0f
+#define TwoRadius 135.0f
+#define ThreeRadius 203.0f
+#define FourRadius 270.0f
+#define oneTargetScore 500.0f
+#define twoTargetScore 1000.0f
+#define threeTargetScore 1500.0f
+#define PredictionLineDistance 30.0f
 #define ShotInterval 4
 #define initPos { 0, 0 }
 #define WHITE { 1.0f,1.0f,1.0f,1.0f }
@@ -50,10 +49,17 @@
 #define BLUE  { 0.0f,0.0f,1.0f,1.0f }
 #define YELLOW  { 1.0f,1.0f,0.0f,1.0f }
 
+// シーンタイプ
+enum eSceneType
+{
+	TitleScene,
+	GameScene
+};
+
+
 // プレイヤーライフ
 enum ePlayerLife
 {
-	ZeroLife,
 	OneLife,
 	TwoLife,
 	ThreeLife,

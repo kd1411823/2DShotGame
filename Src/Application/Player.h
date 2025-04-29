@@ -7,6 +7,8 @@
 #include "Drop_Bullet.h"
 #include "StateMachine.h"
 
+class C_Sun;
+
 class C_Player :public C_GameObject
 {
 public:
@@ -48,6 +50,7 @@ private:
 	KdTexture bulletTex;
 	KdTexture dropbulletTex;
 	KdTexture triangleTex;
+	KdTexture bulletpredictionlineTex;
 
 	// ステートマシン
 	C_StateMachine<C_Player> m_stateMachine;
@@ -60,6 +63,8 @@ private:
 
 	// プレイヤーの三角形パーティクル
 	C_Player_TriangleParticle m_player_triangleParticle[triangleParticleNum];
+
+	std::shared_ptr<C_Sun> m_sun = nullptr;
 
 	POINT		  m_pMousePos;		// POINT型マウス座標
 	Math::Vector2 m_vMousePos;		// vector2型マウス座標

@@ -10,7 +10,7 @@ class C_Enemy :public C_GameObject
 public:
 
 	C_Enemy();
-	virtual ~C_Enemy();
+	~C_Enemy();
 
 	
 	void Init()override;

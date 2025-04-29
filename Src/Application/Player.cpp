@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Scene.h"
 #include "Player_StandState.h"
+#include "Sun.h"
 
 C_Player::C_Player()
 {
@@ -14,6 +15,7 @@ C_Player::~C_Player()
 	bulletTex.Release();
 	dropbulletTex.Release();
 	triangleTex.Release();
+	bulletpredictionlineTex.Release();
 }
 
 void C_Player::Init()
@@ -25,12 +27,18 @@ void C_Player::Init()
 	bulletTex.Load("Texture/bullet.png");
 	dropbulletTex.Load("Texture/dropbullet.png");
 	triangleTex.Load("Texture/player.png");
+	bulletpredictionlineTex.Load("Texture/bulletPredictionLine.png");
 
 	// 初期化時にインスタンスのポインタを渡す
 	m_stateMachine.Start(this);
 
 	// 初期状態のステートをセット
 	m_stateMachine.ChangeState<C_Player_StandState>();
+
+	m_sun = std::make_shared<C_Sun>();
+
+	m_sun->SetP0wner(m_p0wner);
+	m_sun->Init();
 
 	for (int i = 0;i < triangleParticleNum; i++)
 	{
@@ -41,6 +49,7 @@ void C_Player::Init()
 	for (int i = 0; i < BulletNum;i++)
 	{
 		m_bullet[i].SetTex(&bulletTex);
+		m_bullet[i].SetP0wner(m_p0wner);
 		m_bullet[i].Init();
 	}
 
@@ -48,12 +57,13 @@ void C_Player::Init()
 	for (int i = 0;i < DropBulletNum;i++)
 	{
 		m_drop_bullet[i].SetTex(&dropbulletTex);
+		m_drop_bullet[i].SetP0wner(m_p0wner);
 		m_drop_bullet[i].Init(i);
 	}
 
 	for (int i = 0;i < pBulletLineNum;i++)
 	{
-		m_player_bulletpredictionline[i].SetTex(&playerTex);
+		m_player_bulletpredictionline[i].SetTex(&bulletpredictionlineTex);
 		m_player_bulletpredictionline[i].SetP0wner(m_p0wner);
 		m_player_bulletpredictionline[i].Init(i);
 	}
@@ -96,16 +106,14 @@ void C_Player::Draw()
 	{
 		m_bullet[i].Draw();
 	}
-	C_Sun* m_sun = m_p0wner->GetSun();
 
 	D3D.SetBlendState(BlendMode::Add);
-
 
 	m_sun->Draw();
 
 	for (int i = 0;i < triangleParticleNum; i++)
 	{
-		m_player_triangleParticle[i].Draw();
+		//m_player_triangleParticle[i].Draw();
 	}
 	D3D.SetBlendState(BlendMode::Alpha);
 
@@ -126,11 +134,10 @@ void C_Player::Draw()
 void C_Player::Update()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
-	C_Sun* m_sun = m_p0wner->GetSun();
 
 	LoadBullet();
 	
-	ScaleManager();
+	//ScaleManager();
 
 	m_bsst.pos += m_bsst.mov;
 
@@ -145,6 +152,8 @@ void C_Player::Update()
 	m_bMoveFlg = false;
 
 	m_stateMachine.Update();
+
+	m_sun->Update(m_bsst.pos, { 1.3f,1.3f }, GREEN);
 		
 	if (m_bMoveFlg)
 	{
@@ -192,7 +201,6 @@ void C_Player::Update()
 
 	m_player_bulletpredictiontriangle.Update();
 	
-	m_sun->Update(m_bsst.pos, { 0.6f,0.6f }, GREEN);
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }

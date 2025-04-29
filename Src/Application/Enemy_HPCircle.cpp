@@ -10,7 +10,7 @@ void C_Enemy_HPCircle::Init()
 	m_bsst.scl = { EnemyHpCircleScl,EnemyHpCircleScl };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
-	m_bsst.draw.rct = { 0, 0, 512, 512 };
+	m_bsst.draw.rct = { 0, 0, BIT512, BIT512 };
 	m_bsst.draw.clr = {1.0f,0.0f,0.0f,0.4f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }

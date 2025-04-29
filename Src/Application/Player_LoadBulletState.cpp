@@ -4,6 +4,11 @@
 
 void C_Player_LoadBulletState::OnStart(C_Player* a_pPlayer)
 {
+	Scene* scene = a_pPlayer->GetPowner();
+	C_ScoreManager* scoremanager = scene->GetScoreManager();
+	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
+
+	scorecircle->SetLoadBulletFlg(true);
 	a_pPlayer->SetPlayerSpeed(pHighSpd);
 	a_pPlayer->SetDrawBulletPredictionFlg(true);
 }
@@ -13,7 +18,10 @@ void C_Player_LoadBulletState::OnUpdate(C_Player* a_pPlayer)
 	Scene* scene = a_pPlayer->GetPowner();
 	C_Systm* systm = scene->GetSystm();
 	C_Drop_Bullet* dropbullet[DropBulletNum];
-	for (int i = 0;i < DropBulletNum;i++)dropbullet[i] = a_pPlayer->GetDropBullet(i);
+	for (int i = 0;i < DropBulletNum;i++)
+	{
+		dropbullet[i] = a_pPlayer->GetDropBullet(i);
+	}
 
 	// ˆÚ“®
 	if (GetAsyncKeyState('D') & 0x8000)
