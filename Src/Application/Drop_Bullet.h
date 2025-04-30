@@ -6,7 +6,7 @@ class C_Drop_Bullet :public C_GameObject
 public:
 
 	C_Drop_Bullet(){}
-	virtual ~C_Drop_Bullet(){}
+	~C_Drop_Bullet(){}
 
 	void Init(int a_no);
 	void Draw()override;

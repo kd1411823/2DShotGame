@@ -5,13 +5,15 @@ void C_Enemy_Circle::Init()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
+	m_hitFlg = false; // ’e‚ª“–‚½‚Á‚Ä‚¢‚é‚©ƒtƒ‰ƒO
+
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
 	m_bsst.scl = { EnemyHpCircleScl,EnemyHpCircleScl };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, BIT512, BIT512 };
-	m_bsst.draw.clr = RED;
+	m_bsst.draw.clr = { RED ,EnemyCircleAlpha };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -43,6 +45,16 @@ void C_Enemy_Circle::Update(Math::Vector2 a_pos, bool a_alive)
 void C_Enemy_Circle::Action(bool a_alive)
 {
 	if (!a_alive)return;
+	
+	if (m_hitFlg)
+	{
+		m_bsst.draw.clr.A(1.0f);
+	}
+	else
+	{
+		m_bsst.draw.clr.A(EnemyCircleAlpha);
+	}
 
+	m_hitFlg = false;
 
 }

@@ -8,6 +8,7 @@ void C_Enemy_ShotState::OnStart(C_Enemy* a_pEnemy)
 	Scene* scene = a_pEnemy->GetPowner();
 	C_Systm* systm = scene->GetSystm();
 	C_Bullet* bullet[ebulletNum];
+	a_pEnemy->SetbMoveFlg(false);
 	// すべて装填済みにする
 	for (int i = 0;i < ebulletNum;i++)
 	{
@@ -17,7 +18,6 @@ void C_Enemy_ShotState::OnStart(C_Enemy* a_pEnemy)
 	}
 	m_shotStateCnt = systm->RndBtwn(60, 120); // 撃つ状態のステート
 	m_movepattern = (eEnemyMovCmd)systm->RndBtwn(DefaultMov,HighMov);  // 動くパターン
-	m_dir = (eEnemyMovDir)systm->RndBtwn(LeftDir,RightDir);	// 動く方向
 	m_shotEndFlg = false;  // 撃ち終わったかフラグ
 	m_shotIntervalCnt = 0; // 弾の間隔カウント
 }
@@ -33,18 +33,7 @@ void C_Enemy_ShotState::OnUpdate(C_Enemy* a_pEnemy)
 	m_shotIntervalCnt++;
 	m_shotStateCnt--;
 
-	// 左右移動する(ゆっくり)
-	switch (m_dir)
-	{
-	case LeftDir:
-		a_pEnemy->SetMovDeg(-eSlowSpd);
-		break;
-	case RightDir:
-		a_pEnemy->SetMovDeg(eSlowSpd);
-		break;
-	}
-
-
+	
 	if (!m_shotEndFlg)
 	{
 		for (int i = 0;i < ebulletNum;i++)

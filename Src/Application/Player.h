@@ -20,7 +20,6 @@ public:
 	void Draw()override;
 	void Update()override;
 	void Action()override;
-	void Animation()override;
 	void ScaleManager();
 	void Mouse();
 	void LoadBullet();
@@ -35,6 +34,7 @@ public:
 
 
 	// ゲッター
+	float GetRot() { return m_bsst.rot; }
 	float GetRadius()override { return m_playerRadius; }
 	float GetPlayerSpeed() { return m_playerSpeed; }
 	float GetCircleRadius() { return m_circleRadius; }
@@ -44,7 +44,7 @@ public:
 
 private:
 
-	static const int triangleParticleNum = 30;
+	static const int triangleParticleNum = 10;
 
 	KdTexture playerTex;
 	KdTexture bulletTex;
@@ -75,4 +75,9 @@ private:
 	float		  m_playerSpeed;	// プレイヤーのスピード
 	float		  m_circleRadius;	// プレイヤー円の半径
 	bool		  m_drawBulletPredictionFlg;  // プレイヤーの弾予測描画フラグ
+	bool		  m_isRisingScl;	// プレイヤーの拡大率増減フラグ
+	float         m_deltaScl;		// プレイヤーの拡大率増減量
+	float         m_maxDeltaScl;		// 最大プレイヤーの拡大率
+	float         m_minDeltaScl;		// 最小プレイヤーの拡大率
+	bool          m_sclInitFlg;		// 拡大率初期化フラグ
 };

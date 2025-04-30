@@ -16,7 +16,7 @@ void C_RenderWipe::InitWipe()
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, ScrnWid, ScrnHgt };
-	m_bsst.draw.clr = WHITE;
+	m_bsst.draw.clr = { WHITE ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 

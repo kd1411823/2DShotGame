@@ -125,6 +125,7 @@ void Scene::Init()
 
 	//描画ターゲット用テクスチャ作成
 	tmpTex.CreateRenderTarget(ScrnWid, ScrnHgt);
+
 	m_renderwipe.SetP0wner(this);
 	m_renderwipe.SetTex(&tmpTex);
 	m_renderwipe.InitWipe();
@@ -136,14 +137,13 @@ void Scene::Init()
 	m_sound.BgmLoad();
 
 	backgroundTex.Load("Texture/background.png");
-	backcircleTex.Load("Texture/backcircle.png");
+	backcircleTex.Load("Texture/back_circle.png");
 
 	m_backgroud.SetTex(&backgroundTex);
 	m_back_circle.SetTex(&backcircleTex);
 	m_player_circle.SetTex(&backcircleTex);
 	
 
-	m_particlebase.SetP0wner(this);
 	m_sound.SetP0wner(this);
 	m_backgroud.SetP0wner(this);
 	m_back_circle.SetP0wner(this);

@@ -16,6 +16,7 @@ public:
 	void SetTargetScore(float a_targetScore) { m_targetScore = a_targetScore; }
 	void SetGetScore(float a_getScore) { m_getScore = a_getScore; }
 	void SetLoadBulletFlg(bool a_loadBulletFlg) { m_loadBulletFlg = a_loadBulletFlg; }
+	void SetScoreScl(float a_scoreScl) { m_scoreScl = a_scoreScl; }
 
 	float GetTargetScore() { return m_targetScore; }
 	bool  GetLoadBulletFlg() { return m_loadBulletFlg; }
@@ -29,5 +30,6 @@ private:
 	float m_targetScore; // 次に目指すスコア
 	float m_getScore; // 取得スコア分
 	bool  m_loadBulletFlg; // 弾をチャージしているかフラグ
+	float m_scoreScl; // スコアサークル拡大率
 };
 

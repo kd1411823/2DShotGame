@@ -6,17 +6,17 @@ void C_Player_Circle::Init()
 	C_Systm* systm = m_p0wner->GetSystm();
 
 	m_playerLife      = OneLife; // プレイヤーのライフ
-	m_playerCircleScl = OneLifescl;  // プレイヤー円の大きさ
 	m_circleRadius = OneRadius;
 	m_bulletPredictionLineDeleteNo = 0;//  弾予測線オブジェクトをどこのナンバー以降消すか
+	m_rctX = ScrnHgt * 3;							// 切り取り座標X
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { m_playerCircleScl,m_playerCircleScl };
+	m_bsst.scl = { 1.0f,1.0f };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
-	m_bsst.draw.rct = { 0, 0, ScrnHgt, ScrnHgt };
-	m_bsst.draw.clr = WHITE;
+	m_bsst.draw.rct = { m_rctX, 0, ScrnHgt, ScrnHgt };
+	m_bsst.draw.clr = { WHITE ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -35,7 +35,7 @@ void C_Player_Circle::Update()
 
 	m_bsst.mov = { 0,0 };
 
-	m_bsst.scl = { m_playerCircleScl,m_playerCircleScl };
+	m_bsst.scl = { 1.0f,1.0f };
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
@@ -47,11 +47,13 @@ void C_Player_Circle::Action()
 	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
 
 
+	m_bsst.draw.rct = { m_rctX, 0, ScrnHgt, ScrnHgt };
 
 	switch (m_playerLife)
 	{
 	case OneLife:
-		m_playerCircleScl = OneLifescl;
+		m_rctX = ScrnHgt * 3;
+		scorecircle->SetScoreScl(OneScorescl);
 		player->SetCircleRadius(OneRadius);
 		m_circleRadius = OneRadius; 
 		m_bulletPredictionLineDeleteNo = 8;
@@ -59,7 +61,8 @@ void C_Player_Circle::Action()
 		scorecircle->SetTargetScore(oneTargetScore);
 		break;
 	case TwoLife:
-		m_playerCircleScl = TwoLifescl;
+		m_rctX = ScrnHgt * 2;
+		scorecircle->SetScoreScl(TwoScorescl);
 		player->SetCircleRadius(TwoRadius);
 		m_circleRadius = TwoRadius; 
 		m_bulletPredictionLineDeleteNo = 10;
@@ -67,7 +70,8 @@ void C_Player_Circle::Action()
 		scorecircle->SetTargetScore(twoTargetScore);
 		break;
 	case ThreeLife:
-		m_playerCircleScl = ThreeLifescl;
+		m_rctX = ScrnHgt * 1;
+		scorecircle->SetScoreScl(ThreeScorescl);
 		player->SetCircleRadius(ThreeRadius);
 		m_circleRadius = ThreeRadius;
 		m_bulletPredictionLineDeleteNo = 12;
@@ -75,7 +79,7 @@ void C_Player_Circle::Action()
 		scorecircle->SetTargetScore(threeTargetScore);
 		break;
 	case FourLife:
-		m_playerCircleScl = FourLifescl;
+		m_rctX = ScrnHgt * 0;
 		player->SetCircleRadius(FourRadius);
 		//scorecircle->SetGetScore(threeTargetScore);
 		m_circleRadius = FourRadius; 

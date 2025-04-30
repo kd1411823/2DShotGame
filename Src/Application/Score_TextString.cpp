@@ -30,7 +30,7 @@ void C_Score_TextString::Init()
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, BIT72 , BIT18};
-	m_bsst.draw.clr = WHITE;
+	m_bsst.draw.clr = { WHITE ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 
 
@@ -42,7 +42,7 @@ void C_Score_TextString::Draw()
 
 	D3D.SetBlendState(BlendMode::Add);
 
-	m_sun->Draw();
+	//m_sun->Draw();
 
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);

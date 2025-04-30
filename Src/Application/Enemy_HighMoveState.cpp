@@ -6,9 +6,9 @@ void C_Enemy_HighMoveState::OnStart(C_Enemy* a_pEnemy)
 {
 	Scene* scene = a_pEnemy->GetPowner();
 	C_Systm* systm = scene->GetSystm();
-	m_highmoveStateCnt = systm->RndBtwn(20, 50); // 早く動く状態のステートカウント
+	m_highmoveStateCnt = systm->RndBtwn(20, 60); // 早く動く状態のステートカウント
 	m_dir = (eEnemyMovDir)systm->RndBtwn(LeftDir, RightDir); // 動く方向
-	
+	a_pEnemy->SetbMoveFlg(true);
 }
 
 void C_Enemy_HighMoveState::OnUpdate(C_Enemy* a_pEnemy)

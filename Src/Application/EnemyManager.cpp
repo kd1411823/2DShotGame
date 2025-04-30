@@ -37,6 +37,7 @@ void C_EnemyManager::Update()
 		{
 			std::unique_ptr<C_Enemy> newEnemy = std::make_unique<C_Enemy>();
 			newEnemy->SetP0wner(m_p0wner);
+			newEnemy->Init();
 			m_enemies.push_back(std::move(newEnemy));
 			m_spawnCount = 0;
 		}
@@ -68,6 +69,7 @@ void C_EnemyManager::PlayerBulletHit()
 	
 	for (auto enemy = m_enemies.begin(); enemy != m_enemies.end(); )
 	{
+		C_Enemy_Circle* enemycircle = (*enemy)->GetEnemyFrameCircle();
 		bool erased = false;
 
 		for (int i = 0; i < BulletNum; ++i)
@@ -81,17 +83,18 @@ void C_EnemyManager::PlayerBulletHit()
 			{
 				pbullet[i]->Hit();
 				(*enemy)->TakeDamage();
+				enemycircle->SetHitFlg(true);
 				renderwipe->SetShakeTime(10);
 
 				if (!(*enemy)->GetAlive())
 				{
-					
 					// 敵を削除し、イテレータを更新してループを抜ける
 					enemy = m_enemies.erase(enemy);
 					erased = true;
 				}
 				break;
 			}
+			
 
 		}
 		// 倒されてなかったらイテレータをまわす

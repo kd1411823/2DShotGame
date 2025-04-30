@@ -15,8 +15,11 @@
 #define ScrnBtm -360
 #define ScrnRht 640
 #define ScrnLft -640
-#define EnemyMax 10
+#define PlayerBaseScl 0.15f
+#define EnemyBaseScl 0.7f
+#define EnemyMax 3
 #define EnemyHpCircleScl 0.3f
+#define EnemyCircleAlpha 0.4f
 #define BulletNum 18
 #define ebulletNum 6
 #define pBulletLineNum 14
@@ -24,30 +27,29 @@
 #define pHighSpd 3.0f
 #define pDefaultSpd 2.0f
 #define pSlowSpd 0.8f
-#define eHighSpd 2.0f
-#define eDefaultSpd 1.5f
-#define eSlowSpd 0.8f
-#define EnemyHp 2.0f
-#define OneLifescl 0.2f
-#define TwoLifescl 0.4f
-#define ThreeLifescl 0.6f
-#define FourLifescl 0.8f
+#define eHighSpd 1.2f
+#define eDefaultSpd 0.7f
+#define eSlowSpd 0.4f
+#define EnemyHp 5.0f
+#define OneScorescl 0.199f
+#define TwoScorescl 0.49f
+#define ThreeScorescl 0.75f
 #define OneRadius 68.0f
 #define TwoRadius 135.0f
 #define ThreeRadius 203.0f
-#define FourRadius 270.0f
+#define FourRadius 273.0f
 #define oneTargetScore 500.0f
 #define twoTargetScore 1000.0f
 #define threeTargetScore 1500.0f
 #define PredictionLineDistance 30.0f
 #define ShotInterval 4
 #define initPos { 0, 0 }
-#define WHITE { 1.0f,1.0f,1.0f,1.0f }
-#define BLACK { 0.0f,0.0f,0.0f,1.0f }
-#define RED   { 1.0f,0.0f,0.0f,1.0f }
-#define GREEN { 0.0f,1.0f,0.0f,1.0f }
-#define BLUE  { 0.0f,0.0f,1.0f,1.0f }
-#define YELLOW  { 1.0f,1.0f,0.0f,1.0f }
+#define WHITE  1.0f,1.0f,1.0f
+#define BLACK  0.0f,0.0f,0.0f
+#define RED    1.00f, 0.08f, 0.50f
+#define GREEN  0.01f, 0.97f, 0.60f
+#define BLUE   0.0f,0.0f,1.0f
+#define YELLOW   1.0f,1.0f,0.0f
 
 // シーンタイプ
 enum eSceneType
@@ -55,7 +57,6 @@ enum eSceneType
 	TitleScene,
 	GameScene
 };
-
 
 // プレイヤーライフ
 enum ePlayerLife

@@ -7,11 +7,11 @@ void C_Back_Circle::Init()
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 0.8f,0.8f };
+	m_bsst.scl = { 1.0f,1.0f };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, ScrnHgt, ScrnHgt };
-	m_bsst.draw.clr = WHITE;
+	m_bsst.draw.clr = { WHITE ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 

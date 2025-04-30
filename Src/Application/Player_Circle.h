@@ -17,14 +17,13 @@ public:
 
 	ePlayerLife GetPlayerLife() { return m_playerLife; }
 	float GetCircleRadius() { return m_circleRadius; }
-	float GetPlayerCircleScl() { return m_playerCircleScl; }
 	int   GetBulletPredictionLineDeleteNo() { return m_bulletPredictionLineDeleteNo; }
 
 private:
 
 	ePlayerLife m_playerLife; // プレイヤーのライフ
 	float m_circleRadius; // 半径
-	float m_playerCircleScl;  // プレイヤー円の大きさ
 	int   m_bulletPredictionLineDeleteNo;// 弾予測線オブジェクトをどこのナンバー以降消すか
+	int   m_rctX;        // 切り取り座標X
 
 };

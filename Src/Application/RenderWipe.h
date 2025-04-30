@@ -12,6 +12,8 @@ public:
 
 	void SetShakeTime(int a_shakeTime) { m_shakeTime = a_shakeTime; }
 
+	int GetShakeTime() { return m_shakeTime; }
+
 private:
 
 	float m_deg; // sinカーブ用角度

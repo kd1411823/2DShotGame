@@ -43,6 +43,7 @@ void C_Player::Init()
 	for (int i = 0;i < triangleParticleNum; i++)
 	{
 		m_player_triangleParticle[i].SetTex(&triangleTex);
+		m_player_triangleParticle[i].SetP0wner(m_p0wner);
 		m_player_triangleParticle[i].Init();
 	}
 	// 弾
@@ -84,15 +85,20 @@ void C_Player::Init()
 	m_playerSpeed = 2.0f;// プレイヤーのスピード
 	m_circleRadius= 0.0f;// プレイヤー円の半径
 	m_drawBulletPredictionFlg = false;  // プレイヤーの弾予測描画フラグ
+	m_isRisingScl = false;	// プレイヤーの拡大率増減フラグ
+	m_deltaScl    = 0.007f;		// プレイヤーの拡大率増減量
+	m_maxDeltaScl = 0.0f;		// 最大プレイヤーの拡大率
+	m_minDeltaScl = 0.0f;		// 最小プレイヤーの拡大率
+	m_sclInitFlg  = false;		// 拡大率初期化フラグ
 
 	// プレイヤーのステータス
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 0.15f,0.15f };
+	m_bsst.scl = { PlayerBaseScl,PlayerBaseScl };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = {0, 0, BIT256, BIT256 };
-	m_bsst.draw.clr = GREEN;
+	m_bsst.draw.clr = { GREEN ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -113,7 +119,7 @@ void C_Player::Draw()
 
 	for (int i = 0;i < triangleParticleNum; i++)
 	{
-		//m_player_triangleParticle[i].Draw();
+		m_player_triangleParticle[i].Draw();
 	}
 	D3D.SetBlendState(BlendMode::Alpha);
 
@@ -137,7 +143,7 @@ void C_Player::Update()
 
 	LoadBullet();
 	
-	//ScaleManager();
+	ScaleManager();
 
 	m_bsst.pos += m_bsst.mov;
 
@@ -153,7 +159,7 @@ void C_Player::Update()
 
 	m_stateMachine.Update();
 
-	m_sun->Update(m_bsst.pos, { 1.3f,1.3f }, GREEN);
+	m_sun->Update(m_bsst.pos, { 1.3f,1.3f }, { GREEN ,1.0f });
 		
 	if (m_bMoveFlg)
 	{
@@ -235,50 +241,67 @@ void C_Player::Action()
 
 }
 
-void C_Player::Animation()
-{
-
-}
-
 void C_Player::ScaleManager()
 {
-	static bool _ExFlg = false;
-	float m_Ex = 0.007f;
-	float Max = 0.0f;
-	float Min = 0.0f;
-
+	
 	if (m_bMoveFlg)
 	{
-		Max = 0.18f;
-		Min = 0.13f;
+		m_maxDeltaScl = PlayerBaseScl + 0.03f;
+		m_minDeltaScl = PlayerBaseScl - 0.03f;
+		m_sclInitFlg = false;
 	}
 	else
 	{
-		Max = 0.16f;
-		Min = 0.14f;
-	}
-
-		if (m_bsst.scl.x >= Max && m_bsst.scl.y <= Min )
+		if (!m_sclInitFlg)
 		{
-			_ExFlg = false;
-		}
-
-		if (m_bsst.scl.x <= Min && m_bsst.scl.y >= Max)
-		{
-			_ExFlg = true;
+			m_maxDeltaScl = PlayerBaseScl + 0.01f;
+			m_minDeltaScl = PlayerBaseScl - 0.01f;
+			m_sclInitFlg = true;
 		}
 		
-		if (_ExFlg)
+		if (m_maxDeltaScl > PlayerBaseScl)
 		{
-			m_bsst.scl.x += m_Ex;
-			m_bsst.scl.y -= m_Ex;
+			m_maxDeltaScl -= 0.0008f;
 		}
 		else
 		{
-			m_bsst.scl.x -= m_Ex;
-			m_bsst.scl.y += m_Ex;
+			m_maxDeltaScl = PlayerBaseScl;
 		}
-	
+		
+		if (m_minDeltaScl < PlayerBaseScl)
+		{
+			m_minDeltaScl += 0.0008f;
+		}
+		else
+		{
+			m_minDeltaScl = PlayerBaseScl;
+		}
+	}
+
+
+	if (m_bsst.scl.x >= m_maxDeltaScl && m_bsst.scl.y <= m_minDeltaScl )
+	{
+		m_isRisingScl = false;
+	}
+
+	if (m_bsst.scl.x <= m_minDeltaScl && m_bsst.scl.y >= m_maxDeltaScl)
+	{
+		m_isRisingScl = true;
+	}
+		
+	if (m_maxDeltaScl != PlayerBaseScl && m_minDeltaScl != PlayerBaseScl)
+	{
+		if (m_isRisingScl)
+		{
+			m_bsst.scl.x += m_deltaScl;
+			m_bsst.scl.y -= m_deltaScl;
+		}
+		else
+		{
+			m_bsst.scl.x -= m_deltaScl;
+			m_bsst.scl.y += m_deltaScl;
+		}
+	}
 }
 
 void C_Player::Mouse()

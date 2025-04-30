@@ -19,6 +19,7 @@ void C_Score_Circle::Init()
 	m_targetScore = 0; // 次に目指すスコア
 	m_getScore = 0; // 取得スコア分
 	m_loadBulletFlg = false; // 弾をチャージしているかフラグ
+	m_scoreScl = OneScorescl; // スコアサークル拡大率
 
 	scorecircleTex.Load("Texture/scorecircle.png");
 
@@ -26,11 +27,11 @@ void C_Score_Circle::Init()
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { playercircle->GetPlayerCircleScl(),playercircle->GetPlayerCircleScl()};
+	m_bsst.scl = { m_scoreScl,m_scoreScl };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0,  ScrnHgt, ScrnHgt,  -m_rctY };
-	m_bsst.draw.clr = WHITE;
+	m_bsst.draw.clr = { WHITE ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -64,10 +65,9 @@ void C_Score_Circle::Action(int a_score)
 	m_rctY = ScrnHgt *  (((float)a_score - m_getScore) / (m_targetScore - m_getScore));
 
 	// 切り取り座標Yに応じて座標をずらす
-	m_bsst.pos.y = (- ScrnHgt * playercircle->GetPlayerCircleScl() * 0.5f) + (m_rctY * playercircle->GetPlayerCircleScl() * 0.5f);
+	m_bsst.pos.y = (- ScrnHgt * m_scoreScl * 0.5f) + (m_rctY * m_scoreScl * 0.5f);
 
-	// 大きさをプレイヤーのライフレベルに応じて反映させる
-	m_bsst.scl = { playercircle->GetPlayerCircleScl(),playercircle->GetPlayerCircleScl() };
+	m_bsst.scl = { m_scoreScl,m_scoreScl };
 
 	// 切り取り座標を超えないように補正
 	if (m_rctY > ScrnHgt)

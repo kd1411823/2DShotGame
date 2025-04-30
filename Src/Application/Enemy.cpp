@@ -1,11 +1,10 @@
 #include "Enemy.h"
 #include "Enemy_StandState.h"
+#include "Sun.h"
 #include "Scene.h"
 
 C_Enemy::C_Enemy()
 {
-	Init();
-
 	
 }
 
@@ -51,6 +50,9 @@ void C_Enemy::Init()
 	m_enemyframeCircle.SetP0wner(m_p0wner);
 	m_enemyframeCircle.Init();
 
+	m_sun = std::make_shared<C_Sun>();
+	m_sun->SetP0wner(m_p0wner);
+	m_sun->Init();
 
 	// ƒƒ“ƒo•Ï”
 	m_enemyHitpoint = EnemyHp;						// “G‚ÌHP
@@ -60,23 +62,34 @@ void C_Enemy::Init()
 	m_movDeg		= 0;							// ˆÚ“®—Ê(Šp“x)
 	m_circleRadius	= FourRadius;					// ‰~‚Ì”¼Œa
 	m_ebulletSpdScl = 0.4f;							// “G‚Ì’e‚ÌƒXƒs[ƒh”{—¦
+	m_bMoveFlg = false;		// “®‚¢‚Ä‚¢‚é‚©ƒtƒ‰ƒO
+	m_isRisingScl= false;		// “G‚Ì‚ÌŠg‘å—¦‘Œ¸ƒtƒ‰ƒO
+	m_deltaScl = 0.013f;				// “G‚ÌŠg‘å—¦‘Œ¸—Ê
+	m_maxDeltaScl= 0.0f;			// Å‘å“G‚ÌŠg‘å—¦
+	m_minDeltaScl= 0.0f;			// Å¬“G‚ÌŠg‘å—¦
+	m_sclInitFlg= false;			// Šg‘å—¦‰Šú‰»ƒtƒ‰ƒO
 
 	// ƒIƒuƒWƒFƒNƒg‰Šú‰»
 	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
 	m_bsst.pos.y = sin(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 0.7f,0.7f };
+	m_bsst.scl = { EnemyBaseScl ,EnemyBaseScl };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.pTex = &enemyTex;
 	m_bsst.draw.rct = { 0, 0, BIT64, BIT64 };
-	m_bsst.draw.clr = RED;
+	m_bsst.draw.clr = { RED ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
 void C_Enemy::Draw()
 {
-	//if (!m_bsst.alive)return;
+
+	D3D.SetBlendState(BlendMode::Add);
+
+	m_sun->Draw();
+
+	D3D.SetBlendState(BlendMode::Alpha);
 
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
@@ -105,6 +118,8 @@ void C_Enemy::Update()
 
 	m_movDeg = 0;
 
+	m_sun->Update(m_bsst.pos,{ 2.0f,2.0f},{ RED,1.0f });
+
 	m_enemyhpCircle.Update(m_bsst.alive, m_bsst.pos);
 
 	m_enemyframeCircle.Update(m_bsst.pos,m_bsst.alive);
@@ -126,6 +141,12 @@ void C_Enemy::Action()
 	C_Systm* systm = m_p0wner->GetSystm();
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 
+	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
+	m_bsst.pos.y = sin(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
+
+	ScaleManager();
+
+	EnemyBulletPlayerCircleHit();
 	// ‘Ì—Í‚ªŒ¸‚Á‚Ä‚¢‚½‚çŽ©‘R‰ñ•œ‚·‚é
 	if (m_enemyHitpoint > 0.0f && m_enemyHitpoint < EnemyHp)
 	{
@@ -134,10 +155,7 @@ void C_Enemy::Action()
 
 	printf("%.2f\n", m_enemyHitpoint);
 
-	EnemyBulletPlayerCircleHit();
 
-	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
-	m_bsst.pos.y = sin(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
 
 	for (int i = 0;i < ebulletNum;i++)
 	{
@@ -147,6 +165,69 @@ void C_Enemy::Action()
 	m_enemyhpCircle.Action(m_bsst.alive,m_enemyHitpoint);
 
 	m_enemyframeCircle.Action(m_bsst.alive);
+}
+
+void C_Enemy::ScaleManager()
+{
+	if (m_bMoveFlg)
+	{
+		m_maxDeltaScl = EnemyBaseScl + 0.1f;
+		m_minDeltaScl = EnemyBaseScl - 0.1f;
+		m_sclInitFlg = false;
+	}
+	else
+	{
+		if (!m_sclInitFlg)
+		{
+			m_maxDeltaScl = EnemyBaseScl + 0.05f;
+			m_minDeltaScl = EnemyBaseScl - 0.05f;
+			m_sclInitFlg = true;
+		}
+
+		if (m_maxDeltaScl > EnemyBaseScl)
+		{
+			m_maxDeltaScl -= 0.0005f;
+		}
+		else
+		{
+			m_maxDeltaScl = EnemyBaseScl;
+		}
+
+		if (m_minDeltaScl < EnemyBaseScl)
+		{
+			m_minDeltaScl += 0.0005f;
+		}
+		else
+		{
+			m_minDeltaScl = EnemyBaseScl;
+		}
+	}
+
+
+	if (m_bsst.scl.x >= m_maxDeltaScl && m_bsst.scl.y <= m_minDeltaScl)
+	{
+		m_isRisingScl = false;
+	}
+
+	if (m_bsst.scl.x <= m_minDeltaScl && m_bsst.scl.y >= m_maxDeltaScl)
+	{
+		m_isRisingScl = true;
+	}
+
+	if (m_maxDeltaScl != EnemyBaseScl && m_minDeltaScl != EnemyBaseScl)
+	{
+		if (m_isRisingScl)
+		{
+			m_bsst.scl.x += m_deltaScl;
+			m_bsst.scl.y -= m_deltaScl;
+		}
+		else
+		{
+			m_bsst.scl.x -= m_deltaScl;
+			m_bsst.scl.y += m_deltaScl;
+		}
+	}
+	printf("%d\n", m_bMoveFlg);
 }
 
 void C_Enemy::EnemyBulletPlayerCircleHit()
@@ -185,6 +266,6 @@ void C_Enemy::TakeDamage()
 	if (m_enemyHitpoint <= 0.0f)
 	{
 		scoremanager->AddScore();
-		m_bsst.alive = false;
+		m_bsst.alive = false;	
 	}
 }

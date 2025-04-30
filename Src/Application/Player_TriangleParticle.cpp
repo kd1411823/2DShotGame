@@ -18,7 +18,7 @@ void C_Player_TriangleParticle::Draw()
 void C_Player_TriangleParticle::Update(Math::Vector2 a_pos, bool a_bMoveFlg)
 {
 	C_Systm* systm = m_p0wner->GetSystm();
-
+	C_Player* player = m_p0wner->GetPlayer();
 	
 
 	m_particle.lifespan--;
@@ -30,36 +30,40 @@ void C_Player_TriangleParticle::Update(Math::Vector2 a_pos, bool a_bMoveFlg)
 
 		if (a_bMoveFlg || m_particle.alive)
 		{
+			float _rnd = Rnd() * 0.3f - 0.15f;
 			Emit(a_pos,
 				{ Rnd() * 4 - 2 ,Rnd() * 4 - 2 },
-				{ Rnd() * 0.4f - 0.2f ,Rnd() * 0.4f - 0.2f },
-				(float)systm->RndBtwn(0, 360),
+				{ _rnd ,_rnd },
+				player->GetRot(),
 				true,
 				Rnd() * 20 + 10,
 				true,
 				{ 0,0,BIT256,BIT256 },
-				{ Rnd(),1.0f ,Rnd(), 1.3f }
+				{ GREEN, 0.8f }
 			);
 		}
 		else
 		{
+			float _rnd = Rnd() * 0.2f - 0.1f;
 			Emit(a_pos,
 				{ Rnd() * 4 - 2 ,Rnd() * 4 - 2 },
-				{ Rnd() * 0.4f - 0.2f ,Rnd() * 0.4f - 0.2f },
-				(float)systm->RndBtwn(0, 360),
+				{ _rnd ,_rnd },
+				player->GetRot(),
 				true,
-				Rnd() * 10 + 10,
+				Rnd() * 10 + 5,
 				false,
 				{ 0,0,BIT256,BIT256 },
-				{ Rnd(),1.0f ,Rnd(), 1.3f }
+				{ GREEN, 0.7f }
 			);
 		}
 	}
 
 
+	//m_particle.draw.clr.R(m_particle.draw.clr.R() * 1.16f);
+	m_particle.draw.clr.A(m_particle.draw.clr.A() * 0.97f);
 
-	m_particle.scl.x *= 0.92f;
-	m_particle.scl.y *= 0.92f;
+	m_particle.scl.x *= 0.95f;
+	m_particle.scl.y *= 0.95f;
 
 	m_particle.pos += m_particle.mov;
 
