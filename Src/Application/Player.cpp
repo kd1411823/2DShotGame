@@ -16,6 +16,7 @@ C_Player::~C_Player()
 	dropbulletTex.Release();
 	triangleTex.Release();
 	bulletpredictionlineTex.Release();
+	bulletpredictionTriTex.Release();
 }
 
 void C_Player::Init()
@@ -28,6 +29,7 @@ void C_Player::Init()
 	dropbulletTex.Load("Texture/dropbullet.png");
 	triangleTex.Load("Texture/player.png");
 	bulletpredictionlineTex.Load("Texture/bulletPredictionLine.png");
+	bulletpredictionTriTex.Load("Texture/bulletPredictionTri.png");
 
 	// 初期化時にインスタンスのポインタを渡す
 	m_stateMachine.Start(this);
@@ -69,7 +71,7 @@ void C_Player::Init()
 		m_player_bulletpredictionline[i].Init(i);
 	}
 
-	m_player_bulletpredictiontriangle.SetTex(&playerTex);
+	m_player_bulletpredictiontriangle.SetTex(&bulletpredictionTriTex);
 	m_player_bulletpredictiontriangle.SetP0wner(m_p0wner);
 	m_player_bulletpredictiontriangle.Init();
 
@@ -224,7 +226,7 @@ void C_Player::Action()
 
 	for (int i = 0; i < BulletNum;i++)
 	{
-		m_bullet[i].Action();
+		m_bullet[i].Action({ 0.05f,0.13f }, { GREEN, 1.0f},{ 0, 0, BIT256, BIT256});
 	}
 	for (int i = 0;i < DropBulletNum;i++)
 	{

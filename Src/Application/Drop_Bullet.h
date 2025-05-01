@@ -20,5 +20,5 @@ public:
 private:
 
 	int		m_no; // 弾の番号(No.)
- 	const float   m_dropBulletRadius=10;  // 弾(取得オブジェクト)の半径
+ 	const float   m_dropBulletRadius = 10;  // 弾(取得オブジェクト)の半径
 };

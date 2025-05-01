@@ -3,6 +3,7 @@
 #define BIT24 24
 #define BIT64 64
 #define BIT72 72
+#define BIT120 120
 #define BIT128 128
 #define BIT240 240
 #define BIT256 256
@@ -43,6 +44,19 @@
 #define threeTargetScore 1500.0f
 #define PredictionLineDistance 30.0f
 #define ShotInterval 4
+#define OneNumDistance 15.0f
+#define TwoNumDistance 30.0f
+#define ThreeNumDistance 45.0f
+#define FourNumDistance 60.0f
+#define OneNumScl 1.0f
+#define TwoNumScl 2.0f
+#define ThreeNumScl 3.0f
+#define FourNumScl 3.0f
+#define OnescoreTextScl 0.6f
+#define TwoscoreTextScl 1.2f
+#define ThreescoreTextScl 1.8f
+#define FourscoreTextScl 2.4f
+#define scoreDigits 4
 #define initPos { 0, 0 }
 #define WHITE  1.0f,1.0f,1.0f
 #define BLACK  0.0f,0.0f,0.0f

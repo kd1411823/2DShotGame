@@ -31,7 +31,7 @@ void C_Score_Circle::Init()
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0,  ScrnHgt, ScrnHgt,  -m_rctY };
-	m_bsst.draw.clr = { WHITE ,1.0f };
+	m_bsst.draw.clr = { RED ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 

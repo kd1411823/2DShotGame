@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObjectBase.h"
 
+class C_Sun;
+
 class C_Player_BulletPredictionTriangle :public C_GameObject
 {
 public:
@@ -16,5 +18,5 @@ public:
 
 private:
 
-
+	std::shared_ptr<C_Sun> m_sun = nullptr; 
 };

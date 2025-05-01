@@ -1,9 +1,14 @@
 #include "Player_BulletPredictionLine.h"
+#include "Sun.h"
 #include "Scene.h"
 
 void C_Player_BulletPredictionLine::Init(int a_no)
 {
 	C_Systm* systm = m_p0wner->GetSystm();
+
+	m_sun = std::make_shared<C_Sun>();
+	m_sun->SetP0wner(m_p0wner);
+	m_sun->Init();
 
 	m_no = a_no;	// 予測ラインのナンバー
 
@@ -22,6 +27,13 @@ void C_Player_BulletPredictionLine::Draw()
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 
 	if (m_no > playercircle->GetBulletPredictionLineDeleteNo())return;
+
+	D3D.SetBlendState(BlendMode::Add);
+
+	m_sun->Draw();
+
+	D3D.SetBlendState(BlendMode::Alpha);
+
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 }
@@ -32,6 +44,8 @@ void C_Player_BulletPredictionLine::Update(Math::Vector2 a_pos)
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 
 	if (m_no > playercircle->GetBulletPredictionLineDeleteNo())return;
+
+	m_sun->Update(m_bsst.pos, { 0.3f,0.3f }, { GREEN ,1.0f });
 
 	m_bsst.pos += m_bsst.mov;
 

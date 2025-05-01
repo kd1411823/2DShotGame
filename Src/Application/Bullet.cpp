@@ -9,7 +9,7 @@ void C_Bullet::Init()
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 0.05f,0.13f };
+	m_bsst.scl = { 0.0f,0.0f };
 	m_bsst.rot = 0;
 	m_bsst.alive = false;
 	m_bsst.draw.rct = { 0, 0, BIT256, BIT256 };
@@ -35,11 +35,17 @@ void C_Bullet::Update()
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
-void C_Bullet::Action()
+void C_Bullet::Action(Math::Vector2 a_scl, Math::Color a_clr, Math::Rectangle a_rct)
 {
 	if (!m_bsst.alive)return;
 
 	C_Systm* systm = m_p0wner->GetSystm();
+
+	m_bsst.scl = a_scl;
+
+	m_bsst.draw.clr = a_clr;
+
+	m_bsst.draw.rct = a_rct;
 
 	IsEndPoint();
 	

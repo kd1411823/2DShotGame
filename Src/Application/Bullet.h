@@ -11,7 +11,7 @@ public:
 	void Init()override;
 	void Draw()override;
 	void Update()override;
-	void Action()override;
+	void Action(Math::Vector2 a_scl,Math::Color a_clr ,Math::Rectangle a_rct);
 
 	void ShotBullet(Math::Vector2 a_pos,float a_deg,float a_spdScl = 1.0f);
 	void IsEndPoint();

@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObjectBase.h"
 
+class C_Sun;
+
 class C_Player_BulletPredictionLine :public C_GameObject
 {
 public:
@@ -18,4 +20,5 @@ private:
 
 	int m_no;	// 予測ラインのナンバー
 
+	std::shared_ptr<C_Sun> m_sun = nullptr;
 };

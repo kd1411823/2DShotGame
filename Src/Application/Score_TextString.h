@@ -1,8 +1,6 @@
 #pragma once
 #include "GameObjectBase.h"
 
-class C_Sun;
-
 class C_Score_TextString :public C_GameObject
 {
 public:
@@ -16,11 +14,12 @@ public:
 	void Update()override;
 	void Action()override;
 	
+	void SetScoreTextScl(float a_scoreTextScl) { m_scoreTextScl = a_scoreTextScl; }
 
 private:
 
 	KdTexture scoretextstringTex;
 
-	std::shared_ptr<C_Sun> m_sun = nullptr;
+	float m_scoreTextScl; // ƒXƒRƒA•¶Žš—ñ‚ÌŠg‘å—¦
 };
 

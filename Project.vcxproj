@@ -189,6 +189,7 @@
     <ClInclude Include="Src\Application\main.h" />
     <ClInclude Include="Src\Application\ScoreManager.h" />
     <ClInclude Include="Src\Application\Score_Circle.h" />
+    <ClInclude Include="Src\Application\Score_TextNumber.h" />
     <ClInclude Include="Src\Application\Score_TextString.h" />
     <ClInclude Include="Src\Application\Sound.h" />
     <ClInclude Include="Src\Application\StateBase.h" />
@@ -248,6 +249,7 @@
     <ClCompile Include="Src\Application\main.cpp" />
     <ClCompile Include="Src\Application\ScoreManager.cpp" />
     <ClCompile Include="Src\Application\Score_Circle.cpp" />
+    <ClCompile Include="Src\Application\Score_TextNumber.cpp" />
     <ClCompile Include="Src\Application\Score_TextString.cpp" />
     <ClCompile Include="Src\Application\Sound.cpp" />
     <ClCompile Include="Src\Application\Sun.cpp" />

@@ -30,7 +30,7 @@ void C_Enemy::Init()
 	enemyTex.Load("Texture/enemy.png");
 	hpCircleTex.Load("Texture/enemyhpcircle.png");
 	frameCircleTex.Load("Texture/enemycircle.png");
-	ebulletTex.Load("Texture/ebullet.png");
+	ebulletTex.Load("Texture/bullet.png");
 
 	// ’e(“G)‚Ì‰Šú‰»
 	for (int i = 0;i < ebulletNum;i++)
@@ -153,13 +153,9 @@ void C_Enemy::Action()
 		m_enemyHitpoint += m_autoRecoveryRate;
 	}
 
-	printf("%.2f\n", m_enemyHitpoint);
-
-
-
 	for (int i = 0;i < ebulletNum;i++)
 	{
-		m_bullet[i].Action();
+		m_bullet[i].Action({ 0.05f,0.13f }, { RED, 1.0f }, { 0, 0, BIT256, BIT256 });
 	}
 
 	m_enemyhpCircle.Action(m_bsst.alive,m_enemyHitpoint);
@@ -227,7 +223,6 @@ void C_Enemy::ScaleManager()
 			m_bsst.scl.y += m_deltaScl;
 		}
 	}
-	printf("%d\n", m_bMoveFlg);
 }
 
 void C_Enemy::EnemyBulletPlayerCircleHit()

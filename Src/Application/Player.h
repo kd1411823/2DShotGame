@@ -51,6 +51,7 @@ private:
 	KdTexture dropbulletTex;
 	KdTexture triangleTex;
 	KdTexture bulletpredictionlineTex;
+	KdTexture bulletpredictionTriTex;
 
 	// ステートマシン
 	C_StateMachine<C_Player> m_stateMachine;
