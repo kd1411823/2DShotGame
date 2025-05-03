@@ -16,6 +16,9 @@ void C_Time_ClockCircle::Init()
 
 	clockCircleTex.Load("Texture/clockCircle.png");
 
+	m_isRisingAlpha = false;	// 数字のalpha値増減フラグ
+	m_deltaAlpha = 0.03f;		// 数字のalpha値増減量
+
 	m_bsst.draw.pTex = &clockCircleTex;
 
 	m_bsst.pos = { 450,300 };
@@ -47,4 +50,27 @@ void C_Time_ClockCircle::Update()
 
 void C_Time_ClockCircle::Action()
 {
+}
+
+void C_Time_ClockCircle::AlphaManager()
+{
+	if (m_bsst.draw.clr.A() >= 1.0f)
+	{
+		m_isRisingAlpha = false;
+	}
+
+	if (m_bsst.draw.clr.A() <= 0.5f)
+	{
+		m_isRisingAlpha = true;
+	}
+
+	if (m_isRisingAlpha)
+	{
+		m_bsst.draw.clr.A(m_bsst.draw.clr.A() + m_deltaAlpha);
+	}
+	else
+	{
+		m_bsst.draw.clr.A(m_bsst.draw.clr.A() - m_deltaAlpha);
+	}
+
 }

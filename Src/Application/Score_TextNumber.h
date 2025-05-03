@@ -14,7 +14,7 @@ public:
 	void Action()override;
 	void AddDrawScore(); // スコアを加算する演出(見た目)
 	void ScaleManager(); // 拡大率処理
-	void AlphaManager(); // alpha値処理
+	void AddTimeScore(); // タイム分スコア加算
 
 	void SetNumberDistance(float a_numberDistance) { m_numberDistance = a_numberDistance; }
 	void SetNumberScl(float a_numberScl) { m_numberScl = a_numberScl; }
@@ -37,7 +37,8 @@ private:
 	float m_deltaMin;	// min - 基準値　
 	float m_maxDeltaScl;		// 最大数字の拡大率
 	float m_minDeltaScl;		// 最小数字の拡大率
-	bool  m_isRisingAlpha;	// 数字のalpha値増減フラグ
-	float m_deltaAlpha;		// 数字のalpha値増減量
+	int   m_addTimeScoreCount; // タイム分スコア加算処理カウント
+	Math::Vector2 m_resultTimeClockCirclePos; // リザルト時のタイム円の座標
+
 };
 

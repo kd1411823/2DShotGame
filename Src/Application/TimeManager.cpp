@@ -28,7 +28,7 @@ void C_TimeManager::Init()
 		m_timeClockNumber[i].Init(i);
 	}
 
-	m_frameTime = 60 * 5; // フレーム
+	m_frameTime = 60 * 10; // フレーム
 	m_timer = m_frameTime / 60; // タイマー
 	m_isTimeLeftFlg = false; // タイムが残っているかいないか(true:残っている false:残っていない)
 }
@@ -58,6 +58,11 @@ void C_TimeManager::Action()
 {
 	Timer();
 
+	if (m_timer > 0)
+	{
+		m_isTimeLeftFlg = true;
+	}
+
 	m_timeClockCircle.Action();
 	m_timeClockHands.Action();
 	for (int i = 0;i < timeDigits;i++)
@@ -72,23 +77,15 @@ void C_TimeManager::Timer()
 
 	if (playercircle->GetPlayerLife() == FourLife)
 	{
-		m_isTimeLeftFlg = true;
 		return;
 	}
 	if (m_timer <= 0) 
 	{
-		playercircle->SetPlayerLife(FourLife);
 		m_isTimeLeftFlg = false;
-		m_timeClockCircle.SetClr({ RED,1.0f });
-		for (int i = 0;i < timeDigits;i++)
-		{
-			m_timeClockNumber[i].SetClr({ RED,1.0f });
-		}
+		playercircle->SetPlayerLife(FourLife);
 		return;
 	}
-
 	
-
 
 	if (m_frameTime > 0)
 	{
@@ -97,11 +94,19 @@ void C_TimeManager::Timer()
 
 	m_timer = m_frameTime / 60;
 
+	
+	// 残り10秒間になったら色変更
+	if (m_timer <= 10)
+	{
+		m_timeClockCircle.SetClr({ RED,1.0f });
+		for (int i = 0;i < timeDigits;i++)
+		{
+			m_timeClockNumber[i].SetClr({ RED,1.0f });
+		}
+	}
+	
 	if (m_timer <= 0)
 	{
 		m_timer = 0;
 	}
-
-
-	
 }

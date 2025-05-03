@@ -13,12 +13,14 @@ C_Time_ClockHands::~C_Time_ClockHands()
 void C_Time_ClockHands::Init()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
+	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
+	C_Time_ClockCircle* timeclockcircle = timemanager->GetTimeClockCircle();
 
 	clockHandsTex.Load("Texture/clockHands.png");
 
 	m_bsst.draw.pTex = &clockHandsTex;
 
-	m_bsst.pos = { 450,300 };
+	m_bsst.pos = timeclockcircle->GetPos();
 	m_bsst.mov = { 0,0 };
 	m_bsst.scl = { 0.1f,0.1f };
 	m_bsst.rot = 0;
@@ -47,4 +49,10 @@ void C_Time_ClockHands::Update()
 
 void C_Time_ClockHands::Action()
 {
+	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
+	C_Time_ClockCircle* timeclockcircle = timemanager->GetTimeClockCircle();
+
+	m_bsst.mov = timeclockcircle->GetMov();
+
+	m_bsst.pos = timeclockcircle->GetPos();
 }

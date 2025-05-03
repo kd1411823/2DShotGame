@@ -12,6 +12,8 @@ C_Time_ClockNumber::~C_Time_ClockNumber()
 void C_Time_ClockNumber::Init(int a_no)
 {
 	C_Systm* systm = m_p0wner->GetSystm();
+	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
+	C_Time_ClockCircle* timeclockcircle = timemanager->GetTimeClockCircle();
 
 	m_no = a_no; // タイマー数字ナンバー
 	m_rctX = BIT24 * 0; // 切り取り座標X
@@ -25,7 +27,7 @@ void C_Time_ClockNumber::Init(int a_no)
 	m_maxDeltaScl = m_numberScl + m_deltaMax;		// 最大数字の拡大率
 	m_minDeltaScl = m_numberScl + m_deltaMin;		// 最小数字の拡大率
 
-	m_bsst.pos = { 520,300 };
+	m_bsst.pos = { timeclockcircle->GetPos().x + 60, timeclockcircle->GetPos().y };
 	m_bsst.mov = { 0,0 };
 	m_bsst.scl = { m_numberScl,m_numberScl };
 	m_bsst.rot = 0;
@@ -55,6 +57,7 @@ void C_Time_ClockNumber::Update()
 void C_Time_ClockNumber::Action()
 {
 	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
+	C_Time_ClockCircle* timeclockcircle = timemanager->GetTimeClockCircle();
 
 	switch (m_no)
 	{
@@ -73,7 +76,9 @@ void C_Time_ClockNumber::Action()
 
 	m_bsst.draw.rct = { m_rctX, 0, BIT24 , BIT24 };
 
-	m_bsst.pos.x = 520 + m_no * m_numberDistance;
+	m_bsst.pos.x = timeclockcircle->GetPos().x + 60 + m_no * m_numberDistance;
+	m_bsst.pos.y = timeclockcircle->GetPos().y;
+
 
 	ScaleManager();
 

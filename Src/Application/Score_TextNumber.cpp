@@ -28,9 +28,8 @@ void C_Score_TextNumber::Init(int a_no)
 	m_deltaMin = 0.4f;	// min - 基準値　
 	m_maxDeltaScl = m_numberScl + m_deltaMax;		// 最大プレイヤーの拡大率
 	m_minDeltaScl = m_numberScl - m_deltaMin;		// 最小プレイヤーの拡大率
-	m_isRisingAlpha = false;	// 数字のalpha値増減フラグ
-	m_deltaAlpha = 0.03f;		// 数字のalpha値増減量
-
+	m_addTimeScoreCount = 0; // タイム分スコア加算処理カウン
+	m_resultTimeClockCirclePos = { -170 ,0 }; // リザルト時のタイム円の座標
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
@@ -54,6 +53,7 @@ void C_Score_TextNumber::Update()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
+
 	m_bsst.pos += m_bsst.mov;
 
 	m_bsst.mov = { 0,0 };
@@ -65,6 +65,7 @@ void C_Score_TextNumber::Action()
 {
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
+	C_Score_TextString* scoretextstring = scoremanager->GetScoreTextString();
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 	
 	if (playercircle->GetPlayerLife() == FourLife)return;
@@ -82,6 +83,8 @@ void C_Score_TextNumber::Action()
 	// Noの座標の中心部分にずらす
 	m_bsst.pos.x = (m_no * m_numberDistance) - (((m_numberDistance * 2) + (m_numberDistance * 1)) * 0.5f);
 	m_bsst.pos.y = - m_numberDistance;
+
+	scoretextstring->SetPos({ 0, m_bsst.pos.y + m_numberDistance * 2 });
 
 	switch (m_no)
 	{
@@ -113,29 +116,43 @@ void C_Score_TextNumber::AddDrawScore()
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
 	C_Score_TextString* scoretextstring = scoremanager->GetScoreTextString();
+	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 	
-	ScaleManager();
-
-	scoretextstring->SetScl(m_bsst.scl * 0.5f);
-
+	
 	if (m_addDrawScore < scoremanager->GetScore())
 	{
 		m_addDrawScore += m_addSpeed;
 		m_deltaScl = 0.1f;
+		ScaleManager();
+		scoretextstring->SetPos({ 0, m_bsst.pos.y + m_numberDistance * 2 });
+		scoretextstring->SetScl(m_bsst.scl * 0.65f);
+		m_bsst.pos.x = (m_no * m_numberDistance) - (((m_numberDistance * 2) + (m_numberDistance * 1)) * 0.5f);
+		m_bsst.pos.y = -m_numberDistance;
 	}
 	else
 	{
-		m_addDrawScore = scoremanager->GetScore();
-		m_bsst.draw.clr = { GREEN,1.0f };
-		scoretextstring->SetClr({ GREEN,1.0f});
-		m_deltaScl = 0.02f;
-		m_deltaMax = 0.2f;
-		m_deltaMin = 0.2f;
+		if (timemanager->GetIsTimeLeftFlg())
+		{
+			scoretextstring->SetScl({ FourscoreTextScl ,FourscoreTextScl});
+			m_bsst.scl = { m_numberScl, m_numberScl };
+			AddTimeScore();
+		}
+		else
+		{
+			m_addDrawScore = scoremanager->GetScore();
+			m_bsst.draw.clr = { GREEN,1.0f };
+			scoretextstring->SetClr({ GREEN,1.0f });
+			m_deltaScl = 0.02f;
+			m_deltaMax = 0.2f;
+			m_deltaMin = 0.2f;
+			ScaleManager();
+			scoretextstring->SetScl(m_bsst.scl * 0.65f);
+			
+		}
 	}
 
-	m_bsst.pos.x = (m_no * m_numberDistance) - (((m_numberDistance * 2) + (m_numberDistance * 1)) * 0.5f);
-	m_bsst.pos.y = -m_numberDistance;
+	
 
 	switch (m_no)
 	{
@@ -153,9 +170,7 @@ void C_Score_TextNumber::AddDrawScore()
 		break;
 	}
 
-	//m_bsst.draw.clr.A(1.0f);
-
-	//m_bsst.scl = { m_numberScl, m_numberScl };
+	m_bsst.draw.clr.A(1.0f);
 
 	m_rctX = BIT24 * m_digitsNumber;
 
@@ -193,28 +208,45 @@ void C_Score_TextNumber::ScaleManager()
 
 }
 
-void C_Score_TextNumber::AlphaManager()
+void C_Score_TextNumber::AddTimeScore()
 {
-	if (m_bsst.draw.clr.A() >= 1.0f)
-	{
-		m_isRisingAlpha = false;
-	}
+	C_Systm* systm = m_p0wner->GetSystm();
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
+	C_Score_TextString* scoretextstring = scoremanager->GetScoreTextString();
+	C_Time_ClockCircle* timeclockcircle = timemanager->GetTimeClockCircle();
 
-	if (m_bsst.draw.clr.A() <= 0.5f)
-	{
-		m_isRisingAlpha = true;
-	}
+	m_addTimeScoreCount++;
 
-	if (m_isRisingAlpha)
+	
+	if (m_addTimeScoreCount >= 60 && m_addTimeScoreCount < 120)
 	{
-		m_bsst.draw.clr.A(m_bsst.draw.clr.A() + m_deltaAlpha);
+		if (m_bsst.pos.y > -160)
+		{
+			m_bsst.mov.y = -4.0f;
+		}
+		if (scoretextstring->GetPos().y < 160)
+		{
+			scoretextstring->SetMovY(4.0f);
+		}
 	}
-	else
+	else if (m_addTimeScoreCount > 121 && m_addTimeScoreCount < 300)
 	{
-		m_bsst.draw.clr.A(m_bsst.draw.clr.A() - m_deltaAlpha);
-	}
+		const float _deg = systm->GetDeg(m_resultTimeClockCirclePos, timeclockcircle->GetPos());
+		const float _moveSpeed = 10.0f;
 
+		if (timeclockcircle->GetPos().x > m_resultTimeClockCirclePos.x && 
+			timeclockcircle->GetPos().y > m_resultTimeClockCirclePos.y)
+		{
+			timeclockcircle->SetMov({ cos(systm->CnvrtToRadians(_deg)) * _moveSpeed,
+									  sin(systm->CnvrtToRadians(_deg)) * _moveSpeed });
+		}
+		
+	}
+	printf("cnt %d\n", m_addTimeScoreCount);
 }
+
+
 
 
 

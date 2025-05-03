@@ -58,8 +58,6 @@ void C_Score_TextString::Action()
 
 	m_bsst.scl = { m_scoreTextScl,m_scoreTextScl };
 
-	m_bsst.pos.y = scoretextnumber->GetNumberDistance();
-
 	if (scorecircle->GetLoadBulletFlg())
 	{
 		m_bsst.draw.clr.A(0.2f);
