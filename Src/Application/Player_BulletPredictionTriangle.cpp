@@ -36,11 +36,11 @@ void C_Player_BulletPredictionTriangle::Update()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
-	m_sun->Update(m_bsst.pos, { 1.0f,1.0f }, { GREEN ,1.0f });
-
 	m_bsst.pos += m_bsst.mov;
 
 	m_bsst.mov = { 0,0 };
+
+	m_sun->Update(m_bsst.pos, { 1.0f,1.0f }, { GREEN ,1.0f });
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }

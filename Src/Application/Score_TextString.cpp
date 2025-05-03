@@ -21,7 +21,7 @@ void C_Score_TextString::Init()
 
 	m_bsst.draw.pTex = &scoretextstringTex;
 
-	m_bsst.pos = { 0,15 };
+	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
 	m_bsst.scl = { m_scoreTextScl,m_scoreTextScl };
 	m_bsst.rot = 0;
@@ -47,7 +47,6 @@ void C_Score_TextString::Update()
 
 	m_bsst.mov = { 0,0 };
 
-	
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -55,8 +54,11 @@ void C_Score_TextString::Action()
 {
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
+	C_Score_TextNumber* scoretextnumber = scoremanager->GetScoreTextNumber(0);
 
 	m_bsst.scl = { m_scoreTextScl,m_scoreTextScl };
+
+	m_bsst.pos.y = scoretextnumber->GetNumberDistance();
 
 	if (scorecircle->GetLoadBulletFlg())
 	{

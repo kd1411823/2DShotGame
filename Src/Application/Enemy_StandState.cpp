@@ -6,7 +6,9 @@ void C_Enemy_StandState::OnStart(C_Enemy* a_pEnemy)
 {
 	Scene* scene = a_pEnemy->GetPowner();
 	C_Systm* systm = scene->GetSystm();
-	m_standStateCnt = systm->RndBtwn(30,300); // 通常状態のステートカウント
+	C_Enemy_SquareFrame* enemysquareframe = a_pEnemy->GetEnemySquareFrame();
+	enemysquareframe->SetStopFlg(true);
+	m_standStateCnt = systm->RndBtwn(30,400); // 通常状態のステートカウント
 	a_pEnemy->SetMovDeg(0);
 	a_pEnemy->SetbMoveFlg(false);
 }

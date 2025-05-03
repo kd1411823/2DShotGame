@@ -93,5 +93,8 @@ void C_ScoreManager::AddScore()
 
 void C_ScoreManager::DecreaseScore()
 {
-	m_score -= 0.0f;
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
+	if (playercircle->GetPlayerLife() == FourLife)return;
+	m_score -= 10.0f;
 }

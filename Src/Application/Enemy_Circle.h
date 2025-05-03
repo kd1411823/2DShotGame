@@ -6,7 +6,7 @@ class C_Enemy_Circle :public C_GameObject
 public:
 
 	C_Enemy_Circle(){}
-	virtual ~C_Enemy_Circle(){}
+	~C_Enemy_Circle(){}
 
 	void Init()override;
 	void Draw(bool a_alive);

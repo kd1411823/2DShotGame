@@ -62,6 +62,7 @@ void Scene::GameUpdate()
 	m_scoremanager.Action();
 	m_player.Action();
 	m_enemy_manager.Action();
+	m_timemanager.Action();
 
 	m_renderwipe.ActionWipe();
 
@@ -71,8 +72,10 @@ void Scene::GameUpdate()
 	m_backgroud.Update();
 	m_back_circle.Update();
 	m_enemy_manager.Update();
+	m_timemanager.Update();
 
 	m_renderwipe.UpdateWipe();
+	
 }
 
 void Scene::GameDraw()
@@ -113,6 +116,7 @@ void Scene::DynamicDraw2D()
 	m_player_circle.Draw();
 	m_enemy_manager.Draw();
 	m_player.Draw();
+	m_timemanager.Draw();
 }
 
 void Scene::Init()
@@ -151,7 +155,7 @@ void Scene::Init()
 	m_scoremanager.SetP0wner(this);
 	m_player.SetP0wner(this);
 	m_enemy_manager.SetP0wner(this);
-	
+	m_timemanager.SetP0wner(this);
 
 	m_sound.Init();
 	m_backgroud.Init();
@@ -160,6 +164,7 @@ void Scene::Init()
 	m_scoremanager.Init();
 	m_player.Init();
 	m_enemy_manager.Init();
+	m_timemanager.Init();
 }
 
 void Scene::Release()

@@ -7,6 +7,7 @@ void C_Enemy_ShotState::OnStart(C_Enemy* a_pEnemy)
 {
 	Scene* scene = a_pEnemy->GetPowner();
 	C_Systm* systm = scene->GetSystm();
+	C_Enemy_SquareFrame* enemysquareframe = a_pEnemy->GetEnemySquareFrame();
 	C_Bullet* bullet[ebulletNum];
 	a_pEnemy->SetbMoveFlg(false);
 	// すべて装填済みにする
@@ -16,6 +17,7 @@ void C_Enemy_ShotState::OnStart(C_Enemy* a_pEnemy)
 
 		bullet[i]->SetLoadOkFlg(true);
 	}
+	enemysquareframe->SetStopFlg(true);
 	m_shotStateCnt = systm->RndBtwn(60, 120); // 撃つ状態のステート
 	m_movepattern = (eEnemyMovCmd)systm->RndBtwn(DefaultMov,HighMov);  // 動くパターン
 	m_shotEndFlg = false;  // 撃ち終わったかフラグ

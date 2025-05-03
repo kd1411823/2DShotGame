@@ -45,11 +45,11 @@ void C_Player_BulletPredictionLine::Update(Math::Vector2 a_pos)
 
 	if (m_no > playercircle->GetBulletPredictionLineDeleteNo())return;
 
-	m_sun->Update(m_bsst.pos, { 0.3f,0.3f }, { GREEN ,1.0f });
-
 	m_bsst.pos += m_bsst.mov;
 
 	m_bsst.mov = { 0,0 };
+
+	m_sun->Update(m_bsst.pos, { 0.3f,0.3f }, { GREEN ,1.0f });
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }

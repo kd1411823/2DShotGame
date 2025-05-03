@@ -6,7 +6,9 @@ void C_Enemy_MoveState::OnStart(C_Enemy* a_pEnemy)
 {
 	Scene* scene = a_pEnemy->GetPowner();
 	C_Systm* systm = scene->GetSystm();
-	m_moveStateCnt = systm->RndBtwn(30, 120); // 動く状態のステートカウント
+	C_Enemy_SquareFrame* enemysquareframe = a_pEnemy->GetEnemySquareFrame();
+	enemysquareframe->SetStopFlg(false);
+	m_moveStateCnt = systm->RndBtwn(30, 100); // 動く状態のステートカウント
 	m_dir = (eEnemyMovDir)systm->RndBtwn(LeftDir,RightDir); // 動く方向
 	a_pEnemy->SetbMoveFlg(true);
 }

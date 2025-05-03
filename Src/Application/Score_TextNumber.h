@@ -16,6 +16,7 @@ public:
 	void SetNumberDistance(float a_numberDistance) { m_numberDistance = a_numberDistance; }
 	void SetNumberScl(float a_numberScl) { m_numberScl = a_numberScl; }
 
+	float GetNumberDistance() { return m_numberDistance; }
 	float GetNumberScl() { return m_numberScl; }
 
 private:

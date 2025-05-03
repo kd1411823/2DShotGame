@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObjectBase.h"
+#include "Enemy_SquareParticle.h"
+#include "Enemy_SquareFrame.h"
 #include "Enemy_HPCircle.h"
 #include "Enemy_Circle.h"
 #include "StateMachine.h"
@@ -31,6 +33,7 @@ public:
 	C_Enemy_HPCircle* GetEnemyHpCircle() { return &m_enemyhpCircle; }
 	C_Enemy_Circle* GetEnemyFrameCircle() { return &m_enemyframeCircle; }
 	C_Bullet* GetBullet(int a_no) { return &m_bullet[a_no]; }
+	C_Enemy_SquareFrame* GetEnemySquareFrame() { return &m_enemySquareFrame; }
 	float GetEBulletSpdScl() { return m_ebulletSpdScl; }
 
 	// セッター
@@ -39,11 +42,14 @@ public:
 
 private:
 
+	static const int squareParticleNum = 20;
+
 	// テクスチャ
 	KdTexture enemyTex;
 	KdTexture hpCircleTex;
 	KdTexture frameCircleTex;
 	KdTexture ebulletTex;
+	KdTexture squareframeTex;
 
 	// ステートマシン
 	C_StateMachine<C_Enemy> m_stateMachine;
@@ -56,6 +62,12 @@ private:
 
 	// 弾インスタンス(敵)
 	C_Bullet m_bullet[ebulletNum];
+
+	// 敵パーティクル
+	C_Enemy_SquareParticle m_enemysquareParticle[squareParticleNum];
+
+	// 敵四角形フレーム
+	C_Enemy_SquareFrame m_enemySquareFrame;
 
 	std::shared_ptr<C_Sun> m_sun = nullptr;
 

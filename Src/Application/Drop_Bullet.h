@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObjectBase.h"
 
+class C_Sun;
+
 class C_Drop_Bullet :public C_GameObject
 {
 public:
@@ -19,6 +21,8 @@ public:
 
 private:
 
+	std::shared_ptr<C_Sun> m_sun = nullptr;
+
 	int		m_no; // 弾の番号(No.)
- 	const float   m_dropBulletRadius = 10;  // 弾(取得オブジェクト)の半径
+ 	const float   m_dropBulletRadius = BIT256 * m_bsst.scl.x * 0.5f;  // 弾(取得オブジェクト)の半径
 };

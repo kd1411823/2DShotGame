@@ -7,6 +7,7 @@
 #include "EnemyManager.h"
 #include "ParticleBase.h"
 #include "ScoreManager.h"
+#include "TimeManager.h"
 #include "Systm.h"
 #include "Sound.h"
 #include "Console.h"
@@ -34,6 +35,7 @@ private:
 	C_EnemyManager m_enemy_manager;
 	C_ParticleBase m_particlebase;
 	C_ScoreManager m_scoremanager;
+	C_TimeManager m_timemanager;
 
 	eSceneType m_nowScene;
 
@@ -74,6 +76,7 @@ public:
 	C_Back_Circle* GetBack_Circle() { return &m_back_circle; }
 	C_EnemyManager* GetEnemyManager() { return &m_enemy_manager; }
 	C_ScoreManager* GetScoreManager() { return &m_scoremanager;}
+	C_TimeManager* GetTimeManager() { return &m_timemanager; }
 
 private:
 

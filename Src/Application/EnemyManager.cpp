@@ -20,6 +20,9 @@ void C_EnemyManager::Init()
 
 void C_EnemyManager::Draw()
 {
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
+	if (playercircle->GetPlayerLife() == FourLife)return;
 
 	for (auto& enemy : m_enemies)
 	{
@@ -29,6 +32,10 @@ void C_EnemyManager::Draw()
 
 void C_EnemyManager::Update()
 {
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
+	if (playercircle->GetPlayerLife() == FourLife)return;
+
 	if (m_enemies.size() < EnemyMax)
 	{
 		m_spawnCount++;
@@ -51,6 +58,13 @@ void C_EnemyManager::Update()
 
 void C_EnemyManager::Action()
 {
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
+	if (playercircle->GetPlayerLife() == FourLife)
+	{
+		m_enemies.clear();
+		return;
+	}
 	PlayerBulletHit();
 
 	for (auto& enemy : m_enemies)

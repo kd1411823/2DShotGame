@@ -20,7 +20,7 @@
 #define EnemyBaseScl 0.7f
 #define EnemyMax 3
 #define EnemyHpCircleScl 0.3f
-#define EnemyCircleAlpha 0.4f
+#define EnemyCircleAlpha 0.55f
 #define BulletNum 18
 #define ebulletNum 6
 #define pBulletLineNum 14
@@ -46,17 +46,18 @@
 #define ShotInterval 4
 #define OneNumDistance 15.0f
 #define TwoNumDistance 30.0f
-#define ThreeNumDistance 45.0f
-#define FourNumDistance 60.0f
+#define ThreeNumDistance 30.0f
+#define FourNumDistance 30.0f
 #define OneNumScl 1.0f
 #define TwoNumScl 2.0f
-#define ThreeNumScl 3.0f
-#define FourNumScl 3.0f
-#define OnescoreTextScl 0.6f
-#define TwoscoreTextScl 1.2f
-#define ThreescoreTextScl 1.8f
-#define FourscoreTextScl 2.4f
+#define ThreeNumScl 2.0f
+#define FourNumScl 2.0f
+#define OnescoreTextScl 0.5f
+#define TwoscoreTextScl 1.0f
+#define ThreescoreTextScl 1.0f
+#define FourscoreTextScl 1.0f
 #define scoreDigits 4
+#define timeDigits 3
 #define initPos { 0, 0 }
 #define WHITE  1.0f,1.0f,1.0f
 #define BLACK  0.0f,0.0f,0.0f
