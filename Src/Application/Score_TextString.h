@@ -14,7 +14,14 @@ public:
 	void Update()override;
 	void Action()override;
 	
+	
+
+	void SetScl(Math::Vector2 a_scl) { m_bsst.scl = a_scl; }
+	void SetClr(Math::Color a_clr) { m_bsst.draw.clr = a_clr; }
 	void SetScoreTextScl(float a_scoreTextScl) { m_scoreTextScl = a_scoreTextScl; }
+
+	Math::Vector2 GetScl() { return m_bsst.scl; }
+
 
 private:
 

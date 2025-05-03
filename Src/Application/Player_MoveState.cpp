@@ -1,6 +1,7 @@
 #include "Player_MoveState.h"
 #include "Player_StandState.h"
 #include "Player_LoadBulletState.h"
+#include "Player_ResultState.h"
 #include "Scene.h"
 
 void C_Player_MoveState::OnStart(C_Player* a_pPlayer)
@@ -16,6 +17,8 @@ void C_Player_MoveState::OnStart(C_Player* a_pPlayer)
 
 void C_Player_MoveState::OnUpdate(C_Player* a_pPlayer)
 {
+	Scene* scene = a_pPlayer->GetPowner();
+	C_Player_Circle* playercircle = scene->GetPlayer_Circle();
 
 	if (GetAsyncKeyState('D') & 0x8000)
 	{
@@ -37,6 +40,13 @@ void C_Player_MoveState::OnUpdate(C_Player* a_pPlayer)
 		m_pMachine->ChangeState<C_Player_LoadBulletState>();
 	}
 	
+	// リザルトになったらステートを変更
+	if (playercircle->GetPlayerLife() == FourLife)
+	{
+		m_pMachine->ChangeState<C_Player_ResultState>();
+	}
+
+
 }
 
 void C_Player_MoveState::OnExit(C_Player* a_pPlayer)

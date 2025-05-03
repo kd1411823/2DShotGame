@@ -28,8 +28,9 @@ void C_TimeManager::Init()
 		m_timeClockNumber[i].Init(i);
 	}
 
-	m_frameTime = 60 * 120; // フレーム
+	m_frameTime = 60 * 5; // フレーム
 	m_timer = m_frameTime / 60; // タイマー
+	m_isTimeLeftFlg = false; // タイムが残っているかいないか(true:残っている false:残っていない)
 }
 
 void C_TimeManager::Draw()
@@ -71,11 +72,13 @@ void C_TimeManager::Timer()
 
 	if (playercircle->GetPlayerLife() == FourLife)
 	{
+		m_isTimeLeftFlg = true;
 		return;
 	}
 	if (m_timer <= 0) 
 	{
 		playercircle->SetPlayerLife(FourLife);
+		m_isTimeLeftFlg = false;
 		m_timeClockCircle.SetClr({ RED,1.0f });
 		for (int i = 0;i < timeDigits;i++)
 		{

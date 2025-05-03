@@ -19,7 +19,18 @@ void C_Score_TextNumber::Init(int a_no)
 	m_rctX = BIT24 * 0; // 切り取り座標X
 	m_numberDistance = OneNumDistance; // 数字間隔
 	m_digitsNumber = 0; // 桁数字
-	m_numberScl = 1.0f; // 数字の大きさ
+	m_numberScl = OneNumScl; // 数字の大きさ
+	m_addDrawScore = 0.0f; // スコアを加算する演出用のスコアを入れる変数
+	m_addSpeed = 10.0f; // スコアを加算するスピード
+	m_isRisingScl = false;	// プレイヤーの拡大率増減フラグ
+	m_deltaScl = 0.1f;		// プレイヤーの拡大率増減量
+	m_deltaMax = 0.4f;	// max - 基準値　
+	m_deltaMin = 0.4f;	// min - 基準値　
+	m_maxDeltaScl = m_numberScl + m_deltaMax;		// 最大プレイヤーの拡大率
+	m_minDeltaScl = m_numberScl - m_deltaMin;		// 最小プレイヤーの拡大率
+	m_isRisingAlpha = false;	// 数字のalpha値増減フラグ
+	m_deltaAlpha = 0.03f;		// 数字のalpha値増減量
+
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
@@ -54,7 +65,9 @@ void C_Score_TextNumber::Action()
 {
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
-
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+	
+	if (playercircle->GetPlayerLife() == FourLife)return;
 
 	if (scorecircle->GetLoadBulletFlg())
 	{
@@ -65,8 +78,7 @@ void C_Score_TextNumber::Action()
 		m_bsst.draw.clr.A(1.0f);
 	}
 
-	m_bsst.scl = { m_numberScl, m_numberScl };
-
+	
 	// Noの座標の中心部分にずらす
 	m_bsst.pos.x = (m_no * m_numberDistance) - (((m_numberDistance * 2) + (m_numberDistance * 1)) * 0.5f);
 	m_bsst.pos.y = - m_numberDistance;
@@ -87,11 +99,122 @@ void C_Score_TextNumber::Action()
 		break;
 	}
 
+
+	m_bsst.scl = { m_numberScl, m_numberScl };
+
 	m_rctX = BIT24 * m_digitsNumber;
 
 	m_bsst.draw.rct = { m_rctX, 0, BIT24 , BIT24 };
 
-	printf("number %d\n", m_digitsNumber);
+}
+
+void C_Score_TextNumber::AddDrawScore()
+{
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
+	C_Score_TextString* scoretextstring = scoremanager->GetScoreTextString();
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+	
+	ScaleManager();
+
+	scoretextstring->SetScl(m_bsst.scl * 0.5f);
+
+	if (m_addDrawScore < scoremanager->GetScore())
+	{
+		m_addDrawScore += m_addSpeed;
+		m_deltaScl = 0.1f;
+	}
+	else
+	{
+		m_addDrawScore = scoremanager->GetScore();
+		m_bsst.draw.clr = { GREEN,1.0f };
+		scoretextstring->SetClr({ GREEN,1.0f});
+		m_deltaScl = 0.02f;
+		m_deltaMax = 0.2f;
+		m_deltaMin = 0.2f;
+	}
+
+	m_bsst.pos.x = (m_no * m_numberDistance) - (((m_numberDistance * 2) + (m_numberDistance * 1)) * 0.5f);
+	m_bsst.pos.y = -m_numberDistance;
+
+	switch (m_no)
+	{
+	case 0:
+		m_digitsNumber = (((int)std::floor(m_addDrawScore))/ 1000) % 10;
+		break;
+	case 1:
+		m_digitsNumber = (((int)std::floor(m_addDrawScore)) / 100) % 10;
+		break;
+	case 2:
+		m_digitsNumber = (((int)std::floor(m_addDrawScore)) / 10) % 10;
+		break;
+	case 3:
+		m_digitsNumber = ((int)std::floor(m_addDrawScore)) % 10;
+		break;
+	}
+
+	//m_bsst.draw.clr.A(1.0f);
+
+	//m_bsst.scl = { m_numberScl, m_numberScl };
+
+	m_rctX = BIT24 * m_digitsNumber;
+
+	m_bsst.draw.rct = { m_rctX, 0, BIT24 , BIT24 };
 
 	
 }
+
+void C_Score_TextNumber::ScaleManager()
+{
+
+	m_maxDeltaScl = m_numberScl + m_deltaMax;		// 最大プレイヤーの拡大率
+	m_minDeltaScl = m_numberScl - m_deltaMin;		// 最小プレイヤーの拡大率
+
+	if (m_bsst.scl.x >= m_maxDeltaScl && m_bsst.scl.y >= m_maxDeltaScl)
+	{
+		m_isRisingScl = false;
+	}
+
+	if (m_bsst.scl.x <= m_minDeltaScl && m_bsst.scl.y <= m_minDeltaScl)
+	{
+		m_isRisingScl = true;
+	}
+
+	if (m_isRisingScl)
+	{
+		m_bsst.scl.x += m_deltaScl;
+		m_bsst.scl.y += m_deltaScl;
+	}
+	else
+	{
+		m_bsst.scl.x -= m_deltaScl;
+		m_bsst.scl.y -= m_deltaScl;
+	}
+
+}
+
+void C_Score_TextNumber::AlphaManager()
+{
+	if (m_bsst.draw.clr.A() >= 1.0f)
+	{
+		m_isRisingAlpha = false;
+	}
+
+	if (m_bsst.draw.clr.A() <= 0.5f)
+	{
+		m_isRisingAlpha = true;
+	}
+
+	if (m_isRisingAlpha)
+	{
+		m_bsst.draw.clr.A(m_bsst.draw.clr.A() + m_deltaAlpha);
+	}
+	else
+	{
+		m_bsst.draw.clr.A(m_bsst.draw.clr.A() - m_deltaAlpha);
+	}
+
+}
+
+
+

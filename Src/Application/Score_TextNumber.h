@@ -12,6 +12,9 @@ public:
 	void Draw()override;
 	void Update()override;
 	void Action()override;
+	void AddDrawScore(); // スコアを加算する演出(見た目)
+	void ScaleManager(); // 拡大率処理
+	void AlphaManager(); // alpha値処理
 
 	void SetNumberDistance(float a_numberDistance) { m_numberDistance = a_numberDistance; }
 	void SetNumberScl(float a_numberScl) { m_numberScl = a_numberScl; }
@@ -26,5 +29,15 @@ private:
 	float m_numberDistance; // 数字間隔
 	int m_digitsNumber; // 桁数字
 	float m_numberScl; // 数字の大きさ
+	float m_addDrawScore; // スコアを加算する演出用のスコアを入れる変数
+	float m_addSpeed; // スコアを加算するスピード
+	bool  m_isRisingScl;	// 数字の拡大率増減フラグ
+	float m_deltaScl;		// 数字の拡大率増減量
+	float m_deltaMax;	// max - 基準値　
+	float m_deltaMin;	// min - 基準値　
+	float m_maxDeltaScl;		// 最大数字の拡大率
+	float m_minDeltaScl;		// 最小数字の拡大率
+	bool  m_isRisingAlpha;	// 数字のalpha値増減フラグ
+	float m_deltaAlpha;		// 数字のalpha値増減量
 };
 

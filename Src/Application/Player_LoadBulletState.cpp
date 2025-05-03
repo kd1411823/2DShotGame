@@ -1,5 +1,6 @@
 #include "Player_LoadBulletState.h"
 #include "Player_ShotBulletState.h"
+#include "Player_ResultState.h"
 #include "Scene.h"
 
 void C_Player_LoadBulletState::OnStart(C_Player* a_pPlayer)
@@ -17,12 +18,15 @@ void C_Player_LoadBulletState::OnUpdate(C_Player* a_pPlayer)
 {
 	Scene* scene = a_pPlayer->GetPowner();
 	C_Systm* systm = scene->GetSystm();
+	C_Player_Circle* playercircle = scene->GetPlayer_Circle();
 	C_Drop_Bullet* dropbullet[DropBulletNum];
+
 	for (int i = 0;i < DropBulletNum;i++)
 	{
 		dropbullet[i] = a_pPlayer->GetDropBullet(i);
 	}
 
+	
 	// 移動
 	if (GetAsyncKeyState('D') & 0x8000)
 	{
@@ -39,6 +43,12 @@ void C_Player_LoadBulletState::OnUpdate(C_Player* a_pPlayer)
 	if (!(GetAsyncKeyState(VK_SPACE) & 0x8000))
 	{
 		m_pMachine->ChangeState<C_Player_ShotBulletState>();
+	}
+
+	// リザルトになったらステートを変更
+	if (playercircle->GetPlayerLife() == FourLife)
+	{
+		m_pMachine->ChangeState<C_Player_ResultState>();
 	}
 
 	// 弾(取得オブジェクト)とプレイヤーの当たり判定

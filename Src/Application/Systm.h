@@ -47,15 +47,15 @@
 #define OneNumDistance 15.0f
 #define TwoNumDistance 30.0f
 #define ThreeNumDistance 30.0f
-#define FourNumDistance 30.0f
+#define FourNumDistance 45.0f
 #define OneNumScl 1.0f
 #define TwoNumScl 2.0f
 #define ThreeNumScl 2.0f
-#define FourNumScl 2.0f
+#define FourNumScl 2.5f
 #define OnescoreTextScl 0.5f
 #define TwoscoreTextScl 1.0f
 #define ThreescoreTextScl 1.0f
-#define FourscoreTextScl 1.0f
+#define FourscoreTextScl 1.5f
 #define scoreDigits 4
 #define timeDigits 3
 #define initPos { 0, 0 }

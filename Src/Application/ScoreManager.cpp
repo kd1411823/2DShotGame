@@ -29,25 +29,44 @@ void C_ScoreManager::Init()
 		m_scoretextnumber[i].SetTex(&scoretextnumberTex);
 		m_scoretextnumber[i].Init(i);
 	}
+
+	m_scoreresult.SetP0wner(m_p0wner);
+	m_scoreresult.Init();
+
+	m_score = 1000; // ƒXƒRƒA
 }
 
 void C_ScoreManager::Draw()
 {
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
 	m_scorecircle.Draw();
 	m_scoretextstring.Draw();
 	for (int i = 0;i < scoreDigits;i++)
 	{
 		m_scoretextnumber[i].Draw();
 	}
+
+	if (playercircle->GetPlayerLife() == FourLife)
+	{
+		m_scoreresult.Draw();
+	}
 }
 
 void C_ScoreManager::Update()
 {
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
+
 	m_scorecircle.Update();
 	m_scoretextstring.Update();
 	for (int i = 0;i < scoreDigits;i++)
 	{
 		m_scoretextnumber[i].Update();
+	}
+	if (playercircle->GetPlayerLife() == FourLife)
+	{
+		m_scoreresult.Update();
 	}
 	printf("score: %.0f\n", m_score);
 
@@ -56,24 +75,28 @@ void C_ScoreManager::Update()
 void C_ScoreManager::Action()
 {
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
 
 	if (m_score <= 0)m_score = 0;
 
-	if (m_score <= oneTargetScore)
+	if (timemanager->GetTimer() > 0)
 	{
-		playercircle->SetPlayerLife(OneLife);
-	}
-	if (m_score > oneTargetScore)
-	{
-		playercircle->SetPlayerLife(TwoLife);
-	}
-	if (m_score > twoTargetScore)
-	{
-		playercircle->SetPlayerLife(ThreeLife);
-	}
-	if (m_score > threeTargetScore)
-	{
-		playercircle->SetPlayerLife(FourLife);
+		if (m_score <= oneTargetScore)
+		{
+			playercircle->SetPlayerLife(OneLife);
+		}
+		if (m_score > oneTargetScore)
+		{
+			playercircle->SetPlayerLife(TwoLife);
+		}
+		if (m_score > twoTargetScore)
+		{
+			playercircle->SetPlayerLife(ThreeLife);
+		}
+		if (m_score > threeTargetScore)
+		{
+			playercircle->SetPlayerLife(FourLife);
+		}
 	}
 
 	m_scoretextstring.Action();
@@ -83,6 +106,10 @@ void C_ScoreManager::Action()
 	for (int i = 0;i < scoreDigits;i++)
 	{
 		m_scoretextnumber[i].Action();
+	}
+	if (playercircle->GetPlayerLife() == FourLife)
+	{
+		m_scoreresult.Action();
 	}
 }
 

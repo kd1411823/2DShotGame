@@ -17,10 +17,17 @@ void C_Time_ClockNumber::Init(int a_no)
 	m_rctX = BIT24 * 0; // Ø‚èŽæ‚èÀ•WX
 	m_digitsNumber = 0; // Œ…”Žš
 	m_numberDistance = 40.0f; // ”ŽšŠÔŠu
+	m_numberScl = 2.0f; // ”Žš‚ÌŠg‘å—¦
+	m_isRisingScl = false;	// ”Žš‚ÌŠg‘å—¦‘Œ¸ƒtƒ‰ƒO
+	m_deltaScl = 0.025f;		// ”Žš‚ÌŠg‘å—¦‘Œ¸—Ê
+	m_deltaMax = 0.4f;	// max - Šî€’l@
+	m_deltaMin = 0.4f;	// min - Šî€’l@
+	m_maxDeltaScl = m_numberScl + m_deltaMax;		// Å‘å”Žš‚ÌŠg‘å—¦
+	m_minDeltaScl = m_numberScl + m_deltaMin;		// Å¬”Žš‚ÌŠg‘å—¦
 
 	m_bsst.pos = { 520,300 };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 2.0f,2.0f };
+	m_bsst.scl = { m_numberScl,m_numberScl };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { m_rctX, 0, BIT24 , BIT24 };
@@ -67,5 +74,36 @@ void C_Time_ClockNumber::Action()
 	m_bsst.draw.rct = { m_rctX, 0, BIT24 , BIT24 };
 
 	m_bsst.pos.x = 520 + m_no * m_numberDistance;
+
+	ScaleManager();
+
+}
+
+void C_Time_ClockNumber::ScaleManager()
+{
+	m_maxDeltaScl = m_numberScl + m_deltaMax;		// Å‘åƒvƒŒƒCƒ„[‚ÌŠg‘å—¦
+	m_minDeltaScl = m_numberScl - m_deltaMin;		// Å¬ƒvƒŒƒCƒ„[‚ÌŠg‘å—¦
+
+	if (m_bsst.scl.x >= m_maxDeltaScl && m_bsst.scl.y >= m_maxDeltaScl)
+	{
+		m_isRisingScl = false;
+	}
+
+	if (m_bsst.scl.x <= m_minDeltaScl && m_bsst.scl.y <= m_minDeltaScl)
+	{
+		m_isRisingScl = true;
+	}
+
+	if (m_isRisingScl)
+	{
+		m_bsst.scl.x += m_deltaScl;
+		m_bsst.scl.y += m_deltaScl;
+	}
+	else
+	{
+		m_bsst.scl.x -= m_deltaScl;
+		m_bsst.scl.y -= m_deltaScl;
+	}
+
 
 }

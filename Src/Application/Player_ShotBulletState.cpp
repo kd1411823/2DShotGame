@@ -1,5 +1,6 @@
 #include "Player_ShotBulletState.h"
 #include "Player_StandState.h"
+#include "Player_ResultState.h"
 #include "Scene.h"
 
 void C_Player_ShotBulletState::OnStart(C_Player* a_pPlayer)
@@ -19,6 +20,7 @@ void C_Player_ShotBulletState::OnUpdate(C_Player* a_pPlayer)
 {
 	Scene* scene = a_pPlayer->GetPowner();
 	C_Systm* systm = scene->GetSystm();
+	C_Player_Circle* playercircle = scene->GetPlayer_Circle();
 	C_Bullet* bullet[BulletNum];
 	C_Drop_Bullet* dropbullet[DropBulletNum];
 	for (int i = 0;i < BulletNum;i++)bullet[i] = a_pPlayer->GetBullet(i);
@@ -38,6 +40,13 @@ void C_Player_ShotBulletState::OnUpdate(C_Player* a_pPlayer)
 		a_pPlayer->SetMovDeg(-(a_pPlayer->GetPlayerSpeed()));
 		a_pPlayer->SetbMoveFlg(true);
 	}
+
+	// リザルトになったらステートを変更
+	if (playercircle->GetPlayerLife() == FourLife)
+	{
+		m_pMachine->ChangeState<C_Player_ResultState>();
+	}
+
 
 	// 弾を貯めるフェーズ終了(弾取得オブジェクトを表示)
 	for (int j = 0;j < DropBulletNum;j++)

@@ -282,6 +282,8 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 
+	if (playercircle->GetPlayerLife() == FourLife)return;
+
 	for (int i = 0;i < ebulletNum;i++)
 	{
 		if (!m_bullet[i].GetAlive())continue;

@@ -12,6 +12,8 @@ public:
 	void Draw()override;
 	void Update()override;
 	void Action()override;
+	void ScaleManager();
+
 
 	void SetClr(Math::Color a_clr) { m_bsst.draw.clr = a_clr; }
 
@@ -21,6 +23,12 @@ private:
 	int m_rctX; // Ø‚èæ‚èÀ•WX
 	int m_digitsNumber; // Œ…”š
 	float m_numberDistance; // ”šŠÔŠu
-
+	float m_numberScl; // ”š‚ÌŠg‘å—¦
+	bool  m_isRisingScl;	// ”š‚ÌŠg‘å—¦‘Œ¸ƒtƒ‰ƒO
+	float m_deltaScl;		// ”š‚ÌŠg‘å—¦‘Œ¸—Ê
+	float m_deltaMax;	// max - Šî€’l@
+	float m_deltaMin;	// min - Šî€’l@
+	float m_maxDeltaScl;		// Å‘å”š‚ÌŠg‘å—¦
+	float m_minDeltaScl;		// Å¬”š‚ÌŠg‘å—¦
 };
 

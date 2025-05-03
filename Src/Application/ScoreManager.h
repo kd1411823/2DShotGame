@@ -3,6 +3,7 @@
 #include "Score_Circle.h"
 #include "Score_TextString.h"
 #include "Score_TextNumber.h"
+#include "Score_Result.h"
 
 class C_ScoreManager :public C_GameObject
 {
@@ -21,6 +22,7 @@ public:
 	C_Score_Circle* GetScoreCircle() { return &m_scorecircle; }
 	C_Score_TextString* GetScoreTextString() { return &m_scoretextstring; }
 	C_Score_TextNumber* GetScoreTextNumber(int a_no) { return &m_scoretextnumber[a_no]; }
+	C_Score_Result* GetScoreResult() { return &m_scoreresult; }
 	float GetScore() { return m_score; }
 
 private:
@@ -30,6 +32,7 @@ private:
 	C_Score_Circle m_scorecircle;
 	C_Score_TextString m_scoretextstring;
 	C_Score_TextNumber m_scoretextnumber[scoreDigits];
+	C_Score_Result m_scoreresult;
 
 	float m_score; // ÉXÉRÉA
 
