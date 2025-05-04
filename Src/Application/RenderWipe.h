@@ -9,9 +9,11 @@ public:
 	void DrawWipe();
 	void UpdateWipe();
 	void ActionWipe();
+	void DecreaseAlpha();
 
 	void SetShakeTime(int a_shakeTime) { m_shakeTime = a_shakeTime; }
 
+	float GetAlpha() { return m_bsst.draw.clr.A(); }
 	int GetShakeTime() { return m_shakeTime; }
 
 private:
@@ -20,5 +22,5 @@ private:
 	float m_shakeSpeed; // —h‚ç‚·ƒXƒs[ƒh
 	float m_shakeWid;	// —h‚ç‚·•
 	int   m_shakeTime; // —h‚ç‚·ŠÔ
-
+	float m_deltaAlpha; // alpha’l‰ÁZ—Ê
 };

@@ -9,6 +9,7 @@ void C_RenderWipe::InitWipe()
 	m_shakeSpeed = 60.0f; // 揺らすスピード
 	m_shakeWid = 5.0f;	// 揺らす幅
 	m_shakeTime = 0; // 揺らす時間
+	m_deltaAlpha = 0.01; // alpha値加算量
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
@@ -61,4 +62,11 @@ void C_RenderWipe::ActionWipe()
 	// sinカーブで揺らす
 	m_bsst.pos.x = cos(DirectX::XMConvertToRadians(m_deg)) * m_shakeWid;
 	m_bsst.pos.y = sin(DirectX::XMConvertToRadians(m_deg)) * m_shakeWid;
+}
+
+void C_RenderWipe::DecreaseAlpha()
+{
+	if (m_bsst.draw.clr.A() <= 0.0f)return;
+
+	m_bsst.draw.clr.A(m_bsst.draw.clr.A() - m_deltaAlpha);
 }

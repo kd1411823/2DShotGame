@@ -12,7 +12,7 @@ public:
 	void Draw()override;
 	void Update()override;
 	void Action()override;
-
+	void ToTitle();
 
 private:
 

@@ -55,4 +55,6 @@ void C_Time_ClockHands::Action()
 	m_bsst.mov = timeclockcircle->GetMov();
 
 	m_bsst.pos = timeclockcircle->GetPos();
+
+	m_bsst.draw.clr.A(timeclockcircle->GetAlpha());
 }

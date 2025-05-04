@@ -13,9 +13,11 @@ public:
 	void Update()override;
 	void Action()override;
 	void ScaleManager();
-
+	void DecreaseAlpha();
 
 	void SetClr(Math::Color a_clr) { m_bsst.draw.clr = a_clr; }
+
+	Math::Vector2 GetScl() { return m_bsst.scl; }
 
 private:
 
@@ -30,5 +32,6 @@ private:
 	float m_deltaMin;	// min - Šî€’l@
 	float m_maxDeltaScl;		// Å‘å”š‚ÌŠg‘å—¦
 	float m_minDeltaScl;		// Å¬”š‚ÌŠg‘å—¦
+	float m_deltaAlpha;		// ”š‚Ìalpha’l‘Œ¸—Ê
 };
 

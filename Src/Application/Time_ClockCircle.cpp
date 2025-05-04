@@ -74,3 +74,11 @@ void C_Time_ClockCircle::AlphaManager()
 	}
 
 }
+
+void C_Time_ClockCircle::DecreaseAlpha()
+{
+	if (m_bsst.draw.clr.A() <= 0.0f)return;
+	m_deltaAlpha = 0.005f;
+
+	m_bsst.draw.clr.A(m_bsst.draw.clr.A() - m_deltaAlpha);
+}

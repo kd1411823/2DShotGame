@@ -26,6 +26,7 @@ void C_Time_ClockNumber::Init(int a_no)
 	m_deltaMin = 0.4f;	// min - Šî€’l@
 	m_maxDeltaScl = m_numberScl + m_deltaMax;		// Å‘å”Žš‚ÌŠg‘å—¦
 	m_minDeltaScl = m_numberScl + m_deltaMin;		// Å¬”Žš‚ÌŠg‘å—¦
+	m_deltaAlpha = 0.005f;		// ”Žš‚Ìalpha’l‘Œ¸—Ê
 
 	m_bsst.pos = { timeclockcircle->GetPos().x + 60, timeclockcircle->GetPos().y };
 	m_bsst.mov = { 0,0 };
@@ -111,4 +112,11 @@ void C_Time_ClockNumber::ScaleManager()
 	}
 
 
+}
+
+void C_Time_ClockNumber::DecreaseAlpha()
+{
+	if (m_bsst.draw.clr.A() <= 0.0f)return;
+
+	m_bsst.draw.clr.A(m_bsst.draw.clr.A() - m_deltaAlpha);
 }

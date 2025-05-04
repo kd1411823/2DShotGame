@@ -57,7 +57,9 @@
 #define ThreescoreTextScl 1.0f
 #define FourscoreTextScl 1.5f
 #define scoreDigits 4
+#define scoreDrawDigits 3
 #define timeDigits 3
+#define timeScore 150.0f
 #define initPos { 0, 0 }
 #define WHITE  1.0f,1.0f,1.0f
 #define BLACK  0.0f,0.0f,0.0f

@@ -51,10 +51,7 @@ void Scene::GameUpdate()
 		m_player_circle.SetPlayerLife(FourLife);
 	}
 
-	if (GetAsyncKeyState('T') & 0x8000)
-	{
-		m_nowScene = TitleScene;
-	}
+	
 
 	m_backgroud.Action();
 	m_back_circle.Action();

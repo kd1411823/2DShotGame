@@ -13,6 +13,7 @@ public:
 	void Update()override;
 	void Action()override;
 	void AlphaManager(); // alphaílèàóù
+	void DecreaseAlpha();
 
 	void SetPos(Math::Vector2 a_pos) { m_bsst.pos = a_pos; }
 	void SetMov(Math::Vector2 a_mov) { m_bsst.mov = a_mov; }
@@ -22,6 +23,7 @@ public:
 
 	Math::Vector2 GetPos() { return m_bsst.pos; }
 	Math::Vector2 GetMov() { return m_bsst.mov; }
+	float GetAlpha() { return m_bsst.draw.clr.A();}
 
 private:
 

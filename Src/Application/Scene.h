@@ -67,6 +67,8 @@ public:
 	// GUIˆ—
 	void ImGuiUpdate();
 
+
+	void SetNowScene(eSceneType a_nowScene) { m_nowScene = a_nowScene; }
 	
 	C_RenderWipe* GetRenderWipe() { return &m_renderwipe; }
 	C_Player* GetPlayer() { return &m_player; }
