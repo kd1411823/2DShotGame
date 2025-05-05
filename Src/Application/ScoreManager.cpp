@@ -48,6 +48,9 @@ void C_ScoreManager::Init()
 void C_ScoreManager::Draw()
 {
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+	C_GameStartManager* gamestartmanager = m_p0wner->GetGameStartManager();
+
+	if (!gamestartmanager->GetGameStartFlg())return;
 
 	m_scorecircle.Draw();
 	m_scoretextstring.Draw();

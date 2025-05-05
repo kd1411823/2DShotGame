@@ -9,6 +9,7 @@
 #include "ScoreManager.h"
 #include "TimeManager.h"
 #include "TitleManager.h"
+#include "GameStartManager.h"
 #include "Systm.h"
 #include "Sound.h"
 #include "Console.h"
@@ -38,6 +39,7 @@ private:
 	C_ScoreManager m_scoremanager;
 	C_TimeManager m_timemanager;
 	C_TitleManager m_titlemanager;
+	C_GameStartManager m_gamestartmanager;
 
 	eSceneType m_nowScene;
 
@@ -60,11 +62,15 @@ public:
 
 	void TitleUpdate();
 
+	void TitleDynamicDraw();
+
 	void TitleDraw();
 
 	void TitleInit();
 
 	void GameUpdate();
+
+	void GameDynamicDraw();
 
 	void GameDraw();
 
@@ -86,6 +92,7 @@ public:
 	C_ScoreManager* GetScoreManager() { return &m_scoremanager;}
 	C_TimeManager* GetTimeManager() { return &m_timemanager; }
 	C_TitleManager* GetTitleManager() { return &m_titlemanager; }
+	C_GameStartManager* GetGameStartManager() { return &m_gamestartmanager; }
 
 	eSceneType GetSceneType() { return m_nowScene; }
 

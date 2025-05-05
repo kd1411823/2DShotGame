@@ -1,4 +1,5 @@
 #include "Title_GameNameText.h"
+#include "Sun.h"
 #include "Scene.h"
 
 C_Title_GameNameText::C_Title_GameNameText()
@@ -12,6 +13,10 @@ C_Title_GameNameText::~C_Title_GameNameText()
 void C_Title_GameNameText::Init(int a_no)
 {
 	C_Systm* systm = m_p0wner->GetSystm();
+
+	m_sun = std::make_shared<C_Sun>();
+	m_sun->SetP0wner(m_p0wner);
+	m_sun->Init();
 
 	m_no = a_no; // オブジェクトナンバー
 
@@ -37,6 +42,11 @@ void C_Title_GameNameText::Init(int a_no)
 
 void C_Title_GameNameText::Draw()
 {
+
+	D3D.SetBlendState(BlendMode::Add);
+	m_sun->Draw();
+	D3D.SetBlendState(BlendMode::Alpha);
+
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 }
@@ -49,6 +59,8 @@ void C_Title_GameNameText::Update()
 
 	m_bsst.mov = { 0,0 };
 
+	m_sun->Update(m_bsst.pos, { 6.0f,1.0f }, { m_bsst.draw.clr.R(),m_bsst.draw.clr.G(),m_bsst.draw.clr.B(), 1.0f});
+
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -57,6 +69,6 @@ void C_Title_GameNameText::Action()
 
 	m_bsst.draw.rct = { m_rctX, 0, BIT340, BIT240 };
 
-	m_bsst.pos.y = m_no * -300 + 150;
+	m_bsst.pos.y = m_no * -130 + 150;
 	
 }

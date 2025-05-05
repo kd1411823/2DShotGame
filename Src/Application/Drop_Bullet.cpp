@@ -67,7 +67,7 @@ void C_Drop_Bullet::Action(float a_circleRadius)
 	m_bsst.pos.y = sin(systm->CnvrtToRadians(m_no * degDis)) * (a_circleRadius + _playerCircleDistance);
 
 	// 弾(取得オブジェクト)を取得していたらAlpha値を下げる
-	if (!m_bsst.alive)m_bsst.draw.clr.A(0.2f);
+	if (!m_bsst.alive)m_bsst.draw.clr.A(0.0f);
 	else m_bsst.draw.clr = { GREEN ,1.0f };
 	
 }

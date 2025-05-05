@@ -9,7 +9,8 @@ public:
 	void DrawWipe();
 	void UpdateWipe();
 	void ActionWipe();
-	void DecreaseAlpha();
+	void AddAlpha(float a_deltaAlpha = 0.005f);
+	void DecreaseAlpha(float a_deltaAlpha = 0.005f);
 
 	void SetShakeTime(int a_shakeTime) { m_shakeTime = a_shakeTime; }
 

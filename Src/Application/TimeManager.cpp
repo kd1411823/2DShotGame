@@ -35,6 +35,10 @@ void C_TimeManager::Init()
 
 void C_TimeManager::Draw()
 {
+	C_GameStartManager* gamestartmanager = m_p0wner->GetGameStartManager();
+
+	if (!gamestartmanager->GetGameStartFlg())return;
+
 	m_timeClockCircle.Draw();
 	m_timeClockHands.Draw();
 	for (int i = 0;i < timeDigits;i++)

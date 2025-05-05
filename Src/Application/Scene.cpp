@@ -4,6 +4,8 @@
 
 void Scene::Draw2D()
 {
+
+
 	switch (m_nowScene)
 	{
 	case TitleScene:
@@ -14,17 +16,22 @@ void Scene::Draw2D()
 		break;
 	}
 
-
 	
 
 }
 
 void Scene::TitleUpdate()
 {
-	
 	m_titlemanager.Action();
+	m_renderwipe.ActionWipe();
 
 	m_titlemanager.Update();
+	m_renderwipe.UpdateWipe();
+}
+
+void Scene::TitleDynamicDraw()
+{
+	m_titlemanager.Draw();
 }
 
 void Scene::TitleDraw()
@@ -32,7 +39,10 @@ void Scene::TitleDraw()
 	//描画先をバックバッファに切り替え
 	D3D.SetBackBuffer();
 
-	m_titlemanager.Draw();
+	m_backgroud.Draw();
+	m_renderwipe.DrawWipe();
+
+	
 }
 
 void Scene::TitleInit()
@@ -44,45 +54,68 @@ void Scene::TitleInit()
 
 void Scene::GameUpdate()
 {
-	if (GetAsyncKeyState('1') & 0x8000)
-	{
-		m_player_circle.SetPlayerLife(OneLife);
-	}
-	if (GetAsyncKeyState('2') & 0x8000)
-	{
-		m_player_circle.SetPlayerLife(TwoLife);
-	}
-	if (GetAsyncKeyState('3') & 0x8000)
-	{
-		m_player_circle.SetPlayerLife(ThreeLife);
-	}
-	if (GetAsyncKeyState('4') & 0x8000)
-	{
-		m_player_circle.SetPlayerLife(FourLife);
-	}
 
-	
-
-	m_backgroud.Action();
-	m_back_circle.Action();
-	m_player_circle.Action();
-	m_scoremanager.Action();
+	m_gamestartmanager.Action();
 	m_player.Action();
-	m_enemy_manager.Action();
-	m_timemanager.Action();
+	m_player_circle.Action();
 
-	m_renderwipe.ActionWipe();
 
+
+	m_gamestartmanager.Update();
 	m_player.Update();
 	m_player_circle.Update();
-	m_scoremanager.Update();
-	m_backgroud.Update();
-	m_back_circle.Update();
-	m_enemy_manager.Update();
-	m_timemanager.Update();
 
-	m_renderwipe.UpdateWipe();
+
+	if (m_gamestartmanager.GetGameStartFlg())
+	{
+
+		if (GetAsyncKeyState('1') & 0x8000)
+		{
+			m_player_circle.SetPlayerLife(OneLife);
+		}
+		if (GetAsyncKeyState('2') & 0x8000)
+		{
+			m_player_circle.SetPlayerLife(TwoLife);
+		}
+		if (GetAsyncKeyState('3') & 0x8000)
+		{
+			m_player_circle.SetPlayerLife(ThreeLife);
+		}
+		if (GetAsyncKeyState('4') & 0x8000)
+		{
+			m_player_circle.SetPlayerLife(FourLife);
+		}
+
+
+		m_backgroud.Action();
+		m_back_circle.Action();
+		m_scoremanager.Action();
+		m_enemy_manager.Action();
+		m_timemanager.Action();
+
+		m_renderwipe.ActionWipe();
+
 	
+		m_scoremanager.Update();
+		m_backgroud.Update();
+		m_back_circle.Update();
+		m_enemy_manager.Update();
+		m_timemanager.Update();
+
+		m_renderwipe.UpdateWipe();
+	}
+}
+
+void Scene::GameDynamicDraw()
+{
+	m_gamestartmanager.Draw();
+	m_backgroud.Draw();
+	m_back_circle.Draw();
+	m_scoremanager.Draw();
+	m_player_circle.Draw();
+	m_enemy_manager.Draw();
+	m_player.Draw();
+	m_timemanager.Draw();
 }
 
 void Scene::GameDraw()
@@ -136,6 +169,7 @@ void Scene::GameInit()
 
 void Scene::Update()
 {
+	
 
 	switch (m_nowScene)
 	{
@@ -157,13 +191,17 @@ void Scene::DynamicDraw2D()
 	//描画先をテクスチャへ切り替え
 	tmpTex.SetRenderTarget();
 
-	m_backgroud.Draw();
-	m_back_circle.Draw();
-	m_scoremanager.Draw();
-	m_player_circle.Draw();
-	m_enemy_manager.Draw();
-	m_player.Draw();
-	m_timemanager.Draw();
+	switch (m_nowScene)
+	{
+	case TitleScene:
+		TitleDynamicDraw();
+		break;
+	case GameScene:
+		GameDynamicDraw();
+		break;
+	}
+	
+	
 }
 
 void Scene::Init()
@@ -174,6 +212,8 @@ void Scene::Init()
 
 	m_cons.create();
 
+	m_gamestartmanager.SetP0wner(this);
+	m_gamestartmanager.Init();
 
 	m_nowScene = TitleScene;
 

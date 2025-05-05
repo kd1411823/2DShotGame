@@ -21,6 +21,9 @@ void C_EnemyManager::Init()
 void C_EnemyManager::Draw()
 {
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+	C_GameStartManager* gamestartmanager = m_p0wner->GetGameStartManager();
+
+	if (!gamestartmanager->GetGameStartFlg())return;
 
 	if (playercircle->GetPlayerLife() == FourLife)return;
 

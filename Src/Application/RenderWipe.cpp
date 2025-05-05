@@ -9,7 +9,7 @@ void C_RenderWipe::InitWipe()
 	m_shakeSpeed = 60.0f; // —h‚ç‚·ƒXƒs[ƒh
 	m_shakeWid = 5.0f;	// —h‚ç‚·•
 	m_shakeTime = 0; // —h‚ç‚·ŽžŠÔ
-	m_deltaAlpha = 0.01; // alpha’l‰ÁŽZ—Ê
+	m_deltaAlpha = 0.005; // alpha’l‰ÁŽZ—Ê
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
@@ -17,7 +17,7 @@ void C_RenderWipe::InitWipe()
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, ScrnWid, ScrnHgt };
-	m_bsst.draw.clr = { WHITE ,1.0f };
+	m_bsst.draw.clr = { WHITE ,0.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -64,9 +64,20 @@ void C_RenderWipe::ActionWipe()
 	m_bsst.pos.y = sin(DirectX::XMConvertToRadians(m_deg)) * m_shakeWid;
 }
 
-void C_RenderWipe::DecreaseAlpha()
+void C_RenderWipe::AddAlpha(float a_deltaAlpha)
+{
+	if (m_bsst.draw.clr.A() >= 1.0f)return;
+
+	m_deltaAlpha = a_deltaAlpha;
+
+	m_bsst.draw.clr.A(m_bsst.draw.clr.A() + m_deltaAlpha);
+}
+
+void C_RenderWipe::DecreaseAlpha(float a_deltaAlpha)
 {
 	if (m_bsst.draw.clr.A() <= 0.0f)return;
+
+	m_deltaAlpha = a_deltaAlpha;
 
 	m_bsst.draw.clr.A(m_bsst.draw.clr.A() - m_deltaAlpha);
 }

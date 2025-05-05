@@ -106,6 +106,10 @@ void C_Player::Init()
 
 void C_Player::Draw()
 {
+	C_GameStartManager* gamestartmanager = m_p0wner->GetGameStartManager();
+
+	//if (!gamestartmanager->GetGameStartFlg())return;
+
 	for (int i = 0;i < DropBulletNum;i++)
 	{
 		m_drop_bullet[i].Draw();
@@ -125,10 +129,6 @@ void C_Player::Draw()
 	}
 	D3D.SetBlendState(BlendMode::Alpha);
 
-
-	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
-	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
-
 	if (m_drawBulletPredictionFlg)
 	{
 		for (int i = 0;i < pBulletLineNum;i++)
@@ -137,6 +137,11 @@ void C_Player::Draw()
 		}
 		m_player_bulletpredictiontriangle.Draw();
 	}
+
+	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
+	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
+
+
 }
 
 void C_Player::Update()

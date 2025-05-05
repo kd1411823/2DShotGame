@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "Enemy_StandState.h"
+#include "Enemy_TitleState.h"
 #include "Sun.h"
 #include "Scene.h"
 
@@ -26,7 +27,14 @@ void C_Enemy::Init()
 	m_stateMachine.Start(this);
 
 	// 初期状態のステートをセット
-	m_stateMachine.ChangeState<C_Enemy_StandState>();
+	if (m_p0wner->GetSceneType() == GameScene)
+	{
+		m_stateMachine.ChangeState<C_Enemy_StandState>();
+	}
+	else if (m_p0wner->GetSceneType() == TitleScene)
+	{
+		m_stateMachine.ChangeState<C_Enemy_TitleState>();
+	}
 
 	enemyTex.Load("Texture/enemy.png");
 	hpCircleTex.Load("Texture/enemyhpcircle.png");
