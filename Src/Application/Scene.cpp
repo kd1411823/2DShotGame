@@ -21,15 +21,25 @@ void Scene::Draw2D()
 
 void Scene::TitleUpdate()
 {
-	if (GetAsyncKeyState('G') & 0x8000)
-	{
-		m_nowScene = GameScene;
-	}
+	
+	m_titlemanager.Action();
+
+	m_titlemanager.Update();
 }
 
 void Scene::TitleDraw()
 {
+	//描画先をバックバッファに切り替え
+	D3D.SetBackBuffer();
 
+	m_titlemanager.Draw();
+}
+
+void Scene::TitleInit()
+{
+
+	m_titlemanager.SetP0wner(this);
+	m_titlemanager.Init();
 }
 
 void Scene::GameUpdate()
@@ -84,6 +94,46 @@ void Scene::GameDraw()
 	m_renderwipe.DrawWipe();
 }
 
+void Scene::GameInit()
+{
+	//描画ターゲット用テクスチャ作成
+	tmpTex.CreateRenderTarget(ScrnWid, ScrnHgt);
+
+	m_renderwipe.SetP0wner(this);
+	m_renderwipe.SetTex(&tmpTex);
+	m_renderwipe.InitWipe();
+
+
+	m_sound.SeLoad();
+	m_sound.BgmLoad();
+
+	backgroundTex.Load("Texture/background.png");
+	backcircleTex.Load("Texture/back_circle.png");
+
+	m_backgroud.SetTex(&backgroundTex);
+	m_back_circle.SetTex(&backcircleTex);
+	m_player_circle.SetTex(&backcircleTex);
+
+
+	m_sound.SetP0wner(this);
+	m_backgroud.SetP0wner(this);
+	m_back_circle.SetP0wner(this);
+	m_player_circle.SetP0wner(this);
+	m_scoremanager.SetP0wner(this);
+	m_player.SetP0wner(this);
+	m_enemy_manager.SetP0wner(this);
+	m_timemanager.SetP0wner(this);
+
+	m_sound.Init();
+	m_backgroud.Init();
+	m_back_circle.Init();
+	m_player_circle.Init();
+	m_scoremanager.Init();
+	m_player.Init();
+	m_enemy_manager.Init();
+	m_timemanager.Init();
+}
+
 void Scene::Update()
 {
 
@@ -122,46 +172,16 @@ void Scene::Init()
 	srand(timeGetTime());
 	system("cls");
 
-	m_nowScene = GameScene;
-
-	//描画ターゲット用テクスチャ作成
-	tmpTex.CreateRenderTarget(ScrnWid, ScrnHgt);
-
-	m_renderwipe.SetP0wner(this);
-	m_renderwipe.SetTex(&tmpTex);
-	m_renderwipe.InitWipe();
-
-
 	m_cons.create();
 
-	m_sound.SeLoad();
-	m_sound.BgmLoad();
 
-	backgroundTex.Load("Texture/background.png");
-	backcircleTex.Load("Texture/back_circle.png");
+	m_nowScene = TitleScene;
 
-	m_backgroud.SetTex(&backgroundTex);
-	m_back_circle.SetTex(&backcircleTex);
-	m_player_circle.SetTex(&backcircleTex);
+
+	TitleInit();
+
+	GameInit();
 	
-
-	m_sound.SetP0wner(this);
-	m_backgroud.SetP0wner(this);
-	m_back_circle.SetP0wner(this);
-	m_player_circle.SetP0wner(this);
-	m_scoremanager.SetP0wner(this);
-	m_player.SetP0wner(this);
-	m_enemy_manager.SetP0wner(this);
-	m_timemanager.SetP0wner(this);
-
-	m_sound.Init();
-	m_backgroud.Init();
-	m_back_circle.Init();
-	m_player_circle.Init();
-	m_scoremanager.Init();
-	m_player.Init();
-	m_enemy_manager.Init();
-	m_timemanager.Init();
 }
 
 void Scene::Release()

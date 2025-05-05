@@ -30,6 +30,7 @@ void C_Score_TextNumber::Init(int a_no)
 	m_minDeltaScl = m_numberScl - m_deltaMin;		// 最小プレイヤーの拡大率
 	m_addTimeScoreCount = 0; // タイム分スコア加算処理カウン
 	m_resultTimeClockCirclePos = { -190 ,0 }; // リザルト時のタイム円の座標
+	m_drawMaxScore = false; // 最大スコア到達フラグ
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
@@ -155,21 +156,27 @@ void C_Score_TextNumber::AddDrawScore()
 	}
 
 	
-
-	switch (m_no)
+	if (!m_drawMaxScore)
 	{
-	case 0:
-		m_digitsNumber = (((int)std::floor(m_addDrawScore))/ 1000) % 10;
-		break;
-	case 1:
-		m_digitsNumber = (((int)std::floor(m_addDrawScore)) / 100) % 10;
-		break;
-	case 2:
-		m_digitsNumber = (((int)std::floor(m_addDrawScore)) / 10) % 10;
-		break;
-	case 3:
-		m_digitsNumber = ((int)std::floor(m_addDrawScore)) % 10;
-		break;
+		switch (m_no)
+		{
+		case 0:
+			m_digitsNumber = (((int)std::floor(m_addDrawScore)) / 1000) % 10;
+			break;
+		case 1:
+			m_digitsNumber = (((int)std::floor(m_addDrawScore)) / 100) % 10;
+			break;
+		case 2:
+			m_digitsNumber = (((int)std::floor(m_addDrawScore)) / 10) % 10;
+			break;
+		case 3:
+			m_digitsNumber = ((int)std::floor(m_addDrawScore)) % 10;
+			break;
+		}
+	}
+	else
+	{
+		m_digitsNumber = 9;
 	}
 
 	m_bsst.draw.clr.A(1.0f);
@@ -230,6 +237,7 @@ void C_Score_TextNumber::AddTimeScore()
 	C_Score_TextSymbol* scoretextsymbol = scoremanager->GetScoreTextSymbol();
 	C_Score_Result* scoreresult = scoremanager->GetScoreResult();
 
+
 	if (m_addDrawScore < INT_MAX)
 	{
 		m_addTimeScoreCount++;
@@ -277,6 +285,10 @@ void C_Score_TextNumber::AddTimeScore()
 		if (scoremanager->GetScore() + (timemanager->GetTimer() * timeScore) > m_addDrawScore)
 		{
 			m_addDrawScore += m_addSpeed;
+			if (m_addDrawScore >= 9999)
+			{
+				m_drawMaxScore = true;
+			}
 			m_deltaScl = 0.1f;
 			m_deltaMax = 0.4f;
 			m_deltaMin = 0.4f;

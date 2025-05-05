@@ -3,7 +3,8 @@
 
 void C_Score_Result::Init()
 {
-
+	m_keyFlg = false; // キーフラグ
+	m_decreaseAlphaFlg = false; // フェードアウトフラグ
 }
 
 void C_Score_Result::Draw()
@@ -54,23 +55,21 @@ void C_Score_Result::ToTitle()
 {
 	C_RenderWipe* renderwipe = m_p0wner->GetRenderWipe();
 
-	static bool _keyFlg = false, _decreaseAlphaFlg = false;
-
 
 	if (GetAsyncKeyState('T') & 0x8000)
 	{
-		if (!_keyFlg)
+		if (!m_keyFlg)
 		{
-			_decreaseAlphaFlg = true;
-			_keyFlg = true;
+			m_decreaseAlphaFlg = true;
+			m_keyFlg = true;
 		}
 	}
 	else
 	{
-		_keyFlg = false;
+		m_keyFlg = false;
 	}
 
-	if (_decreaseAlphaFlg)
+	if (m_decreaseAlphaFlg)
 	{
 		renderwipe->DecreaseAlpha();
 	}

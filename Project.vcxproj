@@ -205,6 +205,10 @@
     <ClInclude Include="Src\Application\Time_ClockCircle.h" />
     <ClInclude Include="Src\Application\Time_ClockHands.h" />
     <ClInclude Include="Src\Application\Time_ClockNumber.h" />
+    <ClInclude Include="Src\Application\TitleManager.h" />
+    <ClInclude Include="Src\Application\Title_BackCircle.h" />
+    <ClInclude Include="Src\Application\Title_Background.h" />
+    <ClInclude Include="Src\Application\Title_GameNameText.h" />
     <ClInclude Include="Src\System\Audio\KdAudio.h" />
     <ClInclude Include="src\System\Direct3D\KdDirect3D.h" />
     <ClInclude Include="Src\System\Direct3D\KdDirect3DHelper.h" />
@@ -272,6 +276,10 @@
     <ClCompile Include="Src\Application\Time_ClockCircle.cpp" />
     <ClCompile Include="Src\Application\Time_ClockHands.cpp" />
     <ClCompile Include="Src\Application\Time_ClockNumber.cpp" />
+    <ClCompile Include="Src\Application\TitleManager.cpp" />
+    <ClCompile Include="Src\Application\Title_BackCircle.cpp" />
+    <ClCompile Include="Src\Application\Title_Background.cpp" />
+    <ClCompile Include="Src\Application\Title_GameNameText.cpp" />
     <ClCompile Include="Src\System\Audio\KdAudio.cpp" />
     <ClCompile Include="src\System\Direct3D\KdDirect3D.cpp" />
     <ClCompile Include="Src\System\Direct3D\KdDirect3DHelper.cpp" />

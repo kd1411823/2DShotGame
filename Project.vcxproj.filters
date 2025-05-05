@@ -270,6 +270,18 @@
     <ClInclude Include="Src\Application\Score_DrawNumber.h">
       <Filter>Src\Application</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Title_GameNameText.h">
+      <Filter>Src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\TitleManager.h">
+      <Filter>Src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Title_Background.h">
+      <Filter>Src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Title_BackCircle.h">
+      <Filter>Src\Application</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -459,6 +471,18 @@
       <Filter>Src\Application</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\Score_DrawNumber.cpp">
+      <Filter>Src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Title_GameNameText.cpp">
+      <Filter>Src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\TitleManager.cpp">
+      <Filter>Src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Title_Background.cpp">
+      <Filter>Src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Title_BackCircle.cpp">
       <Filter>Src\Application</Filter>
     </ClCompile>
   </ItemGroup>

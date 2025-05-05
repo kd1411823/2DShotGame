@@ -7,6 +7,7 @@
 #define BIT128 128
 #define BIT240 240
 #define BIT256 256
+#define BIT340 340
 #define BIT512 512
 #define WhlUp 120
 #define WhlDwn -120
@@ -39,9 +40,9 @@
 #define TwoRadius 135.0f
 #define ThreeRadius 203.0f
 #define FourRadius 273.0f
-#define oneTargetScore 500.0f
-#define twoTargetScore 1000.0f
-#define threeTargetScore 1500.0f
+#define oneTargetScore 100.0f
+#define twoTargetScore 200.0f
+#define threeTargetScore 500.0f
 #define PredictionLineDistance 30.0f
 #define ShotInterval 4
 #define OneNumDistance 15.0f
@@ -61,6 +62,7 @@
 #define timeDigits 3
 #define timeScore 150.0f
 #define initPos { 0, 0 }
+#define gameNameText 2
 #define WHITE  1.0f,1.0f,1.0f
 #define BLACK  0.0f,0.0f,0.0f
 #define RED    1.00f, 0.08f, 0.50f

@@ -39,6 +39,6 @@ private:
 	float m_minDeltaScl;		// 最小数字の拡大率
 	int   m_addTimeScoreCount; // タイム分スコア加算処理カウント
 	Math::Vector2 m_resultTimeClockCirclePos; // リザルト時のタイム円の座標
-
+	bool m_drawMaxScore; // 最大スコア到達フラグ
 };
 

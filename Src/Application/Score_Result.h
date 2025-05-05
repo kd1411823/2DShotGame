@@ -16,4 +16,7 @@ public:
 
 private:
 
+	bool m_keyFlg; // キーフラグ
+	bool m_decreaseAlphaFlg; // フェードアウトフラグ
+
 };

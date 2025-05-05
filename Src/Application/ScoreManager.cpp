@@ -42,7 +42,7 @@ void C_ScoreManager::Init()
 	m_scoreresult.SetP0wner(m_p0wner);
 	m_scoreresult.Init();
 
-	m_score = 1500; // スコア
+	m_score = 500; // スコア
 }
 
 void C_ScoreManager::Draw()
@@ -98,8 +98,14 @@ void C_ScoreManager::Action()
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
 
-	if (m_score <= 0)m_score = 0;
-
+	if (m_score <= 0)
+	{
+		m_score = 0;
+	}
+	if (m_score >= 9999)
+	{
+		m_score = 9999;
+	}
 	if (timemanager->GetTimer() > 0)
 	{
 		if (m_score <= oneTargetScore)
