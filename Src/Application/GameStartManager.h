@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObjectBase.h"
 #include "GameStart_Number.h"
+#include "GameStart_StringText.h"
 
 class C_GameStartManager :public C_GameObject
 {
@@ -19,6 +20,8 @@ public:
 	void SetGameStartFlg(bool a_gameStartFlg) { m_gameStartFlg = a_gameStartFlg; }
 
 	C_GameStart_Number* GetGameStartNumber() { return &m_gamestart_number; }
+	C_GameStart_StringText* GetGameStartStringText(int a_no) { return & m_gamestart_stringtext[a_no]; }
+
 	bool GetGameStartFlg() { return m_gameStartFlg; }
 	int  GetStartCountTime() { return m_startCountTime; }
 	bool GetStartCountFlg() { return m_startCountFlg; }
@@ -26,8 +29,11 @@ public:
 private:
 
 	KdTexture gamestartnumberTex;
+	KdTexture gamestartstringTex;
 
 	C_GameStart_Number m_gamestart_number;
+	C_GameStart_StringText m_gamestart_stringtext[gameStartText];
+
 
 	bool m_gameStartFlg; // ゲームスタートフラグ
 	int m_startCountFrame; // スタートまでのカウントフレーム

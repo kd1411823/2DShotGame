@@ -315,9 +315,12 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 void C_Enemy::TakeDamage()
 {
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+	C_Sound* sound = m_p0wner->GetSound();
 
 	// HP‚ðƒ_ƒ[ƒW•ªŒ¸‚ç‚·
 	m_enemyHitpoint -= m_damagePoint;
+
+	sound->GetEnemyHitSe().inst->Play();
 
 	for (int i = 0;i < squareParticleNum; i++)
 	{

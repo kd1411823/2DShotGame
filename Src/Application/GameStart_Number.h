@@ -15,9 +15,11 @@ public:
 	void ScaleManger();
 	void AddAlpha();
 
+
 private:
 
 	KdTexture startTex;
+
 
 	int m_digitsNumber; // Œ…”š
 	int m_rctX; // Ø‚èæ‚èÀ•WX

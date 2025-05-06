@@ -76,9 +76,10 @@ void C_Drop_Bullet::Action(float a_circleRadius)
 
 void C_Drop_Bullet::CountHIT()
 {
+	C_Sound* sound = m_p0wner->GetSound();
 	m_bsst.alive = false;
 
 	m_hitCount++;
 
-	
+	sound->GetGetBulletSe().inst->Play();
 }

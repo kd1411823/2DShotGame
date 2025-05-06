@@ -93,6 +93,7 @@ public:
 	C_TimeManager* GetTimeManager() { return &m_timemanager; }
 	C_TitleManager* GetTitleManager() { return &m_titlemanager; }
 	C_GameStartManager* GetGameStartManager() { return &m_gamestartmanager; }
+	C_Sound* GetSound() { return &m_sound; }
 
 	eSceneType GetSceneType() { return m_nowScene; }
 

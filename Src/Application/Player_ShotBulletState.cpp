@@ -20,6 +20,7 @@ void C_Player_ShotBulletState::OnUpdate(C_Player* a_pPlayer)
 {
 	Scene* scene = a_pPlayer->GetPowner();
 	C_Systm* systm = scene->GetSystm();
+	C_Sound* sound = scene->GetSound();
 	C_Player_Circle* playercircle = scene->GetPlayer_Circle();
 	C_Bullet* bullet[BulletNum];
 	C_Drop_Bullet* dropbullet[DropBulletNum];
@@ -65,6 +66,7 @@ void C_Player_ShotBulletState::OnUpdate(C_Player* a_pPlayer)
 				// カウントリセットし、弾を発射する
 				m_shotIntervalCnt = 0;
 				bullet[i]->ShotBullet(a_pPlayer->GetPos(), systm->GetDeg(initPos, a_pPlayer->GetPos()));
+				sound->GetShotBulletSe().inst->Play();
 				break;
 			}
 		}

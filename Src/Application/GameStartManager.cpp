@@ -8,17 +8,25 @@ C_GameStartManager::C_GameStartManager()
 C_GameStartManager::~C_GameStartManager()
 {
 	gamestartnumberTex.Release();
-
+	gamestartstringTex.Release();
 }
 
 void C_GameStartManager::Init()
 {
 
 	gamestartnumberTex.Load("Texture/Number.png");
+	gamestartstringTex.Load("Texture/start.png");
 
 	m_gamestart_number.SetP0wner(m_p0wner);
 	m_gamestart_number.SetTex(&gamestartnumberTex);
 	m_gamestart_number.Init();
+
+	for (int i = 0;i < gameStartText;i++)
+	{
+		m_gamestart_stringtext[i].SetP0wner(m_p0wner);
+		m_gamestart_stringtext[i].SetTex(&gamestartstringTex);
+		m_gamestart_stringtext[i].Init(i);
+	}
 
 	m_gameStartFlg = false; // ゲームスタートフラグ
 	m_startCountFrame = 60 * 7; // スタートまでのカウント
@@ -31,11 +39,21 @@ void C_GameStartManager::Init()
 void C_GameStartManager::Draw()
 {
 	m_gamestart_number.Draw();
+
+	for (int i = 0;i < gameStartText;i++)
+	{
+		m_gamestart_stringtext[i].Draw();
+	}
 }
 
 void C_GameStartManager::Update()
 {
 	m_gamestart_number.Update();
+
+	for (int i = 0;i < gameStartText;i++)
+	{
+		m_gamestart_stringtext[i].Update();
+	}
 }
 
 void C_GameStartManager::Action()
@@ -65,6 +83,11 @@ void C_GameStartManager::Action()
 	}
 
 	m_gamestart_number.Action();
+
+	for (int i = 0;i < gameStartText;i++)
+	{
+		m_gamestart_stringtext[i].Action();
+	}
 }
 
 void C_GameStartManager::StartGameCount()
@@ -83,7 +106,7 @@ void C_GameStartManager::StartGameCount()
 void C_GameStartManager::TutorialSkip()
 {
 
-	if (GetAsyncKeyState('L') & 0x8000)
+	if (GetAsyncKeyState('T') & 0x8000)
 	{
 		m_startCountFlg = true;
 	}

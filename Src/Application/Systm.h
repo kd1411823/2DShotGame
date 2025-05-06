@@ -63,6 +63,7 @@
 #define timeScore 150.0f
 #define initPos { 0, 0 }
 #define gameNameText 2
+#define gameStartText 2
 #define titleText 3
 #define WHITE  1.0f,1.0f,1.0f
 #define BLACK  0.0f,0.0f,0.0f

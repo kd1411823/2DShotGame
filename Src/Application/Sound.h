@@ -3,7 +3,8 @@
 
 class Scene;
 
-class C_Sound {
+class C_Sound 
+{
 public:
 
 	C_Sound():m_p0wner(nullptr){}
@@ -16,6 +17,10 @@ public:
 
 	void SetP0wner(Scene* a_p0wner) { m_p0wner = a_p0wner; }
 
+	tSnd GetGetBulletSe() { return m_getBulletSe; }
+	tSnd GetShotBulletSe() { return m_shotBulletSe; }
+	tSnd GetEnemyHitSe() { return m_enemyHitSe; }
+
 private:
 
 	Scene* m_p0wner;
@@ -27,5 +32,5 @@ private:
 
 	tSnd m_getBulletSe;	// ’e(Žæ“¾ƒIƒuƒWƒFƒNƒg)‚ðŠl“¾‚µ‚½‰¹
 	tSnd m_shotBulletSe;// ’e‚ð”­ŽË‚µ‚½‚Æ‚«‚Ì‰¹
-
+	tSnd m_enemyHitSe; // “G‚Æ’e‚ªƒqƒbƒg‚µ‚½‚Æ‚«‚Ì‰¹
 };

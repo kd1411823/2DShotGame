@@ -181,6 +181,7 @@ void Scene::Update()
 		break;
 	}
 	
+	m_sound.Update();
 }
 
 void Scene::DynamicDraw2D()
@@ -211,6 +212,11 @@ void Scene::Init()
 	system("cls");
 
 	m_cons.create();
+
+	m_sound.SetP0wner(this);
+	m_sound.Init();
+	m_sound.SeLoad();
+	m_sound.BgmLoad();
 
 	m_gamestartmanager.SetP0wner(this);
 	m_gamestartmanager.Init();
