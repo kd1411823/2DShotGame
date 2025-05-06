@@ -14,6 +14,7 @@ public:
 	void Action()override;
 	void AddDrawScore(); // スコアを加算する演出(見た目)
 	void ScaleManager(); // 拡大率処理
+	void DecreaseScale(); // 拡大率を下げる
 	void AddTimeScore(); // タイム分スコア加算
 
 	void SetNumberDistance(float a_numberDistance) { m_numberDistance = a_numberDistance; }
@@ -40,5 +41,8 @@ private:
 	int   m_addTimeScoreCount; // タイム分スコア加算処理カウント
 	Math::Vector2 m_resultTimeClockCirclePos; // リザルト時のタイム円の座標
 	bool m_drawMaxScore; // 最大スコア到達フラグ
+	int   m_preScore; // 前のスコア情報を保存する変数
+	ePlayerLife m_preLife; // 前のライフレベルを保存する変数
+	float m_scaleCap; // Max拡大率
 };
 

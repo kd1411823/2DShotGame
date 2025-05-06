@@ -14,6 +14,8 @@ C_Score_TextNumber::~C_Score_TextNumber()
 void C_Score_TextNumber::Init(int a_no)
 {
 	C_Systm* systm = m_p0wner->GetSystm();
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 
 	m_no = a_no; // オブジェクトナンバー
 	m_rctX = BIT24 * 0; // 切り取り座標X
@@ -31,6 +33,9 @@ void C_Score_TextNumber::Init(int a_no)
 	m_addTimeScoreCount = 0; // タイム分スコア加算処理カウン
 	m_resultTimeClockCirclePos = { -190 ,0 }; // リザルト時のタイム円の座標
 	m_drawMaxScore = false; // 最大スコア到達フラグ
+	m_preScore = scoremanager->GetScore(); // 前のスコア情報を保存する変数
+	m_preLife = playercircle->GetPlayerLife(); // 前のライフレベルを保存する変数
+	m_scaleCap = 1.5f; // Max拡大率
 
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
@@ -71,6 +76,20 @@ void C_Score_TextNumber::Action()
 	
 	if (playercircle->GetPlayerLife() == FourLife)return;
 
+	if (m_preLife != playercircle->GetPlayerLife())
+	{
+		m_bsst.scl = { m_numberScl * m_scaleCap, m_numberScl * m_scaleCap };
+	}
+
+	m_preLife = playercircle->GetPlayerLife();
+
+	if (m_preScore != scoremanager->GetScore())
+	{
+		m_bsst.scl = { m_numberScl * m_scaleCap, m_numberScl * m_scaleCap };
+	}
+
+	m_preScore = scoremanager->GetScore();
+
 	if (scorecircle->GetLoadBulletFlg())
 	{
 		m_bsst.draw.clr.A(0.2f);
@@ -87,6 +106,7 @@ void C_Score_TextNumber::Action()
 
 	scoretextstring->SetPos({ 0, m_bsst.pos.y + m_numberDistance * 2 });
 
+	
 	switch (m_no)
 	{
 	case 0:
@@ -104,12 +124,11 @@ void C_Score_TextNumber::Action()
 	}
 
 
-	m_bsst.scl = { m_numberScl, m_numberScl };
-
 	m_rctX = BIT24 * m_digitsNumber;
 
 	m_bsst.draw.rct = { m_rctX, 0, BIT24 , BIT24 };
 
+	DecreaseScale();
 }
 
 void C_Score_TextNumber::AddDrawScore()
@@ -215,6 +234,19 @@ void C_Score_TextNumber::ScaleManager()
 		m_bsst.scl.y -= m_deltaScl;
 	}
 
+}
+
+void C_Score_TextNumber::DecreaseScale()
+{
+	if (m_bsst.scl.x > m_numberScl)
+	{
+		m_bsst.scl.x -= m_deltaScl;
+	}
+
+	if (m_bsst.scl.y > m_numberScl)
+	{
+		m_bsst.scl.y -= m_deltaScl;
+	}
 }
 
 void C_Score_TextNumber::AddTimeScore()
@@ -335,7 +367,6 @@ void C_Score_TextNumber::AddTimeScore()
 		
 
 	}
-	printf("cnt %d\n", m_addTimeScoreCount);
 }
 
 

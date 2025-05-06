@@ -114,18 +114,38 @@ void C_ScoreManager::Action()
 		if (m_score <= oneTargetScore)
 		{
 			playercircle->SetPlayerLife(OneLife);
+			for (int i = 0;i < scoreDigits;i++)
+			{
+				m_scoretextnumber[i].SetNumberScl(OneNumScl);
+				m_scoretextnumber[i].SetNumberDistance(OneNumDistance);
+			}
 		}
 		if (m_score > oneTargetScore)
 		{
 			playercircle->SetPlayerLife(TwoLife);
+			for (int i = 0;i < scoreDigits;i++)
+			{
+				m_scoretextnumber[i].SetNumberScl(TwoNumScl);
+				m_scoretextnumber[i].SetNumberDistance(TwoNumDistance);
+			}
 		}
 		if (m_score > twoTargetScore)
 		{
 			playercircle->SetPlayerLife(ThreeLife);
+			for (int i = 0;i < scoreDigits;i++)
+			{
+				m_scoretextnumber[i].SetNumberScl(ThreeNumScl);
+				m_scoretextnumber[i].SetNumberDistance(ThreeNumDistance);
+			}
 		}
 		if (m_score > threeTargetScore)
 		{
 			playercircle->SetPlayerLife(FourLife);
+			for (int i = 0;i < scoreDigits;i++)
+			{
+				m_scoretextnumber[i].SetNumberScl(FourNumScl);
+				m_scoretextnumber[i].SetNumberDistance(FourNumDistance);
+			}
 		}
 	}
 

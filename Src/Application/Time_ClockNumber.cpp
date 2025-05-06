@@ -19,18 +19,15 @@ void C_Time_ClockNumber::Init(int a_no)
 	m_rctX = BIT24 * 0; // Ø‚èŽæ‚èÀ•WX
 	m_digitsNumber = 0; // Œ…”Žš
 	m_numberDistance = 40.0f; // ”ŽšŠÔŠu
-	m_numberScl = 2.0f; // ”Žš‚ÌŠg‘å—¦
-	m_isRisingScl = false;	// ”Žš‚ÌŠg‘å—¦‘Œ¸ƒtƒ‰ƒO
-	m_deltaScl = 0.025f;		// ”Žš‚ÌŠg‘å—¦‘Œ¸—Ê
-	m_deltaMax = 0.4f;	// max - Šî€’l@
-	m_deltaMin = 0.4f;	// min - Šî€’l@
-	m_maxDeltaScl = m_numberScl + m_deltaMax;		// Å‘å”Žš‚ÌŠg‘å—¦
-	m_minDeltaScl = m_numberScl + m_deltaMin;		// Å¬”Žš‚ÌŠg‘å—¦
+	m_baseScl = 2.0f; // ”Žš‚ÌŠg‘å—¦
+	m_deltaScl = 0.05f;		// ”Žš‚ÌŠg‘å—¦‘Œ¸—Ê
+	m_maxScl = 3.0f;		// Å‘å”Žš‚ÌŠg‘å—¦
 	m_deltaAlpha = 0.005f;		// ”Žš‚Ìalpha’l‘Œ¸—Ê
+	m_preTimer  = timemanager->GetTimer();// ‘O‚Ìƒ^ƒCƒ}[î•ñ‚ð•Û‘¶‚·‚é•Ï”
 
 	m_bsst.pos = { timeclockcircle->GetPos().x + 60, timeclockcircle->GetPos().y };
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { m_numberScl,m_numberScl };
+	m_bsst.scl = { m_maxScl,m_maxScl };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { m_rctX, 0, BIT24 , BIT24 };
@@ -60,6 +57,13 @@ void C_Time_ClockNumber::Action()
 	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
 	C_Time_ClockCircle* timeclockcircle = timemanager->GetTimeClockCircle();
 
+	if (m_preTimer != timemanager->GetTimer())
+	{
+		m_bsst.scl = { m_maxScl,m_maxScl };
+	}
+
+	m_preTimer = timemanager->GetTimer();
+
 	switch (m_no)
 	{
 	case 0:
@@ -80,37 +84,20 @@ void C_Time_ClockNumber::Action()
 	m_bsst.pos.x = timeclockcircle->GetPos().x + 60 + m_no * m_numberDistance;
 	m_bsst.pos.y = timeclockcircle->GetPos().y;
 
-
-	ScaleManager();
-
+	DecreaseScale();
 }
 
-void C_Time_ClockNumber::ScaleManager()
+void C_Time_ClockNumber::DecreaseScale()
 {
-	m_maxDeltaScl = m_numberScl + m_deltaMax;		// Å‘åƒvƒŒƒCƒ„[‚ÌŠg‘å—¦
-	m_minDeltaScl = m_numberScl - m_deltaMin;		// Å¬ƒvƒŒƒCƒ„[‚ÌŠg‘å—¦
-
-	if (m_bsst.scl.x >= m_maxDeltaScl && m_bsst.scl.y >= m_maxDeltaScl)
-	{
-		m_isRisingScl = false;
-	}
-
-	if (m_bsst.scl.x <= m_minDeltaScl && m_bsst.scl.y <= m_minDeltaScl)
-	{
-		m_isRisingScl = true;
-	}
-
-	if (m_isRisingScl)
-	{
-		m_bsst.scl.x += m_deltaScl;
-		m_bsst.scl.y += m_deltaScl;
-	}
-	else
+	if (m_bsst.scl.x > m_baseScl)
 	{
 		m_bsst.scl.x -= m_deltaScl;
-		m_bsst.scl.y -= m_deltaScl;
 	}
 
+	if (m_bsst.scl.y > m_baseScl)
+	{
+		m_bsst.scl.y -= m_deltaScl;
+	}
 
 }
 

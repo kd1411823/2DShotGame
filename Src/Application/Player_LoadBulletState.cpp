@@ -63,7 +63,7 @@ void C_Player_LoadBulletState::OnUpdate(C_Player* a_pPlayer)
 
 		if (PlayerBulletDis.hypn < playerBullethypn)
 		{
-			dropbullet[i]->Hit();
+			dropbullet[i]->CountHIT();
 		}
 	}
 

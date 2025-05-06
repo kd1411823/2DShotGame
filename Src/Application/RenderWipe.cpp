@@ -7,7 +7,7 @@ void C_RenderWipe::InitWipe()
 
 	m_deg = 0; // sinカーブ用角度
 	m_shakeSpeed = 60.0f; // 揺らすスピード
-	m_shakeWid = 5.0f;	// 揺らす幅
+	m_shakeWid = 7.0f;	// 揺らす幅
 	m_shakeTime = 0; // 揺らす時間
 	m_deltaAlpha = 0.005; // alpha値加算量
 

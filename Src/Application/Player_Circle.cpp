@@ -62,11 +62,6 @@ void C_Player_Circle::Action()
 		player->SetCircleRadius(OneRadius);
 		m_circleRadius = OneRadius;
 		scoretextstring->SetScoreTextScl(OnescoreTextScl);
-		for (int i = 0;i < scoreDigits;i++)
-		{
-			scoretextnumber[i]->SetNumberDistance(OneNumDistance);
-			scoretextnumber[i]->SetNumberScl(OneNumScl);
-		}
 		m_bulletPredictionLineDeleteNo = 8;
 		scorecircle->SetGetScore(0.0f);
 		scorecircle->SetTargetScore(oneTargetScore);
@@ -77,11 +72,6 @@ void C_Player_Circle::Action()
 		player->SetCircleRadius(TwoRadius);
 		m_circleRadius = TwoRadius; 
 		scoretextstring->SetScoreTextScl(TwoscoreTextScl);
-		for (int i = 0;i < scoreDigits;i++)
-		{
-			scoretextnumber[i]->SetNumberDistance(TwoNumDistance);
-			scoretextnumber[i]->SetNumberScl(TwoNumScl);
-		}
 		m_bulletPredictionLineDeleteNo = 10;
 		scorecircle->SetGetScore(oneTargetScore);
 		scorecircle->SetTargetScore(twoTargetScore);
@@ -92,11 +82,6 @@ void C_Player_Circle::Action()
 		player->SetCircleRadius(ThreeRadius);
 		m_circleRadius = ThreeRadius;
 		scoretextstring->SetScoreTextScl(ThreescoreTextScl);
-		for (int i = 0;i < scoreDigits;i++)
-		{
-			scoretextnumber[i]->SetNumberDistance(ThreeNumDistance);
-			scoretextnumber[i]->SetNumberScl(ThreeNumScl);
-		}
 		m_bulletPredictionLineDeleteNo = 12;
 		scorecircle->SetGetScore(twoTargetScore);
 		scorecircle->SetTargetScore(threeTargetScore);
@@ -105,11 +90,6 @@ void C_Player_Circle::Action()
 		m_rctX = ScrnHgt * 0;
 		player->SetCircleRadius(FourRadius);
 		scoretextstring->SetScoreTextScl(FourscoreTextScl);
-		for (int i = 0;i < scoreDigits;i++)
-		{
-			scoretextnumber[i]->SetNumberDistance(FourNumDistance);
-			scoretextnumber[i]->SetNumberScl(FourNumScl);
-		}
 		//scorecircle->SetGetScore(threeTargetScore);
 		m_circleRadius = FourRadius; 
 		break;
