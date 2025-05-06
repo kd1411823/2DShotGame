@@ -40,9 +40,9 @@
 #define TwoRadius 135.0f
 #define ThreeRadius 203.0f
 #define FourRadius 273.0f
-#define oneTargetScore 100.0f
-#define twoTargetScore 200.0f
-#define threeTargetScore 500.0f
+#define oneTargetScore 1000.0f
+#define twoTargetScore 2000.0f
+#define threeTargetScore 2600.0f
 #define PredictionLineDistance 30.0f
 #define ShotInterval 4
 #define OneNumDistance 15.0f

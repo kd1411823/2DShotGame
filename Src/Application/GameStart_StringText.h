@@ -1,12 +1,12 @@
 #pragma once
 #include "GameObjectBase.h"
 
-class C_Background :public C_GameObject
+class C_GameStart_StringText :public C_GameObject
 {
 public:
 
-	C_Background(){}
-	~C_Background(){}
+	C_GameStart_StringText();
+	~C_GameStart_StringText();
 
 	void Init()override;
 	void Draw()override;

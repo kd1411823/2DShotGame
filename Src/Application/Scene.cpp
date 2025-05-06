@@ -108,7 +108,6 @@ void Scene::GameUpdate()
 
 void Scene::GameDynamicDraw()
 {
-	m_gamestartmanager.Draw();
 	m_backgroud.Draw();
 	m_back_circle.Draw();
 	m_scoremanager.Draw();
@@ -116,6 +115,7 @@ void Scene::GameDynamicDraw()
 	m_enemy_manager.Draw();
 	m_player.Draw();
 	m_timemanager.Draw();
+	m_gamestartmanager.Draw();
 }
 
 void Scene::GameDraw()

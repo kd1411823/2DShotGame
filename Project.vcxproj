@@ -178,6 +178,7 @@
     <ClInclude Include="Src\Application\GameObjectBase.h" />
     <ClInclude Include="Src\Application\GameStartManager.h" />
     <ClInclude Include="Src\Application\GameStart_Number.h" />
+    <ClInclude Include="Src\Application\GameStart_StringText.h" />
     <ClInclude Include="Src\Application\ParticleBase.h" />
     <ClInclude Include="Src\Application\Player.h" />
     <ClInclude Include="Src\Application\Player_BulletPredictionLine.h" />
@@ -255,6 +256,7 @@
     <ClCompile Include="Src\Application\GameObjectBase.cpp" />
     <ClCompile Include="Src\Application\GameStartManager.cpp" />
     <ClCompile Include="Src\Application\GameStart_Number.cpp" />
+    <ClCompile Include="Src\Application\GameStart_StringText.cpp" />
     <ClCompile Include="Src\Application\ParticleBase.cpp" />
     <ClCompile Include="Src\Application\Player.cpp" />
     <ClCompile Include="Src\Application\Player_BulletPredictionLine.cpp" />

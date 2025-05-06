@@ -28,7 +28,7 @@ void C_TimeManager::Init()
 		m_timeClockNumber[i].Init(i);
 	}
 
-	m_frameTime = 60 * 10; // フレーム
+	m_frameTime = 60 * 120; // フレーム
 	m_timer = m_frameTime / 60; // タイマー
 	m_isTimeLeftFlg = false; // タイムが残っているかいないか(true:残っている false:残っていない)
 }

@@ -94,7 +94,8 @@ void C_Player::Init()
 	m_sclInitFlg  = false;		// 拡大率初期化フラグ
 
 	// プレイヤーのステータス
-	m_bsst.pos = { 0,0 };
+	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
+	m_bsst.pos.y = sin(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
 	m_bsst.mov = { 0,0 };
 	m_bsst.scl = { PlayerBaseScl,PlayerBaseScl };
 	m_bsst.rot = 0;

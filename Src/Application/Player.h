@@ -14,7 +14,7 @@ class C_Player :public C_GameObject
 public:
 
 	C_Player();
-	virtual ~C_Player();
+	~C_Player();
 
 	void Init()override;
 	void Draw()override;
@@ -34,6 +34,7 @@ public:
 
 
 	// ÉQÉbÉ^Å[
+	Math::Vector2 GetPos()override { return m_bsst.pos; }
 	float GetRot() { return m_bsst.rot; }
 	float GetRadius()override { return m_playerRadius; }
 	float GetPlayerSpeed() { return m_playerSpeed; }

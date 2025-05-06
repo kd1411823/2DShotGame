@@ -42,7 +42,7 @@ void C_ScoreManager::Init()
 	m_scoreresult.SetP0wner(m_p0wner);
 	m_scoreresult.Init();
 
-	m_score = 500; // スコア
+	m_score = 0; // スコア
 }
 
 void C_ScoreManager::Draw()
