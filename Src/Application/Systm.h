@@ -33,6 +33,7 @@
 #define eDefaultSpd 0.7f
 #define eSlowSpd 0.4f
 #define EnemyHp 5.0f
+#define DecreaseGCnt 7
 #define OneScorescl 0.199f
 #define TwoScorescl 0.49f
 #define ThreeScorescl 0.75f
@@ -68,6 +69,7 @@
 #define WHITE  1.0f,1.0f,1.0f
 #define BLACK  0.0f,0.0f,0.0f
 #define RED    1.00f, 0.08f, 0.50f
+#define intenseRed 1.00f, 0.12f, 0.30f
 #define GREEN  0.01f, 0.97f, 0.60f
 #define BLUE   0.0f,0.0f,1.0f
 #define YELLOW   1.0f,1.0f,0.0f

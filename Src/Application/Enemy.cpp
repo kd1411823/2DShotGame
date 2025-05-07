@@ -337,7 +337,7 @@ void C_Enemy::TakeDamage()
 				m_enemysquareParticle[i].Rnd() * 20 + 10,
 				false,
 				{ 0,0,BIT64,BIT64 },
-				{ RED, 0.8f }
+				{ intenseRed, 0.8f }
 			);
 		}
 	}

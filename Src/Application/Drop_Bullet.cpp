@@ -11,8 +11,7 @@ void C_Drop_Bullet::Init(int a_no)
 	m_sun->Init();
 
 	m_no = a_no;
-	m_hitCount = 0;// 弾をいくつ持っているカウント(当たったカウント)
-
+	
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
 	m_bsst.scl = { 0.04f,0.04f };
@@ -72,14 +71,19 @@ void C_Drop_Bullet::Action(float a_circleRadius)
 	if (!m_bsst.alive)m_bsst.draw.clr.A(0.0f);
 	else m_bsst.draw.clr = { GREEN ,1.0f };
 	
+	
 }
 
 void C_Drop_Bullet::CountHIT()
 {
 	C_Sound* sound = m_p0wner->GetSound();
+	C_Player* player = m_p0wner->GetPlayer();
+
 	m_bsst.alive = false;
 
-	m_hitCount++;
+	player->SetDropHitCount(player->GetDropHitCount() + 1);
+
+	printf("count%d\n",player->GetDropHitCount());
 
 	sound->GetGetBulletSe().inst->Play();
 }

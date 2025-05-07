@@ -8,6 +8,19 @@ void C_Player_LoadBulletState::OnStart(C_Player* a_pPlayer)
 	Scene* scene = a_pPlayer->GetPowner();
 	C_ScoreManager* scoremanager = scene->GetScoreManager();
 	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
+	C_Player_BulletPredictionLine* playerbulletpredictionline[pBulletLineNum];
+	for (int i = 0; i < pBulletLineNum;i++)
+	{
+		playerbulletpredictionline[i] = a_pPlayer->GetPlayerBulletPredictionLine(i);
+	}
+	C_Player_BulletPredictionTriangle* playerbulletpredictiontriangle = a_pPlayer->GetPlayerBulletPredictionTriangle();
+
+	for (int i = 0; i < pBulletLineNum;i++)
+	{
+		playerbulletpredictionline[i]->SetClr({ GREEN, 1.0f });
+	}
+
+	playerbulletpredictiontriangle->SetClr({ GREEN, 1.0f });
 
 	scorecircle->SetLoadBulletFlg(true);
 	a_pPlayer->SetPlayerSpeed(pHighSpd);

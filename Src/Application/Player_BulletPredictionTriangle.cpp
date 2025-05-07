@@ -40,7 +40,7 @@ void C_Player_BulletPredictionTriangle::Update()
 
 	m_bsst.mov = { 0,0 };
 
-	m_sun->Update(m_bsst.pos, { 1.0f,1.0f }, { GREEN ,1.0f });
+	m_sun->Update(m_bsst.pos, { 0.4f,0.4f }, { m_bsst.draw.clr });
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
@@ -49,6 +49,14 @@ void C_Player_BulletPredictionTriangle::Action(Math::Vector2 a_pos, float a_rot,
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+	C_Player* player = m_p0wner->GetPlayer();
+
+	if (player->GetDropHitCount() > DecreaseGCnt)
+	{
+		m_bsst.draw.clr.G(1.0f - (playercircle->GetBulletPredictionLineDeleteNo() * 0.003f * (player->GetDropHitCount() - DecreaseGCnt)));
+	}
+
+	m_bsst.draw.clr.R(playercircle->GetBulletPredictionLineDeleteNo() * 0.02f * player->GetDropHitCount());
 
 	m_bsst.rot = a_rot;
 

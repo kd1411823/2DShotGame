@@ -30,6 +30,8 @@ public:
 
 	// ÉQÉbÉ^Å[
 	float GetRadius()override { return m_enemyRadius; }
+	float GetRotation() { return m_bsst.rot; }
+	bool GetbMoveFlg() { return m_bMoveFlg; }
 	C_Enemy_HPCircle* GetEnemyHpCircle() { return &m_enemyhpCircle; }
 	C_Enemy_Circle* GetEnemyFrameCircle() { return &m_enemyframeCircle; }
 	C_Bullet* GetBullet(int a_no) { return &m_bullet[a_no]; }

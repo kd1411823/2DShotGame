@@ -102,12 +102,13 @@ void C_TitleManager::Action()
 
 	if (m_addAlphaFlg && !m_decreaseAlphaFlg)
 	{
-		renderwipe->AddAlpha();
+		renderwipe->AddAlpha(0.01f);
 	}
 
-
-
-	ToGame();
+	if (renderwipe->GetAlpha() >= 1.0f)
+	{
+		ToGame();
+	}
 
 	for (int i = 0;i < gameNameText;i++)
 	{

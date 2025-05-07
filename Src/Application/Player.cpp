@@ -92,6 +92,7 @@ void C_Player::Init()
 	m_maxDeltaScl = 0.0f;		// 最大プレイヤーの拡大率
 	m_minDeltaScl = 0.0f;		// 最小プレイヤーの拡大率
 	m_sclInitFlg  = false;		// 拡大率初期化フラグ
+	m_dropHitCount = 0;// 弾をいくつ持っているカウント(当たったカウント)
 
 	// プレイヤーのステータス
 	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;

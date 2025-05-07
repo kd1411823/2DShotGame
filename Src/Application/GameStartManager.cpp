@@ -21,13 +21,7 @@ void C_GameStartManager::Init()
 	m_gamestart_number.SetTex(&gamestartnumberTex);
 	m_gamestart_number.Init();
 
-	for (int i = 0;i < gameStartText;i++)
-	{
-		m_gamestart_stringtext[i].SetP0wner(m_p0wner);
-		m_gamestart_stringtext[i].SetTex(&gamestartstringTex);
-		m_gamestart_stringtext[i].Init(i);
-	}
-
+	
 	m_gameStartFlg = false; // ゲームスタートフラグ
 	m_startCountFrame = 60 * 7; // スタートまでのカウント
 	m_startCountTime = m_startCountFrame / 60; // スタートまでのタイマー
@@ -40,20 +34,14 @@ void C_GameStartManager::Draw()
 {
 	m_gamestart_number.Draw();
 
-	for (int i = 0;i < gameStartText;i++)
-	{
-		m_gamestart_stringtext[i].Draw();
-	}
+	
 }
 
 void C_GameStartManager::Update()
 {
 	m_gamestart_number.Update();
 
-	for (int i = 0;i < gameStartText;i++)
-	{
-		m_gamestart_stringtext[i].Update();
-	}
+	
 }
 
 void C_GameStartManager::Action()
@@ -74,7 +62,7 @@ void C_GameStartManager::Action()
 
 	if (renderwipe->GetAlpha() >= 1.0f)
 	{
-		TutorialSkip();
+		m_startCountFlg = true;
 	}
 
 	if (m_startCountFlg)
@@ -84,10 +72,6 @@ void C_GameStartManager::Action()
 
 	m_gamestart_number.Action();
 
-	for (int i = 0;i < gameStartText;i++)
-	{
-		m_gamestart_stringtext[i].Action();
-	}
 }
 
 void C_GameStartManager::StartGameCount()
@@ -103,11 +87,4 @@ void C_GameStartManager::StartGameCount()
 	}
 }
 
-void C_GameStartManager::TutorialSkip()
-{
 
-	if (GetAsyncKeyState('T') & 0x8000)
-	{
-		m_startCountFlg = true;
-	}
-}

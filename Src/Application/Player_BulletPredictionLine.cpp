@@ -49,7 +49,7 @@ void C_Player_BulletPredictionLine::Update(Math::Vector2 a_pos)
 
 	m_bsst.mov = { 0,0 };
 
-	m_sun->Update(m_bsst.pos, { 0.3f,0.3f }, { GREEN ,1.0f });
+	m_sun->Update(m_bsst.pos, { 0.3f,0.3f }, {m_bsst.draw.clr });
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
@@ -58,8 +58,17 @@ void C_Player_BulletPredictionLine::Action(Math::Vector2 a_pos,float a_rot, floa
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+	C_Player* player = m_p0wner->GetPlayer();
 
 	if (m_no > playercircle->GetBulletPredictionLineDeleteNo())return;
+
+	if (player->GetDropHitCount() > DecreaseGCnt)
+	{
+		m_bsst.draw.clr.G(1.0f - (m_no * 0.003f * (player->GetDropHitCount() - DecreaseGCnt)));
+	}
+
+
+	m_bsst.draw.clr.R(m_no * 0.02f * player->GetDropHitCount());
 
 	m_bsst.rot = a_rot;
 

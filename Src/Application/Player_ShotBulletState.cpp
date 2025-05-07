@@ -8,10 +8,11 @@ void C_Player_ShotBulletState::OnStart(C_Player* a_pPlayer)
 	Scene* scene = a_pPlayer->GetPowner();
 	C_ScoreManager* scoremanager = scene->GetScoreManager();
 	C_Score_Circle* scorecircle = scoremanager->GetScoreCircle();
-
+	
 	scorecircle->SetLoadBulletFlg(false);
 	a_pPlayer->SetPlayerSpeed(pSlowSpd); // 通常のスピードに戻す
 	a_pPlayer->SetDrawBulletPredictionFlg(false);
+	a_pPlayer->SetDropHitCount(0);
 	m_shotEndFlg = false;  // 撃ち終わったかフラグ
 	m_shotIntervalCnt = 0; // 弾の間隔カウント
 }

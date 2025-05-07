@@ -31,7 +31,7 @@ public:
 	void SetPlayerSpeed(float a_playerSpeed) { m_playerSpeed = a_playerSpeed; }
 	void SetCircleRadius(float a_circleRadius) { m_circleRadius = a_circleRadius; }
 	void SetDrawBulletPredictionFlg(bool a_drawBulletPredictionFlg) { m_drawBulletPredictionFlg = a_drawBulletPredictionFlg; }
-
+	void SetDropHitCount(int a_dropHitCount) { m_dropHitCount = a_dropHitCount; }
 
 	// ゲッター
 	Math::Vector2 GetPos()override { return m_bsst.pos; }
@@ -40,8 +40,11 @@ public:
 	float GetPlayerSpeed() { return m_playerSpeed; }
 	float GetCircleRadius() { return m_circleRadius; }
 	bool  GetDrawBulletPredictionFlg() { return m_drawBulletPredictionFlg; }
+	int   GetDropHitCount() { return m_dropHitCount; }
 	C_Bullet* GetBullet(int a_no) { return &m_bullet[a_no]; }
 	C_Drop_Bullet* GetDropBullet(int a_no) { return &m_drop_bullet[a_no]; }
+	C_Player_BulletPredictionLine* GetPlayerBulletPredictionLine(int a_no) { return &m_player_bulletpredictionline[a_no]; }
+	C_Player_BulletPredictionTriangle* GetPlayerBulletPredictionTriangle() { return &m_player_bulletpredictiontriangle; }
 
 private:
 
@@ -82,4 +85,6 @@ private:
 	float         m_maxDeltaScl;		// 最大プレイヤーの拡大率
 	float         m_minDeltaScl;		// 最小プレイヤーの拡大率
 	bool          m_sclInitFlg;		// 拡大率初期化フラグ
+	int           m_dropHitCount;// 弾をいくつ持っているカウント(当たったカウント)
+
 };
