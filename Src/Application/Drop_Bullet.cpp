@@ -85,5 +85,24 @@ void C_Drop_Bullet::CountHIT()
 
 	printf("count%d\n",player->GetDropHitCount());
 
-	sound->GetGetBulletSe().inst->Play();
+	if (player->GetDropHitCount() >= 0 && player->GetDropHitCount() <= 2)
+	{
+		sound->GetOneGetBulletSe().inst->Play();
+	}
+	else if (player->GetDropHitCount() >= 3 && player->GetDropHitCount() <= 4)
+	{
+		sound->GetTwoGetBulletSe().inst->Play();
+	}
+	else if(player->GetDropHitCount() >= 4 && player->GetDropHitCount() <= 5)
+	{
+		sound->GetThreeGetBulletSe().inst->Play();
+	}
+	else if (player->GetDropHitCount() >= 5 && player->GetDropHitCount() <= 6)
+	{
+		sound->GetFourGetBulletSe().inst->Play();
+	}
+	else if (player->GetDropHitCount() >= 7)
+	{
+		sound->GetFiveGetBulletSe().inst->Play();
+	}
 }

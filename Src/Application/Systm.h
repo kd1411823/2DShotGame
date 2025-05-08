@@ -1,8 +1,11 @@
 #pragma once
 #define BIT18 18
 #define BIT24 24
+#define BIT32 32
+#define BIT40 40
 #define BIT64 64
 #define BIT72 72
+#define BIT108 108
 #define BIT120 120
 #define BIT128 128
 #define BIT240 240
@@ -26,6 +29,7 @@
 #define ebulletNum 6
 #define pBulletLineNum 14
 #define DropBulletNum 18
+#define afterImageNum 7
 #define pHighSpd 3.0f
 #define pDefaultSpd 2.0f
 #define pSlowSpd 0.8f
@@ -46,6 +50,7 @@
 #define threeTargetScore 2600.0f
 #define PredictionLineDistance 30.0f
 #define ShotInterval 4
+#define afterImageInterval 8
 #define OneNumDistance 18.0f
 #define TwoNumDistance 38.0f
 #define ThreeNumDistance 38.0f
@@ -65,6 +70,7 @@
 #define initPos { 0, 0 }
 #define gameNameText 2
 #define gameStartText 2
+#define keyNum 5
 #define titleText 3
 #define WHITE  1.0f,1.0f,1.0f
 #define BLACK  0.0f,0.0f,0.0f
@@ -79,6 +85,18 @@ enum eSceneType
 {
 	TitleScene,
 	GameScene
+};
+
+// キータイプ
+enum eKeyType
+{
+	Spaccekey,
+	Dkey,
+	Akey,
+	Downkey,
+	Rightkey,
+	Leftkey,
+	KeyNum
 };
 
 // プレイヤーライフ
@@ -104,6 +122,15 @@ enum eEnemyMovDir
 	LeftDir,
 	RightDir
 };
+
+// 配置
+enum AlgnType
+{
+	LtAlgn,	// 　左揃え
+	RtAlgn,	// 　右揃え
+	CtAlgn,	// 中央揃え
+};
+
 // 行列
 struct tMat
 {
@@ -167,8 +194,10 @@ class C_Systm
 {
 public:
 
-	C_Systm() {}
- 	virtual ~C_Systm() {}
+	C_Systm();
+	~C_Systm();
+
+	void Init();
 
 	tMat CreateMat(Math::Vector2 a_scl, float a_rot, Math::Vector2 a_pos, Math::Vector2 a_scroll = { 0, 0 });
 	POINT GetMousePos(POINT a_mousepos);
@@ -176,10 +205,13 @@ public:
 	float GetDeg(Math::Vector2 a_trgtpos, Math::Vector2 a_pos);
 	float CnvrtToRadians(float a_deg);
 	int	  RndBtwn(int a_arg1, int a_arg2);	// ２つの引数の間の乱数取得
+	void  DrawStringGg(Math::Vector2 a_pos, Math::Vector2 a_scl, std::wstring a_str,
+		 Math::Color a_clr = { 1.0f, 1.0f, 1.0f, 1.0f }, float a_rot = 0);		// オリジナルDrawString
+
 
 private:
 
-
+	KdTexture ggfontTex;
 
 };
 

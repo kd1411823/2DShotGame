@@ -33,13 +33,41 @@ void C_Player_LoadBulletState::OnUpdate(C_Player* a_pPlayer)
 	C_Systm* systm = scene->GetSystm();
 	C_Player_Circle* playercircle = scene->GetPlayer_Circle();
 	C_Drop_Bullet* dropbullet[DropBulletNum];
+	C_Player_AfterImage* playerafterimage[afterImageNum];
+
 
 	for (int i = 0;i < DropBulletNum;i++)
 	{
 		dropbullet[i] = a_pPlayer->GetDropBullet(i);
 	}
 
+	for (int i = 0;i < afterImageNum;i++)
+	{
+		playerafterimage[i] = a_pPlayer->GetPlayerAfterImage(i);
+	}
 	
+	
+	for (int i = 0;i < afterImageNum; i++)
+	{
+		if (!playerafterimage[i]->GetAlive())
+		{	
+			if (a_pPlayer->GetAfterImageTimer() > afterImageInterval)
+			{
+				a_pPlayer->SetAfterImageTimer(0);
+				playerafterimage[i]->Emit(a_pPlayer->GetPos(),
+					a_pPlayer->GetMov(),
+					a_pPlayer->GetScl(),
+					a_pPlayer->GetRot(),
+					true,
+					40,
+					false,
+					{ 0,0,BIT256,BIT256 },
+					{ GREEN, 0.8f }
+				);
+				break;
+			}
+		}
+	}
 	// ˆÚ“®
 	if (GetAsyncKeyState('D') & 0x8000)
 	{

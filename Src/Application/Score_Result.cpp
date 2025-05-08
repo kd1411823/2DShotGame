@@ -76,7 +76,6 @@ void C_Score_Result::ToTitle()
 
 	if (renderwipe->GetAlpha() <= 0.0f)
 	{
-		//m_p0wner->SetNowScene(TitleScene);
 		m_p0wner->Init();
 	}
 

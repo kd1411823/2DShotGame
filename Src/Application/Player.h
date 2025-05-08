@@ -3,6 +3,7 @@
 #include "Player_TriangleParticle.h"
 #include "Player_BulletPredictionLine.h"
 #include "Player_BulletPredictionTriangle.h"
+#include "Player_AfterImage.h"
 #include "Bullet.h"
 #include "Drop_Bullet.h"
 #include "StateMachine.h"
@@ -32,19 +33,24 @@ public:
 	void SetCircleRadius(float a_circleRadius) { m_circleRadius = a_circleRadius; }
 	void SetDrawBulletPredictionFlg(bool a_drawBulletPredictionFlg) { m_drawBulletPredictionFlg = a_drawBulletPredictionFlg; }
 	void SetDropHitCount(int a_dropHitCount) { m_dropHitCount = a_dropHitCount; }
+	void SetAfterImageTimer(int a_afterImageTimer) { m_afterImageTimer = a_afterImageTimer; }
 
 	// ゲッター
 	Math::Vector2 GetPos()override { return m_bsst.pos; }
+	Math::Vector2 GetMov() { return m_bsst.mov; }
+	Math::Vector2 GetScl() { return m_bsst.scl; }
 	float GetRot() { return m_bsst.rot; }
 	float GetRadius()override { return m_playerRadius; }
 	float GetPlayerSpeed() { return m_playerSpeed; }
 	float GetCircleRadius() { return m_circleRadius; }
 	bool  GetDrawBulletPredictionFlg() { return m_drawBulletPredictionFlg; }
 	int   GetDropHitCount() { return m_dropHitCount; }
+	int   GetAfterImageTimer() { return m_afterImageTimer; }
 	C_Bullet* GetBullet(int a_no) { return &m_bullet[a_no]; }
 	C_Drop_Bullet* GetDropBullet(int a_no) { return &m_drop_bullet[a_no]; }
 	C_Player_BulletPredictionLine* GetPlayerBulletPredictionLine(int a_no) { return &m_player_bulletpredictionline[a_no]; }
 	C_Player_BulletPredictionTriangle* GetPlayerBulletPredictionTriangle() { return &m_player_bulletpredictiontriangle; }
+	C_Player_AfterImage* GetPlayerAfterImage(int a_no) { return &m_player_afterimage[a_no]; }
 
 private:
 
@@ -69,6 +75,8 @@ private:
 	// プレイヤーの三角形パーティクル
 	C_Player_TriangleParticle m_player_triangleParticle[triangleParticleNum];
 
+	C_Player_AfterImage m_player_afterimage[afterImageNum];
+
 	std::shared_ptr<C_Sun> m_sun = nullptr;
 
 	POINT		  m_pMousePos;		// POINT型マウス座標
@@ -86,5 +94,5 @@ private:
 	float         m_minDeltaScl;		// 最小プレイヤーの拡大率
 	bool          m_sclInitFlg;		// 拡大率初期化フラグ
 	int           m_dropHitCount;// 弾をいくつ持っているカウント(当たったカウント)
-
+	int           m_afterImageTimer; // 残像タイマー
 };

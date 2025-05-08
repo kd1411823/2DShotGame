@@ -6,7 +6,7 @@ class C_Bullet :public C_GameObject
 public:
 
 	C_Bullet(){}
-	virtual ~C_Bullet(){}
+	~C_Bullet(){}
 
 	void Init()override;
 	void Draw()override;

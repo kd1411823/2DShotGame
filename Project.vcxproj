@@ -163,6 +163,7 @@
     <ClInclude Include="Src\Application\Back_Circle.h" />
     <ClInclude Include="Src\Application\Bullet.h" />
     <ClInclude Include="Src\Application\Console.h" />
+    <ClInclude Include="Src\Application\ControlText.h" />
     <ClInclude Include="Src\Application\Drop_Bullet.h" />
     <ClInclude Include="Src\Application\Enemy.h" />
     <ClInclude Include="Src\Application\EnemyManager.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Src\Application\GameStart_StringText.h" />
     <ClInclude Include="Src\Application\ParticleBase.h" />
     <ClInclude Include="Src\Application\Player.h" />
+    <ClInclude Include="Src\Application\Player_AfterImage.h" />
     <ClInclude Include="Src\Application\Player_BulletPredictionLine.h" />
     <ClInclude Include="Src\Application\Player_BulletPredictionTriangle.h" />
     <ClInclude Include="Src\Application\Player_Circle.h" />
@@ -241,6 +243,7 @@
     <ClCompile Include="Src\Application\Back_Circle.cpp" />
     <ClCompile Include="Src\Application\Bullet.cpp" />
     <ClCompile Include="Src\Application\Console.cpp" />
+    <ClCompile Include="Src\Application\ControlText.cpp" />
     <ClCompile Include="Src\Application\Drop_Bullet.cpp" />
     <ClCompile Include="Src\Application\Enemy.cpp" />
     <ClCompile Include="Src\Application\EnemyManager.cpp" />
@@ -259,6 +262,7 @@
     <ClCompile Include="Src\Application\GameStart_StringText.cpp" />
     <ClCompile Include="Src\Application\ParticleBase.cpp" />
     <ClCompile Include="Src\Application\Player.cpp" />
+    <ClCompile Include="Src\Application\Player_AfterImage.cpp" />
     <ClCompile Include="Src\Application\Player_BulletPredictionLine.cpp" />
     <ClCompile Include="Src\Application\Player_BulletPredictionTriangle.cpp" />
     <ClCompile Include="Src\Application\Player_Circle.cpp" />

@@ -157,6 +157,7 @@ void Scene::GameInit()
 	m_enemy_manager.SetP0wner(this);
 	m_timemanager.SetP0wner(this);
 
+	m_systm.Init();
 	m_sound.Init();
 	m_backgroud.Init();
 	m_back_circle.Init();

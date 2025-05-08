@@ -48,31 +48,39 @@ void C_Player::Init()
 		m_player_triangleParticle[i].SetP0wner(m_p0wner);
 		m_player_triangleParticle[i].Init();
 	}
+
+	for (int i = 0;i < afterImageNum; i++)
+	{
+		m_player_afterimage[i].SetP0wner(m_p0wner);
+		m_player_afterimage[i].SetTex(&playerTex);
+		m_player_afterimage[i].Init();
+	}
+
 	// 弾
 	for (int i = 0; i < BulletNum;i++)
 	{
-		m_bullet[i].SetTex(&bulletTex);
 		m_bullet[i].SetP0wner(m_p0wner);
+		m_bullet[i].SetTex(&bulletTex);
 		m_bullet[i].Init();
 	}
 
 	// 弾(取得オブジェクト)
 	for (int i = 0;i < DropBulletNum;i++)
 	{
-		m_drop_bullet[i].SetTex(&dropbulletTex);
 		m_drop_bullet[i].SetP0wner(m_p0wner);
+		m_drop_bullet[i].SetTex(&dropbulletTex);
 		m_drop_bullet[i].Init(i);
 	}
 
 	for (int i = 0;i < pBulletLineNum;i++)
 	{
-		m_player_bulletpredictionline[i].SetTex(&bulletpredictionlineTex);
 		m_player_bulletpredictionline[i].SetP0wner(m_p0wner);
+		m_player_bulletpredictionline[i].SetTex(&bulletpredictionlineTex);
 		m_player_bulletpredictionline[i].Init(i);
 	}
 
-	m_player_bulletpredictiontriangle.SetTex(&bulletpredictionTriTex);
 	m_player_bulletpredictiontriangle.SetP0wner(m_p0wner);
+	m_player_bulletpredictiontriangle.SetTex(&bulletpredictionTriTex);
 	m_player_bulletpredictiontriangle.Init();
 
 	m_bsst.draw.pTex = &playerTex;
@@ -93,6 +101,7 @@ void C_Player::Init()
 	m_minDeltaScl = 0.0f;		// 最小プレイヤーの拡大率
 	m_sclInitFlg  = false;		// 拡大率初期化フラグ
 	m_dropHitCount = 0;// 弾をいくつ持っているカウント(当たったカウント)
+	m_afterImageTimer = 0; // 残像タイマー
 
 	// プレイヤーのステータス
 	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
@@ -108,9 +117,7 @@ void C_Player::Init()
 
 void C_Player::Draw()
 {
-	C_GameStartManager* gamestartmanager = m_p0wner->GetGameStartManager();
-
-	//if (!gamestartmanager->GetGameStartFlg())return;
+	C_Systm* systm = m_p0wner->GetSystm();
 
 	for (int i = 0;i < DropBulletNum;i++)
 	{
@@ -125,19 +132,31 @@ void C_Player::Draw()
 
 	m_sun->Draw();
 
+	for (int i = 0;i < afterImageNum; i++)
+	{
+		m_player_afterimage[i].Draw();
+	}
+
 	for (int i = 0;i < triangleParticleNum; i++)
 	{
 		m_player_triangleParticle[i].Draw();
 	}
+
 	D3D.SetBlendState(BlendMode::Alpha);
 
 	if (m_drawBulletPredictionFlg)
 	{
+		systm->DrawStringGg({ -500 , -250 }, { 1.0f,1.0f }, L"shot");
+
 		for (int i = 0;i < pBulletLineNum;i++)
 		{
 			m_player_bulletpredictionline[i].Draw();
 		}
 		m_player_bulletpredictiontriangle.Draw();
+	}
+	else
+	{
+		systm->DrawStringGg({ -500 , -250 }, { 1.0f,1.0f }, L"load");
 	}
 
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
@@ -189,6 +208,8 @@ void C_Player::Update()
 				);
 			}
 		}
+
+		
 	}
 
 	
@@ -197,6 +218,10 @@ void C_Player::Update()
 		m_player_triangleParticle[i].Update(m_bsst.pos,m_bMoveFlg);
 	}
 
+	for (int i = 0;i < afterImageNum;i++)
+	{
+		m_player_afterimage[i].Update(m_bsst.pos, m_bMoveFlg);
+	}
 
 	for (int i = 0; i < BulletNum;i++)
 	{
@@ -223,6 +248,8 @@ void C_Player::Update()
 void C_Player::Action()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
+
+	m_afterImageTimer++;
 
 	Mouse();
 
