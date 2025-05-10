@@ -246,7 +246,9 @@ void Application::Execute()
 			baseTime = st;
 			count = 0;
 		}
-
+		// タイトルバーにFPSを表示
+		std::string titlebar = "AXIS BREAK FPS:" + std::to_string(m_fps);
+		SetWindowTextA(m_window.GetWndHandle(),titlebar.c_str());
 	}
 
 	// ゲーム解放

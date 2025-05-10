@@ -17,6 +17,9 @@ public:
 
 	void SetClr(Math::Color a_clr) { m_bsst.draw.clr = a_clr; }
 
+	std::shared_ptr<C_Sun> GetSun() { return m_sun; }
+	
+
 private:
 
 	int m_no;	// 予測ラインのナンバー

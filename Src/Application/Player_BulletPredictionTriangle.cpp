@@ -22,12 +22,7 @@ void C_Player_BulletPredictionTriangle::Init()
 
 void C_Player_BulletPredictionTriangle::Draw()
 {
-	D3D.SetBlendState(BlendMode::Add);
-
-	m_sun->Draw();
-
-	D3D.SetBlendState(BlendMode::Alpha);
-
+	
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 }
@@ -53,7 +48,7 @@ void C_Player_BulletPredictionTriangle::Action(Math::Vector2 a_pos, float a_rot,
 
 	if (player->GetDropHitCount() > DecreaseGCnt)
 	{
-		m_bsst.draw.clr.G(1.0f - (playercircle->GetBulletPredictionLineDeleteNo() * 0.003f * (player->GetDropHitCount() - DecreaseGCnt)));
+		m_bsst.draw.clr.G(1.0f - (playercircle->GetBulletPredictionLineDeleteNo() * 0.01f * (player->GetDropHitCount() - DecreaseGCnt)));
 	}
 
 	m_bsst.draw.clr.R(playercircle->GetBulletPredictionLineDeleteNo() * 0.02f * player->GetDropHitCount());

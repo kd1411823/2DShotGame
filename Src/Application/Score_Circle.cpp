@@ -78,12 +78,5 @@ void C_Score_Circle::Action(int a_score)
 	// Ø‚èæ‚èÀ•W”½‰f
 	m_bsst.draw.rct = { 0,  ScrnHgt, ScrnHgt, - m_rctY };
 
-	if (m_loadBulletFlg)
-	{
-		m_bsst.draw.clr.A(0.3f);
-	}
-	else
-	{
-		m_bsst.draw.clr.A(1.0f);
-	}
+	
 }

@@ -20,12 +20,12 @@ void C_Player_MoveState::OnUpdate(C_Player* a_pPlayer)
 	Scene* scene = a_pPlayer->GetPowner();
 	C_Player_Circle* playercircle = scene->GetPlayer_Circle();
 
-	if (GetAsyncKeyState('D') & 0x8000)
+	if ((GetAsyncKeyState('D') & 0x8000) || (GetAsyncKeyState(VK_RIGHT) & 0x8000))
 	{
 		a_pPlayer->SetMovDeg(a_pPlayer->GetPlayerSpeed());
 		a_pPlayer->SetbMoveFlg(true);
 	}
-	else if (GetAsyncKeyState('A') & 0x8000)
+	else if ((GetAsyncKeyState('A') & 0x8000) || (GetAsyncKeyState(VK_LEFT) & 0x8000))
 	{
 		a_pPlayer->SetMovDeg(-(a_pPlayer->GetPlayerSpeed()));
 		a_pPlayer->SetbMoveFlg(true);

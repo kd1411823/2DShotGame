@@ -28,7 +28,7 @@ void C_TimeManager::Init()
 		m_timeClockNumber[i].Init(i);
 	}
 
-	m_frameTime = 60 * 120; // フレーム
+	m_frameTime = 60 * 121; // フレーム
 	m_timer = m_frameTime / 60; // タイマー
 	m_isTimeLeftFlg = false; // タイムが残っているかいないか(true:残っている false:残っていない)
 }
@@ -78,6 +78,12 @@ void C_TimeManager::Action()
 void C_TimeManager::Timer()
 {
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+	C_Score_TextNumber* scoretextnumber[scoreDigits];
+	for (int i = 0;i < scoreDigits;i++)
+	{
+		scoretextnumber[i] = scoremanager->GetScoreTextNumber(i);
+	}
 
 	if (playercircle->GetPlayerLife() == FourLife)
 	{
@@ -87,6 +93,11 @@ void C_TimeManager::Timer()
 	{
 		m_isTimeLeftFlg = false;
 		playercircle->SetPlayerLife(FourLife);
+		for (int i = 0;i < scoreDigits;i++)
+		{
+			scoretextnumber[i]->SetNumberScl(FourNumScl);
+			scoretextnumber[i]->SetNumberDistance(FourNumDistance);
+		}
 		return;
 	}
 	

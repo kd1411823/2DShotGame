@@ -22,11 +22,11 @@ void C_Player_StandState::OnUpdate(C_Player* a_pPlayer)
 	C_Player_Circle* playercircle = scene->GetPlayer_Circle();
 
 
-	if (GetAsyncKeyState('D') & 0x8000)
+	if ((GetAsyncKeyState('D') & 0x8000) || (GetAsyncKeyState(VK_RIGHT) & 0x8000))
 	{
 		m_pMachine->ChangeState<C_Player_MoveState>();
 	}
-	else if (GetAsyncKeyState('A') & 0x8000)
+	else if ((GetAsyncKeyState('A') & 0x8000) || (GetAsyncKeyState(VK_LEFT) & 0x8000))
 	{
 		m_pMachine->ChangeState<C_Player_MoveState>();
 	}

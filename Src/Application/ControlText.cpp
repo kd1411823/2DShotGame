@@ -6,41 +6,40 @@ void C_ControlText::Init(eKeyType a_type)
 	C_Systm* systm = m_p0wner->GetSystm();
 	
 	m_keyType = a_type; // ƒL[ƒ^ƒCƒv
-	m_baseScl = 1.0f;  // ’Êí‚ÌŠg‘å—¦
+	m_baseScl = 1.3f;  // ’Êí‚ÌŠg‘å—¦
 	m_minScl = 0.8f; // Å¬‚ÌŠg‘å—¦
 	m_minAlpha = 0.5f; // Å¬‚Ìalpha’l
 
 	switch (a_type)
 	{
 	case Spaccekey:
-		m_bsst.pos = { -550,-300 };
+		m_bsst.pos = { -520,-300 };
 		m_bsst.draw.rct = { BIT108 * 0, 0, BIT108, BIT40 };
 		break;
 	case Dkey:
-		m_bsst.pos = { 450, -300 };
+		m_bsst.pos = { 570, -300 };
 		m_bsst.draw.rct = { BIT32 * 1, 0, BIT32, BIT40 };
 		break;
 	case Akey:
-		m_bsst.pos = { 400, -300 };
+		m_bsst.pos = { 510, -300 };
 		m_bsst.draw.rct = { BIT32 * 0, 0, BIT32, BIT40 };
 		break;
 	case Downkey:
-		m_bsst.pos = { -400,-300 };
 		m_bsst.draw.rct = { BIT32 * 4, 0, BIT32, BIT40 };
 		break;
 	case Rightkey:
-		m_bsst.pos = { 600, -300 };
+		m_bsst.pos = { 380, -300 };
 		m_bsst.draw.rct = { BIT32 * 2, 0, BIT32, BIT40 };
 		break;
 	case Leftkey:
-		m_bsst.pos = { 550, -300 };
+		m_bsst.pos = { 320, -300 };
 		m_bsst.draw.rct = { BIT32 * 3, 0, BIT32, BIT40 };
 		break;
 	}
 
 
 	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 1.0f,1.0f };
+	m_bsst.scl = { m_baseScl,m_baseScl };
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.clr = { WHITE ,1.0f };
@@ -51,28 +50,37 @@ void C_ControlText::Init(eKeyType a_type)
 void C_ControlText::Draw()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
-
-
-	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
-	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
-	
+	C_Player* player = m_p0wner->GetPlayer();
 
 	switch (m_keyType)
 	{
 	case Spaccekey:
-		systm->DrawStringGg({ m_bsst.pos.x + 80 , m_bsst.pos.y }, { 1.0f,1.0f }, L"or");
+		SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
+		SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
+		if (!player->GetDrawBulletPredictionFlg())
+		{
+			systm->DrawStringGg({ -590 , -240 }, { 1.0f,1.0f }, L"charge");
+		}
 		break;
 	case Dkey:
-		systm->DrawStringGg({ m_bsst.pos.x + 5 , m_bsst.pos.y + 50}, { 1.0f,1.0f }, L"move");
-		systm->DrawStringGg({ m_bsst.pos.x + 35 , m_bsst.pos.y }, { 1.0f,1.0f }, L"or");
+		SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
+		SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
+		systm->DrawStringGg( { 400 , -240 }, { 1.0f,1.0f }, L"move");
 		break;
 	case Akey:
+		SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
+		SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
+		systm->DrawStringGg({ 430 , -300 }, { 1.0f,1.0f }, L"or");
 		break;
 	case Downkey:
 		break;
 	case Rightkey:
+		SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
+		SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 		break;
 	case Leftkey:
+		SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
+		SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 		break;
 	}
 

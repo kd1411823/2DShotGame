@@ -82,7 +82,7 @@ void C_Title_Text::AlphaManager()
 		m_isRisingAlpha = false;
 	}
 
-	if (m_bsst.draw.clr.A() <= 0.0f)
+	if (m_bsst.draw.clr.A() <= 0.3f)
 	{
 		m_isRisingAlpha = true;
 	}

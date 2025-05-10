@@ -49,6 +49,10 @@ void C_Score_TextNumber::Init(int a_no)
 
 void C_Score_TextNumber::Draw()
 {
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+	C_Score_Result* scoreresult = scoremanager->GetScoreResult();
+
+	if (scoreresult->GetTextDrawFlg())return;
 
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
@@ -92,7 +96,7 @@ void C_Score_TextNumber::Action()
 
 	if (scorecircle->GetLoadBulletFlg())
 	{
-		m_bsst.draw.clr.A(0.2f);
+		m_bsst.draw.clr.A(0.4f);
 	}
 	else
 	{
@@ -143,6 +147,14 @@ void C_Score_TextNumber::AddDrawScore()
 	// スコア加算演出
 	if (m_addDrawScore < scoremanager->GetScore())
 	{
+		if (scoremanager->GetScore() >= 1000)
+		{
+			m_addSpeed = 10.0f;
+		}
+		else
+		{
+			m_addSpeed = 3.0f;
+		}
 		m_addDrawScore += m_addSpeed;
 		m_deltaScl = 0.1f;
 		m_deltaMax = 0.4f;
@@ -162,6 +174,8 @@ void C_Score_TextNumber::AddDrawScore()
 		}
 		else 
 		{
+			m_bsst.pos.x = (m_no * m_numberDistance) - (((m_numberDistance * 2) + (m_numberDistance * 1)) * 0.5f);
+			m_bsst.pos.y = -m_numberDistance;
 			m_addDrawScore = scoremanager->GetScore();
 			m_bsst.draw.clr = { GREEN,1.0f };
 			scoretextstring->SetClr({ GREEN,1.0f });
@@ -171,6 +185,7 @@ void C_Score_TextNumber::AddDrawScore()
 			ScaleManager();
 			scoretextstring->SetScl(m_bsst.scl * 0.65f);
 			scoreresult->ToTitle();
+			printf("%.2f\n", m_numberScl);
 		}
 	}
 
@@ -273,6 +288,11 @@ void C_Score_TextNumber::AddTimeScore()
 	if (m_addDrawScore < INT_MAX)
 	{
 		m_addTimeScoreCount++;
+	}
+
+	if (m_addTimeScoreCount < 30)
+	{
+		m_addDrawScore = scoremanager->GetScore();
 	}
 	
 	if (m_addTimeScoreCount >= 60 && m_addTimeScoreCount < 120)

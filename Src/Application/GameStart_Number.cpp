@@ -65,7 +65,7 @@ void C_GameStart_Number::Action()
 
 	if (!gamestartmanager->GetStartCountFlg() || gamestartmanager->GetGameStartFlg())return;
 
-	if (m_digitsNumber != gamestartmanager->GetStartCountTime() - 1)
+	if (m_digitsNumber != gamestartmanager->GetStartCountTime())
 	{
 		m_bsst.scl = { m_maxScale,m_maxScale };
 		m_bsst.draw.clr.A(0.0f);
@@ -75,10 +75,10 @@ void C_GameStart_Number::Action()
 
 	AddAlpha();
 
-	m_digitsNumber = (((int)std::floor(gamestartmanager->GetStartCountTime())) % 10) - 1;
+	m_digitsNumber = (((int)std::floor(gamestartmanager->GetStartCountTime())) % 10);
 
 
-	if (gamestartmanager->GetStartCountTime() - 1 < 0)
+	if (gamestartmanager->GetStartCountTime() < 1)
 	{
 		m_bsst.draw.clr = { RED ,m_bsst.draw.clr.A()};
 		m_bsst.draw.rct = { 0, 0, BIT120, BIT24 };

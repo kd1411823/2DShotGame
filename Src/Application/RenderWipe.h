@@ -5,7 +5,7 @@ class C_RenderWipe :public C_GameObject
 {
 public:
 
-	void InitWipe();
+	void InitWipe(float a_alpha = 0.0f);
 	void DrawWipe();
 	void UpdateWipe();
 	void ActionWipe();

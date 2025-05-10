@@ -23,7 +23,7 @@
 #define PlayerBaseScl 0.15f
 #define EnemyBaseScl 0.7f
 #define EnemyMax 3
-#define EnemyHpCircleScl 0.3f
+#define EnemyHpCircleScl 0.25f
 #define EnemyCircleAlpha 0.55f
 #define BulletNum 18
 #define ebulletNum 6
@@ -206,7 +206,7 @@ public:
 	float CnvrtToRadians(float a_deg);
 	int	  RndBtwn(int a_arg1, int a_arg2);	// ２つの引数の間の乱数取得
 	void  DrawStringGg(Math::Vector2 a_pos, Math::Vector2 a_scl, std::wstring a_str,
-		 Math::Color a_clr = { 1.0f, 1.0f, 1.0f, 1.0f }, float a_rot = 0);		// オリジナルDrawString
+		Math::Color a_clr = { 1.0f, 1.0f, 1.0f, 1.0f }, float a_rot = 0, float a_distance = 30.0f);		// オリジナルDrawString
 
 
 private:

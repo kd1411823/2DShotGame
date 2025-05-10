@@ -21,6 +21,8 @@ public:
 	bool GetAlive()override { return m_bsst.alive; }
 	const float GetDropBulletRadius(){ return m_dropBulletRadius; }
 
+	std::shared_ptr<C_Sun> GetSun() { return m_sun; }
+
 private:
 
 	std::shared_ptr<C_Sun> m_sun = nullptr;

@@ -51,6 +51,7 @@ public:
 	C_Player_BulletPredictionLine* GetPlayerBulletPredictionLine(int a_no) { return &m_player_bulletpredictionline[a_no]; }
 	C_Player_BulletPredictionTriangle* GetPlayerBulletPredictionTriangle() { return &m_player_bulletpredictiontriangle; }
 	C_Player_AfterImage* GetPlayerAfterImage(int a_no) { return &m_player_afterimage[a_no]; }
+	std::shared_ptr<C_Sun> GetSun() { return m_sun; }
 
 private:
 

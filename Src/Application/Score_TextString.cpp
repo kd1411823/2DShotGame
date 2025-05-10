@@ -33,6 +33,10 @@ void C_Score_TextString::Init()
 
 void C_Score_TextString::Draw()
 {
+	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+	C_Score_Result* scoreresult = scoremanager->GetScoreResult();
+
+	if (scoreresult->GetTextDrawFlg())return;
 
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
@@ -60,7 +64,7 @@ void C_Score_TextString::Action()
 
 	if (scorecircle->GetLoadBulletFlg())
 	{
-		m_bsst.draw.clr.A(0.2f);
+		m_bsst.draw.clr.A(0.4f);
 	}
 	else
 	{

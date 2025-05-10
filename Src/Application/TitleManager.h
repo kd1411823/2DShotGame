@@ -28,7 +28,6 @@ public:
 
 private:
 
-	KdTexture titlegamenameTex;
 	KdTexture titlebackgroundTex;
 	KdTexture titlebackcircleTex;
 	KdTexture titlepushtoTex;

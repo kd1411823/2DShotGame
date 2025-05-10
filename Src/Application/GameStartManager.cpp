@@ -44,12 +44,15 @@ void C_GameStartManager::Init()
 
 	
 	m_gameStartFlg = false; // ゲームスタートフラグ
-	m_startCountFrame = 60 * 7; // スタートまでのカウント
+	m_startCountFrame = 60 * 6; // スタートまでのカウント
 	m_startCountTime = m_startCountFrame / 60; // スタートまでのタイマー
 	m_startCountFlg = false; // スタートカウントを開始するフラグ
 	m_addAlphaFlg = false; // alpha値を上げるフラグ
 	m_decreaseAlphaFlg = false; // alpha値を下げているフラグ
-
+	m_isRisingAlpha = false;	// alpha値増減フラグ
+	m_deltaAlpha = 0.02f;		// alpha値増減量
+	m_stringAlpha = 1.0f; // 文字のalpha値
+	m_renderSwitchFlg = false;// レンダーターゲット切り替え
 }
 
 void C_GameStartManager::Draw()
@@ -63,7 +66,11 @@ void C_GameStartManager::Draw()
 		m_control_key[i].Draw();
 	}
 
-	
+	if (!m_gameStartFlg && !m_startCountFlg)
+	{
+		systm->DrawStringGg({ 320 , 300 }, { 1.0f,1.0f }, L"game start", { GREEN , m_stringAlpha });
+		systm->DrawStringGg({ 410 , 250 }, { 1.0f,1.0f }, L"t key", { RED , m_stringAlpha });
+	}
 
 }
 
@@ -81,6 +88,8 @@ void C_GameStartManager::Action()
 {
 	C_RenderWipe* renderwipe = m_p0wner->GetRenderWipe();
 
+	AlphaManager();
+
 	m_startCountTime = m_startCountFrame / 60; // スタートまでのタイマー
 
 	if (renderwipe->GetAlpha() < 1.0f)
@@ -95,7 +104,7 @@ void C_GameStartManager::Action()
 
 	if (renderwipe->GetAlpha() >= 1.0f)
 	{
-		m_startCountFlg = true;
+		TutorialSkip();
 	}
 
 	if (m_startCountFlg)
@@ -121,8 +130,44 @@ void C_GameStartManager::StartGameCount()
 
 	if (m_startCountFrame <= 0)
 	{
+		m_renderSwitchFlg = true;
 		m_gameStartFlg = true;
 	}
+}
+
+void C_GameStartManager::TutorialSkip()
+{
+	
+	if (GetAsyncKeyState('T') & 0x8000)
+	{
+		m_startCountFlg = true;
+	}
+
+}
+
+void C_GameStartManager::AlphaManager()
+{
+	if (m_gameStartFlg)return;
+
+	if (m_stringAlpha >= 1.0f)
+	{
+		m_isRisingAlpha = false;
+	}
+
+	if (m_stringAlpha <= 0.3f)
+	{
+		m_isRisingAlpha = true;
+	}
+
+	if (m_isRisingAlpha)
+	{
+		m_stringAlpha += m_deltaAlpha;
+	}
+	else
+	{
+		m_stringAlpha -= m_deltaAlpha;
+	}
+
 }
 
 

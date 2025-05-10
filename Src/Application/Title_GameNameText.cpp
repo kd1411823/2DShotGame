@@ -42,13 +42,14 @@ void C_Title_GameNameText::Init(int a_no)
 
 void C_Title_GameNameText::Draw()
 {
+	C_Systm* systm = m_p0wner->GetSystm();
 
 	D3D.SetBlendState(BlendMode::Add);
 	m_sun->Draw();
 	D3D.SetBlendState(BlendMode::Alpha);
 
-	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
-	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
+	systm->DrawStringGg({ -100 , 150 }, { 2.7f,2.7f }, L"axis", { GREEN , 1.0f } ,0.0f,25.0f);
+	systm->DrawStringGg({ -135 , 20 }, { 2.7f,2.7f }, L"break", { RED , 1.0f },0.0f,25.0f);
 }
 
 void C_Title_GameNameText::Update()

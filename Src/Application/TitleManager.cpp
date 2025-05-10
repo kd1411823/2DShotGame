@@ -7,7 +7,6 @@ C_TitleManager::C_TitleManager()
 
 C_TitleManager::~C_TitleManager()
 {
-	titlegamenameTex.Release();
 	titlebackgroundTex.Release();
 	titlebackcircleTex.Release();
 	titlepushtoTex.Release();
@@ -16,7 +15,6 @@ C_TitleManager::~C_TitleManager()
 void C_TitleManager::Init()
 {
 
-	titlegamenameTex.Load("Texture/titlegamename.png");
 	titlebackgroundTex.Load("Texture/background.png");
 	titlebackcircleTex.Load("Texture/back_circle.png");
 	titlepushtoTex.Load("Texture/pushto.png");
@@ -27,7 +25,6 @@ void C_TitleManager::Init()
 	for (int i = 0;i < gameNameText;i++)
 	{
 		m_title_gamenametext[i].SetP0wner(m_p0wner);
-		m_title_gamenametext[i].SetTex(&titlegamenameTex);
 		m_title_gamenametext[i].Init(i);
 	}
 

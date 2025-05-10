@@ -289,6 +289,8 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 	C_Systm* systm = m_p0wner->GetSystm();
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
+	C_RenderWipe* renderwipe = m_p0wner->GetRenderWipe();
+	C_RenderWipe* playerrenderwipe = m_p0wner->GetPlayerRenderWipe();
 
 	if (playercircle->GetPlayerLife() == FourLife)return;
 
@@ -305,7 +307,9 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 			if (scoremanager->GetScore() > 0)
 			{
 				scoremanager->DecreaseScore();
+				
 			}
+			playerrenderwipe->SetShakeTime(5);
 			m_bullet[i].Hit();
 		}
 		

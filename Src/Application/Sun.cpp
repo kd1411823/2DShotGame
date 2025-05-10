@@ -31,8 +31,11 @@ void C_Sun::Init()
 
 void C_Sun::Draw()
 {
+	D3D.SetBlendState(BlendMode::Add);
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
+	D3D.SetBlendState(BlendMode::Alpha);
+
 }
 
 void C_Sun::Update(Math::Vector2 a_pos, Math::Vector2 a_scl, Math::Color a_clr)

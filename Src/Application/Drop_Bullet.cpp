@@ -27,13 +27,7 @@ void C_Drop_Bullet::Draw()
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 	if (playercircle->GetPlayerLife() == FourLife)return;
 
-	D3D.SetBlendState(BlendMode::Add);
-	if (m_bsst.alive) 
-	{
-		m_sun->Draw();
-	}
-	D3D.SetBlendState(BlendMode::Alpha);
-
+	
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 }

@@ -1,7 +1,7 @@
 #include "RenderWipe.h"
 #include "Scene.h"
 
-void C_RenderWipe::InitWipe()
+void C_RenderWipe::InitWipe(float a_alpha)
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
@@ -17,7 +17,7 @@ void C_RenderWipe::InitWipe()
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, ScrnWid, ScrnHgt };
-	m_bsst.draw.clr = { WHITE ,0.0f };
+	m_bsst.draw.clr = { WHITE ,a_alpha };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -68,16 +68,14 @@ void C_RenderWipe::AddAlpha(float a_deltaAlpha)
 {
 	if (m_bsst.draw.clr.A() >= 1.0f)return;
 
-	m_deltaAlpha = a_deltaAlpha;
 
-	m_bsst.draw.clr.A(m_bsst.draw.clr.A() + m_deltaAlpha);
+	m_bsst.draw.clr.A(m_bsst.draw.clr.A() + a_deltaAlpha);
 }
 
 void C_RenderWipe::DecreaseAlpha(float a_deltaAlpha)
 {
 	if (m_bsst.draw.clr.A() <= 0.0f)return;
 
-	m_deltaAlpha = a_deltaAlpha;
 
-	m_bsst.draw.clr.A(m_bsst.draw.clr.A() - m_deltaAlpha);
+	m_bsst.draw.clr.A(m_bsst.draw.clr.A() - a_deltaAlpha);
 }

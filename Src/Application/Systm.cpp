@@ -91,39 +91,39 @@ int C_Systm::RndBtwn(int a_arg1, int a_arg2)
 	return (rand() % ((max - min) + 1)) + min;
 }
 
-void C_Systm::DrawStringGg(Math::Vector2 a_pos, Math::Vector2 a_scl, std::wstring a_str, Math::Color a_clr, float a_rot)
+void C_Systm::DrawStringGg(Math::Vector2 a_pos, Math::Vector2 a_scl, std::wstring a_str, Math::Color a_clr, float a_rot, float a_distance)
 {
 	
 	// テキスト表示
 	Math::Rectangle rct;					// 切り取り座標
 	for (int i = 0; i < a_str.size(); i++)	// 文字数分 繰り返す
 	{
-		if (a_str[i] == u'a')						    rct = { BIT24 * 0, BIT24 * 0, BIT24, BIT24 };	// あ
-		else if (a_str[i] == u'b')						rct = { BIT24 * 1, BIT24 * 0, BIT24, BIT24 };	// い
-		else if (a_str[i] == u'c')						rct = { BIT24 * 2, BIT24 * 0, BIT24, BIT24 };	// う
-		else if (a_str[i] == u'd')						rct = { BIT24 * 3, BIT24 * 0, BIT24, BIT24 };	// え
-		else if (a_str[i] == u'e')						rct = { BIT24 * 4, BIT24 * 0, BIT24, BIT24 };	// お
-		else if (a_str[i] == u'f')						rct = { BIT24 * 5, BIT24 * 0, BIT24, BIT24 };	// か
-		else if (a_str[i] == u'g')						rct = { BIT24 * 6, BIT24 * 0, BIT24, BIT24 };	// き
-		else if (a_str[i] == u'h')						rct = { BIT24 * 7, BIT24 * 0, BIT24, BIT24 };	// く
-		else if (a_str[i] == u'i')						rct = { BIT24 * 8, BIT24 * 0, BIT24, BIT24 };	// け
-		else if (a_str[i] == u'j')						rct = { BIT24 * 9, BIT24 * 0, BIT24, BIT24 };	// こ
-		else if (a_str[i] == u'k')						rct = { BIT24 * 10, BIT24 * 0, BIT24, BIT24 };	// さ
-		else if (a_str[i] == u'l')						rct = { BIT24 * 11, BIT24 * 0, BIT24, BIT24 };	// し
-		else if (a_str[i] == u'm')						rct = { BIT24 * 12, BIT24 * 0, BIT24, BIT24 };	// す
-		else if (a_str[i] == u'n')						rct = { BIT24 * 13, BIT24 * 0, BIT24, BIT24 };	// せ
-		else if (a_str[i] == u'o')						rct = { BIT24 * 14, BIT24 * 0, BIT24, BIT24 };	// そ
-		else if (a_str[i] == u'p')						rct = { BIT24 * 15, BIT24 * 0, BIT24, BIT24 };	// た
-		else if (a_str[i] == u'q')						rct = { BIT24 * 16, BIT24 * 0, BIT24, BIT24 };	// ち
-		else if (a_str[i] == u'r')						rct = { BIT24 * 17, BIT24 * 0, BIT24, BIT24 };	// つ
-		else if (a_str[i] == u's')						rct = { BIT24 * 18, BIT24 * 0, BIT24, BIT24 };	// て
-		else if (a_str[i] == u't')						rct = { BIT24 * 19, BIT24 * 0, BIT24, BIT24 };	// と
-		else if (a_str[i] == u'u')						rct = { BIT24 * 20, BIT24 * 0, BIT24, BIT24 };	// な
-		else if (a_str[i] == u'v')						rct = { BIT24 * 21, BIT24 * 0, BIT24, BIT24 };	// に
-		else if (a_str[i] == u'w')						rct = { BIT24 * 22, BIT24 * 0, BIT24, BIT24 };	// ぬ
-		else if (a_str[i] == u'x')						rct = { BIT24 * 23, BIT24 * 0, BIT24, BIT24 };	// ね
-		else if (a_str[i] == u'y')						rct = { BIT24 * 24, BIT24 * 0, BIT24, BIT24 };	// の
-		else if (a_str[i] == u'z')						rct = { BIT24 * 25,  BIT24 * 0, BIT24, BIT24 };	// は
+		if (a_str[i] == u'a')						    rct = { BIT24 * 0, BIT24 * 0, BIT24, BIT24 };	// A
+		else if (a_str[i] == u'b')						rct = { BIT24 * 1, BIT24 * 0, BIT24, BIT24 };	// B
+		else if (a_str[i] == u'c')						rct = { BIT24 * 2, BIT24 * 0, BIT24, BIT24 };	// C
+		else if (a_str[i] == u'd')						rct = { BIT24 * 3, BIT24 * 0, BIT24, BIT24 };	// D
+		else if (a_str[i] == u'e')						rct = { BIT24 * 4, BIT24 * 0, BIT24, BIT24 };	// E
+		else if (a_str[i] == u'f')						rct = { BIT24 * 5, BIT24 * 0, BIT24, BIT24 };	// F
+		else if (a_str[i] == u'g')						rct = { BIT24 * 6, BIT24 * 0, BIT24, BIT24 };	// G
+		else if (a_str[i] == u'h')						rct = { BIT24 * 7, BIT24 * 0, BIT24, BIT24 };	// H
+		else if (a_str[i] == u'i')						rct = { BIT24 * 8, BIT24 * 0, BIT24, BIT24 };	// I
+		else if (a_str[i] == u'j')						rct = { BIT24 * 9, BIT24 * 0, BIT24, BIT24 };	// J
+		else if (a_str[i] == u'k')						rct = { BIT24 * 10, BIT24 * 0, BIT24, BIT24 };	// K
+		else if (a_str[i] == u'l')						rct = { BIT24 * 11, BIT24 * 0, BIT24, BIT24 };	// L
+		else if (a_str[i] == u'm')						rct = { BIT24 * 12, BIT24 * 0, BIT24, BIT24 };	// M
+		else if (a_str[i] == u'n')						rct = { BIT24 * 13, BIT24 * 0, BIT24, BIT24 };	// N
+		else if (a_str[i] == u'o')						rct = { BIT24 * 14, BIT24 * 0, BIT24, BIT24 };	// O
+		else if (a_str[i] == u'p')						rct = { BIT24 * 15, BIT24 * 0, BIT24, BIT24 };	// P
+		else if (a_str[i] == u'q')						rct = { BIT24 * 16, BIT24 * 0, BIT24, BIT24 };	// Q
+		else if (a_str[i] == u'r')						rct = { BIT24 * 17, BIT24 * 0, BIT24, BIT24 };	// R
+		else if (a_str[i] == u's')						rct = { BIT24 * 18, BIT24 * 0, BIT24, BIT24 };	// S
+		else if (a_str[i] == u't')						rct = { BIT24 * 19, BIT24 * 0, BIT24, BIT24 };	// T
+		else if (a_str[i] == u'u')						rct = { BIT24 * 20, BIT24 * 0, BIT24, BIT24 };	// U
+		else if (a_str[i] == u'v')						rct = { BIT24 * 21, BIT24 * 0, BIT24, BIT24 };	// V
+		else if (a_str[i] == u'w')						rct = { BIT24 * 22, BIT24 * 0, BIT24, BIT24 };	// W
+		else if (a_str[i] == u'x')						rct = { BIT24 * 23, BIT24 * 0, BIT24, BIT24 };	// X
+		else if (a_str[i] == u'y')						rct = { BIT24 * 24, BIT24 * 0, BIT24, BIT24 };	// Y
+		else if (a_str[i] == u'z')						rct = { BIT24 * 25,  BIT24 * 0, BIT24, BIT24 };	// Z
 		else if (a_str[i] == u'　' || a_str[i] == u' ');													// 空白
 
 		// 行列作成、表示
@@ -134,7 +134,7 @@ void C_Systm::DrawStringGg(Math::Vector2 a_pos, Math::Vector2 a_scl, std::wstrin
 			SHADER.m_spriteShader.DrawTex(&ggfontTex, 0, 0, &rct, &a_clr);
 		}
 
-		a_pos.x += 30 * a_scl.x;
+		a_pos.x += a_distance * a_scl.x;
 	}
 }
 

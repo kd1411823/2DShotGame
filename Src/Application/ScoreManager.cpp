@@ -101,14 +101,12 @@ void C_ScoreManager::Action()
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
 
-	if (m_score <= 0)
-	{
-		m_score = 0;
-	}
+	
 	if (m_score >= 9999)
 	{
 		m_score = 9999;
 	}
+
 	if (timemanager->GetTimer() > 0)
 	{
 		if (m_score <= oneTargetScore)
@@ -171,6 +169,8 @@ void C_ScoreManager::Action()
 
 void C_ScoreManager::AddScore()
 {
+	if (m_score >= 9999)return;
+
 	m_score += 100.0f;
 }
 
@@ -178,6 +178,7 @@ void C_ScoreManager::DecreaseScore()
 {
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
 
-	if (playercircle->GetPlayerLife() == FourLife)return;
+	if (playercircle->GetPlayerLife() == FourLife || m_score <= 0)return;
+
 	m_score -= 10.0f;
 }

@@ -90,7 +90,6 @@ void C_Player_Circle::Action()
 		m_rctX = ScrnHgt * 0;
 		player->SetCircleRadius(FourRadius);
 		scoretextstring->SetScoreTextScl(FourscoreTextScl);
-		//scorecircle->SetGetScore(threeTargetScore);
 		m_circleRadius = FourRadius; 
 		break;
 	}
