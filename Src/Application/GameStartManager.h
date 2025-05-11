@@ -24,6 +24,7 @@ public:
 	C_GameStart_Number* GetGameStartNumber() { return &m_gamestart_number; }
 
 	bool GetGameStartFlg() { return m_gameStartFlg; }
+	float GetStartCountFrame() { return m_startCountFrame; }
 	int  GetStartCountTime() { return m_startCountTime; }
 	bool GetStartCountFlg() { return m_startCountFlg; }
 	bool GetRenderSwitchFlg() { return m_renderSwitchFlg; }

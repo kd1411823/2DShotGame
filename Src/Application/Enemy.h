@@ -45,6 +45,7 @@ public:
 private:
 
 	static const int squareParticleNum = 30;
+	static const int hitParticleNum = 30;
 
 	// テクスチャ
 	KdTexture enemyTex;
@@ -67,6 +68,9 @@ private:
 
 	// 敵パーティクル
 	C_Enemy_SquareParticle m_enemysquareParticle[squareParticleNum];
+
+	// 敵パーティクル(HIT時)
+	C_Enemy_SquareParticle m_enemyhitParticle[hitParticleNum];
 
 	// 敵四角形フレーム
 	C_Enemy_SquareFrame m_enemySquareFrame;

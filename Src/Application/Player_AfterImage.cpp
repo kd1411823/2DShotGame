@@ -64,7 +64,7 @@ void C_Player_AfterImage::Update(Math::Vector2 a_pos, bool a_bMoveFlg)
 
 
 	
-	m_particle.draw.clr.A(m_particle.draw.clr.A() * 0.95f);
+	m_particle.draw.clr.A(m_particle.draw.clr.A() * 0.98f);
 
 	m_particle.pos += m_particle.mov;
 

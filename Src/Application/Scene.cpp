@@ -179,14 +179,11 @@ void Scene::GameInit()
 	m_player_renderwipe.SetTex(&playertmpTex);
 	m_player_renderwipe.InitWipe(1.0f);
 
-	m_sound.SeLoad();
-	m_sound.BgmLoad();
 
 	m_backgroud.SetTex(&backgroundTex);
 	m_back_circle.SetTex(&backcircleTex);
 	m_player_circle.SetTex(&backcircleTex);
 
-	m_sound.SetP0wner(this);
 	m_backgroud.SetP0wner(this);
 	m_back_circle.SetP0wner(this);
 	m_player_circle.SetP0wner(this);
@@ -196,7 +193,6 @@ void Scene::GameInit()
 	m_timemanager.SetP0wner(this);
 
 	m_systm.Init();
-	m_sound.Init();
 	m_backgroud.Init();
 	m_back_circle.Init();
 	m_player_circle.Init();
@@ -262,15 +258,15 @@ void Scene::Init()
 {
 	// —”‰Šú‰»
 	srand(timeGetTime());
-	system("cls");
+	//system("cls");
 
+	
 	// ƒRƒ“ƒ\[ƒ‹
-	m_cons.create();
+	//m_cons.create();
 
 	m_sound.SetP0wner(this);
 	m_sound.Init();
-	m_sound.SeLoad();
-	m_sound.BgmLoad();
+
 
 	m_gamestartmanager.SetP0wner(this);
 	m_gamestartmanager.Init();
@@ -280,7 +276,9 @@ void Scene::Init()
 	TitleInit();
 
 	GameInit();
+
 	
+
 }
 
 void Scene::Release()
@@ -290,7 +288,7 @@ void Scene::Release()
 	backgroundTex.Release();
 	backcircleTex.Release();
 	playercircleTex.Release();
-	m_cons.destroy();
+	//m_cons.destroy();
 }
 
 void Scene::ImGuiUpdate()

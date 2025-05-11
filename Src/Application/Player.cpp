@@ -119,25 +119,20 @@ void C_Player::Draw()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
-	//D3D.SetBlendState(BlendMode::Alpha);
 	
 	for (int i = 0;i < DropBulletNum;i++)
 	{
 		m_drop_bullet[i].Draw();
 	}
 
-	
 	for (int i = 0; i < BulletNum;i++)
 	{
 		m_bullet[i].Draw();
 	}
 
 
-	//D3D.SetBlendState(BlendMode::Add);
+	D3D.SetBlendState(BlendMode::Add);
 
-	//m_sun->Draw();
-
-	
 
 	for (int i = 0;i < afterImageNum; i++)
 	{
@@ -149,7 +144,9 @@ void C_Player::Draw()
 		m_player_triangleParticle[i].Draw();
 	}
 
-	
+	D3D.SetBlendState(BlendMode::Alpha);
+
+
 	if (m_drawBulletPredictionFlg)
 	{
 		systm->DrawStringGg({ -560 , -240 }, { 1.0f,1.0f }, L"shot");
@@ -161,14 +158,9 @@ void C_Player::Draw()
 		m_player_bulletpredictiontriangle.Draw();
 	}
 	
-
-
-	
-
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 
-	//D3D.SetBlendState(BlendMode::Add);
 
 }
 

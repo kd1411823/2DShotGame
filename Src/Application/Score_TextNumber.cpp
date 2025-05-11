@@ -143,7 +143,8 @@ void C_Score_TextNumber::AddDrawScore()
 	C_Score_Result* scoreresult = scoremanager->GetScoreResult();
 	C_TimeManager* timemanager = m_p0wner->GetTimeManager();
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
-	
+	C_Sound* sound = m_p0wner->GetSound();
+
 	// スコア加算演出
 	if (m_addDrawScore < scoremanager->GetScore())
 	{
@@ -156,6 +157,7 @@ void C_Score_TextNumber::AddDrawScore()
 			m_addSpeed = 3.0f;
 		}
 		m_addDrawScore += m_addSpeed;
+		sound->GetAddScoreSe().inst->Play();
 		m_deltaScl = 0.1f;
 		m_deltaMax = 0.4f;
 		m_deltaMin = 0.4f;
@@ -283,6 +285,7 @@ void C_Score_TextNumber::AddTimeScore()
 	}
 	C_Score_TextSymbol* scoretextsymbol = scoremanager->GetScoreTextSymbol();
 	C_Score_Result* scoreresult = scoremanager->GetScoreResult();
+	C_Sound* sound = m_p0wner->GetSound();
 
 
 	if (m_addDrawScore < INT_MAX)
@@ -337,6 +340,7 @@ void C_Score_TextNumber::AddTimeScore()
 		if (scoremanager->GetScore() + (timemanager->GetTimer() * timeScore) > m_addDrawScore)
 		{
 			m_addDrawScore += m_addSpeed;
+			sound->GetAddScoreSe().inst->Play();
 			if (m_addDrawScore >= 9999)
 			{
 				m_drawMaxScore = true;

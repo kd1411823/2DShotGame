@@ -123,6 +123,8 @@ void C_GameStartManager::Action()
 
 void C_GameStartManager::StartGameCount()
 {
+	C_Sound* sound = m_p0wner->GetSound();
+
 	if (m_gameStartFlg)return;
 
 	m_startCountFrame--;

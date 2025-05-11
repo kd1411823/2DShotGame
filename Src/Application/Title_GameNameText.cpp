@@ -60,7 +60,7 @@ void C_Title_GameNameText::Update()
 
 	m_bsst.mov = { 0,0 };
 
-	m_sun->Update(m_bsst.pos, { 6.0f,1.0f }, { m_bsst.draw.clr.R(),m_bsst.draw.clr.G(),m_bsst.draw.clr.B(), 1.0f});
+	m_sun->Update(m_bsst.pos, { 6.0f,1.0f }, { m_bsst.draw.clr.R(),m_bsst.draw.clr.G(),m_bsst.draw.clr.B(), 0.8f});
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }

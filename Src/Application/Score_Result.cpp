@@ -106,6 +106,7 @@ void C_Score_Result::TimeUpText()
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 	C_Score_TextString* scoretextstring = scoremanager->GetScoreTextString();
 	C_Score_TextNumber* scoretextnumber[scoreDigits];
+	C_Sound* sound = m_p0wner->GetSound();
 
 	for (int i = 0; i < scoreDigits;i++)
 	{
@@ -115,6 +116,11 @@ void C_Score_Result::TimeUpText()
 	if (m_textDrawCount < INT_MAX)
 	{
 		m_textDrawCount++;
+	}
+
+	if (m_textDrawCount == 30)
+	{
+		sound->GetFinishSe().inst->Play();
 	}
 
 	if (m_textDrawCount < 60 * 2)
@@ -154,6 +160,7 @@ void C_Score_Result::ToTitle()
 {
 	C_RenderWipe* renderwipe = m_p0wner->GetRenderWipe();
 	C_GameStartManager* gamestartmanager = m_p0wner->GetGameStartManager();
+	C_Sound* sound = m_p0wner->GetSound();
 
 	m_stringDrawFlg = true;
 
@@ -178,6 +185,7 @@ void C_Score_Result::ToTitle()
 
 	if (renderwipe->GetAlpha() <= 0.0f)
 	{
+		sound->GetBGM().inst->Stop();
 		m_p0wner->Init();
 	}
 

@@ -62,6 +62,7 @@ void C_GameStart_Number::Update()
 void C_GameStart_Number::Action()
 {
 	C_GameStartManager* gamestartmanager = m_p0wner->GetGameStartManager();
+	C_Sound* sound = m_p0wner->GetSound();
 
 	if (!gamestartmanager->GetStartCountFlg() || gamestartmanager->GetGameStartFlg())return;
 
@@ -69,6 +70,10 @@ void C_GameStart_Number::Action()
 	{
 		m_bsst.scl = { m_maxScale,m_maxScale };
 		m_bsst.draw.clr.A(0.0f);
+		if (gamestartmanager->GetStartCountTime() >= 1)
+		{
+			sound->GetStartCountSe().inst->Play();
+		}
 	}
 
 	ScaleManger();
@@ -80,6 +85,10 @@ void C_GameStart_Number::Action()
 
 	if (gamestartmanager->GetStartCountTime() < 1)
 	{
+		if (gamestartmanager->GetStartCountFrame() == 50)
+		{
+			sound->GetStartSe().inst->Play();
+		}
 		m_bsst.draw.clr = { RED ,m_bsst.draw.clr.A()};
 		m_bsst.draw.rct = { 0, 0, BIT120, BIT24 };
 		m_bsst.draw.pTex = &startTex;
@@ -104,6 +113,7 @@ void C_GameStart_Number::ScaleManger()
 	{
 		m_bsst.scl.y -= m_deltaScale;
 	}
+
 	
 }
 

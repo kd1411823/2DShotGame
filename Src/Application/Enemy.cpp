@@ -68,6 +68,13 @@ void C_Enemy::Init()
 		m_enemysquareParticle[i].Init();
 	}
 
+	for (int i = 0; i < hitParticleNum;i++)
+	{
+		m_enemyhitParticle[i].SetP0wner(m_p0wner);
+		m_enemyhitParticle[i].SetTex(&enemyTex);
+		m_enemyhitParticle[i].Init();
+	}
+
 	m_enemySquareFrame.SetP0wner(m_p0wner);
 	m_enemySquareFrame.SetTex(&squareframeTex);
 	m_enemySquareFrame.Init();
@@ -114,6 +121,11 @@ void C_Enemy::Draw()
 	for (int i = 0;i < squareParticleNum;i++)
 	{
 		m_enemysquareParticle[i].Draw();
+	}
+
+	for (int i = 0; i < hitParticleNum;i++)
+	{
+		m_enemyhitParticle[i].Draw();
 	}
 
 	D3D.SetBlendState(BlendMode::Alpha);
@@ -173,6 +185,11 @@ void C_Enemy::Update()
 	for (int i = 0;i < squareParticleNum;i++)
 	{
 		m_enemysquareParticle[i].Update(m_bsst.pos, m_bMoveFlg);
+	}
+
+	for (int i = 0; i < hitParticleNum;i++)
+	{
+		m_enemyhitParticle[i].Update(m_bsst.pos, m_bMoveFlg);
 	}
 
 	m_enemyhpCircle.Update(m_bsst.alive, m_bsst.pos);
@@ -291,6 +308,7 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 	C_ScoreManager* scoremanager = m_p0wner->GetScoreManager();
 	C_RenderWipe* renderwipe = m_p0wner->GetRenderWipe();
 	C_RenderWipe* playerrenderwipe = m_p0wner->GetPlayerRenderWipe();
+	C_Sound* sound = m_p0wner->GetSound();
 
 	if (playercircle->GetPlayerLife() == FourLife)return;
 
@@ -307,9 +325,9 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 			if (scoremanager->GetScore() > 0)
 			{
 				scoremanager->DecreaseScore();
-				
 			}
 			playerrenderwipe->SetShakeTime(5);
+			sound->GetPlayerCircleHitSe().inst->Play();
 			m_bullet[i].Hit();
 		}
 		
@@ -326,19 +344,19 @@ void C_Enemy::TakeDamage()
 
 	sound->GetEnemyHitSe().inst->Play();
 
-	for (int i = 0;i < squareParticleNum; i++)
+	for (int i = 0; i < hitParticleNum;i++)
 	{
-		if (!m_enemysquareParticle[i].GetAlive())
+		if (!m_enemyhitParticle[i].GetAlive())
 		{
-			float _rnd = m_enemysquareParticle[i].Rnd() * 1.2f - 0.6f;
-			m_enemysquareParticle[i].Emit(
-				{ m_bsst.pos.x + ((m_enemysquareParticle[i].Rnd() * (m_enemyRadius * 2)) - m_enemyRadius),
-				  m_bsst.pos.y + ((m_enemysquareParticle[i].Rnd() * (m_enemyRadius * 2)) - m_enemyRadius) },
-				{ m_enemysquareParticle[i].Rnd() * 4 - 2 ,m_enemysquareParticle[i].Rnd() * 4 - 2 },
+			float _rnd = m_enemyhitParticle[i].Rnd() * 1.2f - 0.6f;
+			m_enemyhitParticle[i].Emit(
+				{ m_bsst.pos.x + ((m_enemyhitParticle[i].Rnd() * (m_enemyRadius * 2)) - m_enemyRadius),
+				  m_bsst.pos.y + ((m_enemyhitParticle[i].Rnd() * (m_enemyRadius * 2)) - m_enemyRadius) },
+				{ m_enemyhitParticle[i].Rnd() * 4 - 2 ,m_enemyhitParticle[i].Rnd() * 4 - 2 },
 				{ _rnd,_rnd },
 				m_bsst.rot,
 				true,
-				m_enemysquareParticle[i].Rnd() * 20 + 10,
+				m_enemyhitParticle[i].Rnd() * 20 + 10,
 				false,
 				{ 0,0,BIT64,BIT64 },
 				{ intenseRed, 0.8f }
