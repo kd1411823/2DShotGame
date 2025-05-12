@@ -44,9 +44,7 @@ void C_Title_GameNameText::Draw()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
-	D3D.SetBlendState(BlendMode::Add);
 	m_sun->Draw();
-	D3D.SetBlendState(BlendMode::Alpha);
 
 	systm->DrawStringGg({ -100 , 150 }, { 2.7f,2.7f }, L"axis", { GREEN , 1.0f } ,0.0f,25.0f);
 	systm->DrawStringGg({ -135 , 20 }, { 2.7f,2.7f }, L"break", { RED , 1.0f },0.0f,25.0f);
@@ -60,7 +58,7 @@ void C_Title_GameNameText::Update()
 
 	m_bsst.mov = { 0,0 };
 
-	m_sun->Update(m_bsst.pos, { 6.0f,1.0f }, { m_bsst.draw.clr.R(),m_bsst.draw.clr.G(),m_bsst.draw.clr.B(), 0.8f});
+	m_sun->Update(m_bsst.pos, { 8.0f,1.0f }, { m_bsst.draw.clr.R(),m_bsst.draw.clr.G(),m_bsst.draw.clr.B(), 0.65f});
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }

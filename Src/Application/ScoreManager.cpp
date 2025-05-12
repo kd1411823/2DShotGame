@@ -180,5 +180,5 @@ void C_ScoreManager::DecreaseScore()
 
 	if (playercircle->GetPlayerLife() == FourLife || m_score <= 0)return;
 
-	m_score -= 10.0f;
+	m_score -= 5.0f;
 }

@@ -2,8 +2,8 @@
 
 void C_Sound::Init()
 {
-	m_seeVol = 0.18f;			//  SE ボリューム
-	m_bgmVol = 0.3f;			// BGM ボリューム
+	m_seeVol = 0.17f;			//  SE ボリューム
+	m_bgmVol = 0.36f;			// BGM ボリューム
 	SeLoad();
 	BgmLoad();
 	

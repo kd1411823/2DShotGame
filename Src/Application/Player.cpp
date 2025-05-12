@@ -149,8 +149,6 @@ void C_Player::Draw()
 
 	if (m_drawBulletPredictionFlg)
 	{
-		systm->DrawStringGg({ -560 , -240 }, { 1.0f,1.0f }, L"shot");
-
 		for (int i = 0;i < pBulletLineNum;i++)
 		{
 			m_player_bulletpredictionline[i].Draw();

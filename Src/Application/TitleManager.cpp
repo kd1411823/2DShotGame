@@ -39,12 +39,10 @@ void C_TitleManager::Init()
 	m_drawEnemy.SetP0wner(m_p0wner);
 	m_drawEnemy.Init();
 
-	for (int i = 0;i < titleText;i++)
-	{
-		m_titletext[i].SetP0wner(m_p0wner);
-		m_titletext[i].SetTex(&titlepushtoTex);
-		m_titletext[i].Init(i);
-	}
+	
+	m_titletext.SetP0wner(m_p0wner);
+	m_titletext.Init();
+	
 
 }
 
@@ -54,12 +52,8 @@ void C_TitleManager::Draw()
 
 	m_title_backcircle.Draw();
 
-
-	for (int i = 0;i < titleText;i++)
-	{
-		m_titletext[i].Draw();
-	}
-
+	m_titletext.Draw();
+	
 	m_drawEnemy.Draw();
 
 	for (int i = 0;i < gameNameText;i++)
@@ -82,10 +76,8 @@ void C_TitleManager::Update()
 
 	m_drawEnemy.Update();
 
-	for (int i = 0;i < titleText;i++)
-	{
-		m_titletext[i].Update();
-	}
+	m_titletext.Update();
+	
 }
 
 void C_TitleManager::Action()
@@ -118,10 +110,8 @@ void C_TitleManager::Action()
 
 	m_drawEnemy.Action();
 
-	for (int i = 0;i < titleText;i++)
-	{
-		m_titletext[i].Action();
-	}
+	m_titletext.Action();
+	
 }
 
 void C_TitleManager::ToGame()

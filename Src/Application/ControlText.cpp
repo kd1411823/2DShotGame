@@ -61,6 +61,10 @@ void C_ControlText::Draw()
 		{
 			systm->DrawStringGg({ -590 , -240 }, { 1.0f,1.0f }, L"charge");
 		}
+		else
+		{
+			systm->DrawStringGg({ -560 , -240 }, { 1.0f,1.0f }, L"shot");
+		}
 		break;
 	case Dkey:
 		SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);

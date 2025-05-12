@@ -12,7 +12,7 @@ void C_Enemy_HPCircle::Init()
 	m_bsst.rot = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.rct = { 0, 0, BIT512, BIT512 };
-	m_bsst.draw.clr = { RED ,EnemyCircleAlpha };
+	m_bsst.draw.clr = { intenseRed ,EnemyCircleAlpha };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 

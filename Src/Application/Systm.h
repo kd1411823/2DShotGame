@@ -22,9 +22,9 @@
 #define ScrnLft -640
 #define PlayerBaseScl 0.15f
 #define EnemyBaseScl 0.7f
-#define EnemyMax 3
+#define EnemyMax 4
 #define EnemyHpCircleScl 0.25f
-#define EnemyCircleAlpha 0.55f
+#define EnemyCircleAlpha 0.6f
 #define BulletNum 18
 #define ebulletNum 6
 #define pBulletLineNum 14

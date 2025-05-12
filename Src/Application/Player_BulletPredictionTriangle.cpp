@@ -35,7 +35,7 @@ void C_Player_BulletPredictionTriangle::Update()
 
 	m_bsst.mov = { 0,0 };
 
-	m_sun->Update(m_bsst.pos, { 0.3f,0.3f }, { m_bsst.draw.clr });
+	m_sun->Update(m_bsst.pos, { 0.2f,0.2f }, { m_bsst.draw.clr });
 
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }

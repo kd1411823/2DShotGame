@@ -348,15 +348,15 @@ void C_Enemy::TakeDamage()
 	{
 		if (!m_enemyhitParticle[i].GetAlive())
 		{
-			float _rnd = m_enemyhitParticle[i].Rnd() * 1.2f - 0.6f;
+			float _rnd = m_enemyhitParticle[i].Rnd() * 0.9f - 0.6f;
 			m_enemyhitParticle[i].Emit(
 				{ m_bsst.pos.x + ((m_enemyhitParticle[i].Rnd() * (m_enemyRadius * 2)) - m_enemyRadius),
 				  m_bsst.pos.y + ((m_enemyhitParticle[i].Rnd() * (m_enemyRadius * 2)) - m_enemyRadius) },
-				{ m_enemyhitParticle[i].Rnd() * 4 - 2 ,m_enemyhitParticle[i].Rnd() * 4 - 2 },
+				{ m_enemyhitParticle[i].Rnd() * 10 - 5 ,m_enemyhitParticle[i].Rnd() * 10 - 5 },
 				{ _rnd,_rnd },
 				m_bsst.rot,
 				true,
-				m_enemyhitParticle[i].Rnd() * 20 + 10,
+				m_enemyhitParticle[i].Rnd() * 30 + 15,
 				false,
 				{ 0,0,BIT64,BIT64 },
 				{ intenseRed, 0.8f }

@@ -45,7 +45,7 @@ public:
 private:
 
 	static const int squareParticleNum = 30;
-	static const int hitParticleNum = 30;
+	static const int hitParticleNum = 40;
 
 	// テクスチャ
 	KdTexture enemyTex;

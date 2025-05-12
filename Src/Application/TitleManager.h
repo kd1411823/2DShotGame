@@ -24,7 +24,7 @@ public:
 	C_Title_Background* GetTitleBackground() { return &m_title_background; }
 	C_Title_BackCircle* GetTitleBackCircle() { return &m_title_backcircle; }
 	C_Enemy* GetDrawEnemy() { return &m_drawEnemy; }
-	C_Title_Text* GetTitleText(int a_no) { return &m_titletext[a_no]; }
+	C_Title_Text* GetTitleText() { return &m_titletext; }
 
 private:
 
@@ -36,7 +36,7 @@ private:
 	C_Title_Background m_title_background;
 	C_Title_BackCircle m_title_backcircle;
 	C_Enemy            m_drawEnemy;
-	C_Title_Text       m_titletext[titleText];
+	C_Title_Text       m_titletext;
 
 
 	bool m_addAlphaFlg; // alpha値を上げるか？フラグ
