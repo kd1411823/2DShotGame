@@ -46,8 +46,8 @@
 #define ThreeRadius 203.0f
 #define FourRadius 273.0f
 #define oneTargetScore 500.0f
-#define twoTargetScore 2000.0f
-#define threeTargetScore 2600.0f
+#define twoTargetScore 1500.0f
+#define threeTargetScore 3000.0f
 #define PredictionLineDistance 30.0f
 #define ShotInterval 4
 #define afterImageInterval 8

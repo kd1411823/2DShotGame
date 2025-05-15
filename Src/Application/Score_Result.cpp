@@ -25,8 +25,8 @@ void C_Score_Result::Draw()
 
 	if (m_stringDrawFlg)
 	{
-		systm->DrawStringGg({ -140 , -150 }, { 1.0f,1.0f }, L"t" ,{ RED ,m_stringAlpha});
-		systm->DrawStringGg({ -140  ,-150 }, { 1.0f,1.0f }, L"  to title", { GREEN ,m_stringAlpha });
+		systm->DrawStringGg({ -190 , -120 }, { 1.0f,1.0f }, L"space" ,{ RED ,m_stringAlpha});
+		systm->DrawStringGg({ -190  ,-120 }, { 1.0f,1.0f }, L"      to title", { GREEN ,m_stringAlpha });
 	}
 
 	if (m_textDrawFlg)
@@ -164,7 +164,7 @@ void C_Score_Result::ToTitle()
 
 	m_stringDrawFlg = true;
 
-	if (GetAsyncKeyState('T') & 0x8000)
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 	{
 		if (!m_keyFlg)
 		{

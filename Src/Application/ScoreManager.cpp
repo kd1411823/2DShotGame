@@ -53,10 +53,10 @@ void C_ScoreManager::Draw()
 	if (!gamestartmanager->GetGameStartFlg())return;
 
 	m_scorecircle.Draw();
-	m_scoretextstring.Draw();
+	//m_scoretextstring.Draw();
 	for (int i = 0;i < scoreDigits;i++)
 	{
-		m_scoretextnumber[i].Draw();
+		//m_scoretextnumber[i].Draw();
 	}
 	for (int i = 0;i < scoreDrawDigits;i++)
 	{

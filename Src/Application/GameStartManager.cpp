@@ -69,7 +69,7 @@ void C_GameStartManager::Draw()
 	if (!m_gameStartFlg && !m_startCountFlg)
 	{
 		systm->DrawStringGg({ 320 , 300 }, { 1.0f,1.0f }, L"game start", { GREEN , m_stringAlpha });
-		systm->DrawStringGg({ 410 , 250 }, { 1.0f,1.0f }, L"t key", { RED , m_stringAlpha });
+		systm->DrawStringGg({ 400 , 250 }, { 1.0f,1.0f }, L"enter", { RED , m_stringAlpha });
 	}
 
 }
@@ -140,7 +140,7 @@ void C_GameStartManager::StartGameCount()
 void C_GameStartManager::TutorialSkip()
 {
 	
-	if (GetAsyncKeyState('T') & 0x8000)
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
 		m_startCountFlg = true;
 	}

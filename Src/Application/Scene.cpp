@@ -80,6 +80,13 @@ void Scene::GameUpdate()
 
 void Scene::GameDynamicDraw()
 {
+	C_Score_TextNumber* scoretextnumber[scoreDigits];
+	for (int i = 0;i < scoreDigits;i++)
+	{
+		scoretextnumber[i] = m_scoremanager.GetScoreTextNumber(i);
+	}
+	C_Score_TextString* scoretextstring = m_scoremanager.GetScoreTextString();
+
 	// ‘S•`‰æ
 	if (!m_gamestartmanager.GetRenderSwitchFlg())
 	{
@@ -91,6 +98,15 @@ void Scene::GameDynamicDraw()
 		m_player_circle.Draw();
 		m_player.Draw();
 		m_gamestartmanager.Draw();
+
+		if (m_gamestartmanager.GetGameStartFlg())
+		{
+			for (int i = 0;i < scoreDigits;i++)
+			{
+				scoretextnumber[i]->Draw();
+			}
+			scoretextstring->Draw();
+		}
 	}
 	else // “GŒn‚¾‚¯•`‰æ
 	{
@@ -157,7 +173,19 @@ void Scene::GameDraw()
 	// UI’Êí•`‰æ‚·‚é
 	if (m_gamestartmanager.GetRenderSwitchFlg())
 	{
+		C_Score_TextNumber* scoretextnumber[scoreDigits];
+		for (int i = 0;i < scoreDigits;i++)
+		{
+			scoretextnumber[i] = m_scoremanager.GetScoreTextNumber(i);
+		}
+		C_Score_TextString* scoretextstring = m_scoremanager.GetScoreTextString();
+
 		m_timemanager.Draw();
+		for (int i = 0;i < scoreDigits;i++)
+		{
+			scoretextnumber[i]->Draw();
+		}
+		scoretextstring->Draw();
 		m_gamestartmanager.Draw();
 	}
 }
