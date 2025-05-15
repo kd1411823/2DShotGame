@@ -43,6 +43,54 @@
     <Filter Include="Src\System\Audio">
       <UniqueIdentifier>{667d1cb1-5ae5-476f-acd5-14b7d294a95a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Particle">
+      <UniqueIdentifier>{d21a4429-c670-4c36-9614-ec84afbec78a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Background">
+      <UniqueIdentifier>{93d8cade-0d6a-442a-8fdc-63a8a389af44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Circle">
+      <UniqueIdentifier>{1bc53252-03a4-42a6-b0ca-d68f083e4b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Player">
+      <UniqueIdentifier>{674514b3-43af-4b80-a907-eb840815b9f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Enemy">
+      <UniqueIdentifier>{36aa0aed-a526-41a4-b40e-100951075a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Title">
+      <UniqueIdentifier>{3f6a0eec-85ee-4009-b554-ba0f7499cce6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Bullet">
+      <UniqueIdentifier>{557a9372-b291-418e-abf3-78968792d632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\RenderWipe">
+      <UniqueIdentifier>{f577d5d6-914c-48d8-8363-6d1dc809c4fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameSystem">
+      <UniqueIdentifier>{441ee057-8131-4549-9878-76abdea70e44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Sound">
+      <UniqueIdentifier>{9d41d30c-2b18-4b97-900b-73227210df9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\UI">
+      <UniqueIdentifier>{ff7ed7a6-866d-4a5c-bc85-92bd9ca80532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\UI\Score">
+      <UniqueIdentifier>{b9871977-d98c-4023-b924-fa3405ecad59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\UI\Time">
+      <UniqueIdentifier>{2c70c1c4-92be-4778-b285-012041f30159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameStart">
+      <UniqueIdentifier>{16f19652-f1ca-4995-ac18-61230a957e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene">
+      <UniqueIdentifier>{a396dc52-40ed-4d1c-b968-16380f13021e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\UI\Control">
+      <UniqueIdentifier>{e713c9cd-ae9e-499e-b0c5-05ff5a4a129a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -135,173 +183,173 @@
     <ClInclude Include="..\Library\strconv.h">
       <Filter>Library</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Scene.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Background\Back_Circle.h">
+      <Filter>Src\Application\Background</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Systm.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Background\Background.h">
+      <Filter>Src\Application\Background</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Bullet\Bullet.h">
+      <Filter>Src\Application\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Bullet.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Bullet\Drop_Bullet.h">
+      <Filter>Src\Application\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Background.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy_SquareFrame.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObjectBase.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy_SquareParticle.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_Circle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy_StandState.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Back_Circle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy_TitleState.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\EnemyManager.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Drop_Bullet.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Console.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy_Circle.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\StateBase.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy_HighMoveState.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\StateMachine.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy_HPCircle.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_MoveState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy_MoveState.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_StandState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Enemy\Enemy_ShotState.h">
+      <Filter>Src\Application\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_LoadBulletState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\GameStart\GameStart_Number.h">
+      <Filter>Src\Application\GameStart</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_ShotBulletState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\GameStart\GameStart_StringText.h">
+      <Filter>Src\Application\GameStart</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Sound.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\GameStart\GameStartManager.h">
+      <Filter>Src\Application\GameStart</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Sun.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\GameSystem\GameObjectBase.h">
+      <Filter>Src\Application\GameSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_StandState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\GameSystem\StateBase.h">
+      <Filter>Src\Application\GameSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_MoveState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\GameSystem\StateMachine.h">
+      <Filter>Src\Application\GameSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_ShotState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\GameSystem\Systm.h">
+      <Filter>Src\Application\GameSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_HighMoveState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\GameSystem\Console.h">
+      <Filter>Src\Application\GameSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\EnemyManager.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Particle\ParticleBase.h">
+      <Filter>Src\Application\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\ParticleBase.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Particle\Sun.h">
+      <Filter>Src\Application\Particle</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_TriangleParticle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_AfterImage.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_Circle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_BulletPredictionLine.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_HPCircle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_BulletPredictionTriangle.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_SquareParticle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_Circle.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_BulletPredictionLine.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_LoadBulletState.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_BulletPredictionTriangle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_MoveState.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\ScoreManager.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_ResultState.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Score_Circle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_ShotBulletState.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Score_TextString.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_StandState.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\RenderWipe.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player_TriangleParticle.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Score_TextNumber.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Player\Player.h">
+      <Filter>Src\Application\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_SquareFrame.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\RenderWipe\RenderWipe.h">
+      <Filter>Src\Application\RenderWipe</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\TimeManager.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Scene\Scene.h">
+      <Filter>Src\Application\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Time_ClockHands.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Sound\Sound.h">
+      <Filter>Src\Application\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Time_ClockCircle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Title\Title_BackCircle.h">
+      <Filter>Src\Application\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Time_ClockNumber.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Title\Title_Background.h">
+      <Filter>Src\Application\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_ResultState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Title\Title_GameNameText.h">
+      <Filter>Src\Application\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Score_Result.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Title\Title_Text.h">
+      <Filter>Src\Application\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Score_TextSymbol.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\Title\TitleManager.h">
+      <Filter>Src\Application\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Score_DrawNumber.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Control\ControlText.h">
+      <Filter>Src\Application\UI\Control</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Title_GameNameText.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Score\Score_Result.h">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\TitleManager.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Score\Score_TextNumber.h">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Title_Background.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Score\Score_TextString.h">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Title_BackCircle.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Score\Score_TextSymbol.h">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Enemy_TitleState.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Score\ScoreManager.h">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Title_Text.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Score\Score_Circle.h">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameStartManager.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Score\Score_DrawNumber.h">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameStart_Number.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Time\Time_ClockNumber.h">
+      <Filter>Src\Application\UI\Time</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameStart_StringText.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Time\TimeManager.h">
+      <Filter>Src\Application\UI\Time</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Player_AfterImage.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Time\Time_ClockCircle.h">
+      <Filter>Src\Application\UI\Time</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\ControlText.h">
-      <Filter>Src\Application</Filter>
+    <ClInclude Include="Src\Application\UI\Time\Time_ClockHands.h">
+      <Filter>Src\Application\UI\Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -365,167 +413,167 @@
     <ClCompile Include="src\System\Window\KdGameWindow.cpp">
       <Filter>Src\System\Window</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Scene.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Background\Back_Circle.cpp">
+      <Filter>Src\Application\Background</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Systm.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Background\Background.cpp">
+      <Filter>Src\Application\Background</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Bullet\Bullet.cpp">
+      <Filter>Src\Application\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Bullet.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Bullet\Drop_Bullet.cpp">
+      <Filter>Src\Application\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Background.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy_SquareParticle.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObjectBase.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy_StandState.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_Circle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy_TitleState.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Back_Circle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\EnemyManager.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Drop_Bullet.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy_Circle.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Console.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy_HighMoveState.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_MoveState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy_HPCircle.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_StandState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy_MoveState.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_LoadBulletState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy_ShotState.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_ShotBulletState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Enemy\Enemy_SquareFrame.cpp">
+      <Filter>Src\Application\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Sound.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\GameStart\GameStart_StringText.cpp">
+      <Filter>Src\Application\GameStart</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Sun.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\GameStart\GameStartManager.cpp">
+      <Filter>Src\Application\GameStart</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_StandState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\GameStart\GameStart_Number.cpp">
+      <Filter>Src\Application\GameStart</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_MoveState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\GameSystem\GameObjectBase.cpp">
+      <Filter>Src\Application\GameSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_ShotState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\GameSystem\Systm.cpp">
+      <Filter>Src\Application\GameSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_HighMoveState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\GameSystem\Console.cpp">
+      <Filter>Src\Application\GameSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\EnemyManager.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Particle\ParticleBase.cpp">
+      <Filter>Src\Application\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\ParticleBase.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Particle\Sun.cpp">
+      <Filter>Src\Application\Particle</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_TriangleParticle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_AfterImage.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_Circle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_BulletPredictionLine.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_HPCircle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_BulletPredictionTriangle.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_SquareParticle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_Circle.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_BulletPredictionLine.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_LoadBulletState.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_BulletPredictionTriangle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_MoveState.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\ScoreManager.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_ResultState.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Score_Circle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_ShotBulletState.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Score_TextString.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_StandState.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\RenderWipe.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player_TriangleParticle.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Score_TextNumber.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Player\Player.cpp">
+      <Filter>Src\Application\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_SquareFrame.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\RenderWipe\RenderWipe.cpp">
+      <Filter>Src\Application\RenderWipe</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\TimeManager.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Scene\Scene.cpp">
+      <Filter>Src\Application\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Time_ClockHands.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Sound\Sound.cpp">
+      <Filter>Src\Application\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Time_ClockCircle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Title\Title_BackCircle.cpp">
+      <Filter>Src\Application\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Time_ClockNumber.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Title\Title_Background.cpp">
+      <Filter>Src\Application\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_ResultState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Title\Title_GameNameText.cpp">
+      <Filter>Src\Application\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Score_Result.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Title\Title_Text.cpp">
+      <Filter>Src\Application\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Score_TextSymbol.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\Title\TitleManager.cpp">
+      <Filter>Src\Application\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Score_DrawNumber.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Control\ControlText.cpp">
+      <Filter>Src\Application\UI\Control</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Title_GameNameText.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Score\Score_Result.cpp">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\TitleManager.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Score\Score_TextNumber.cpp">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Title_Background.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Score\Score_TextString.cpp">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Title_BackCircle.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Score\Score_TextSymbol.cpp">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Enemy_TitleState.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Score\ScoreManager.cpp">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Title_Text.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Score\Score_Circle.cpp">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameStartManager.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Score\Score_DrawNumber.cpp">
+      <Filter>Src\Application\UI\Score</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameStart_Number.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Time\TimeManager.cpp">
+      <Filter>Src\Application\UI\Time</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameStart_StringText.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Time\Time_ClockCircle.cpp">
+      <Filter>Src\Application\UI\Time</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Player_AfterImage.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Time\Time_ClockHands.cpp">
+      <Filter>Src\Application\UI\Time</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\ControlText.cpp">
-      <Filter>Src\Application</Filter>
+    <ClCompile Include="Src\Application\UI\Time\Time_ClockNumber.cpp">
+      <Filter>Src\Application\UI\Time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
