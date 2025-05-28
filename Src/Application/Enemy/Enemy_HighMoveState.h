@@ -13,7 +13,7 @@ public:
 
 private:
 
-	int m_highmoveStateCnt; // 早く動く状態のステートカウント
-	eEnemyMovDir m_dir; // 動く方向
+	int          m_highmoveStateCnt; // 早く動く状態のステートカウント
+	eEnemyMovDir m_dir;              // 動く方向
 
 };

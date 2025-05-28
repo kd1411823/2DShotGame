@@ -6,7 +6,6 @@
 
 C_Enemy::C_Enemy()
 {
-	
 }
 
 C_Enemy::~C_Enemy()
@@ -55,12 +54,12 @@ void C_Enemy::Init()
 	m_enemyhpCircle.SetP0wner(m_p0wner);
 	m_enemyhpCircle.Init();
 
-	
+	// 敵のHP円(フレーム)
 	m_enemyframeCircle.SetTex(&frameCircleTex);
 	m_enemyframeCircle.SetP0wner(m_p0wner);
 	m_enemyframeCircle.Init();
 
-
+	// 敵パーティクル
 	for (int i = 0;i < squareParticleNum;i++)
 	{
 		m_enemysquareParticle[i].SetP0wner(m_p0wner);
@@ -68,6 +67,7 @@ void C_Enemy::Init()
 		m_enemysquareParticle[i].Init();
 	}
 
+	// 敵パーティクル(HIT時)
 	for (int i = 0; i < hitParticleNum;i++)
 	{
 		m_enemyhitParticle[i].SetP0wner(m_p0wner);
@@ -75,6 +75,7 @@ void C_Enemy::Init()
 		m_enemyhitParticle[i].Init();
 	}
 
+	// 敵四角形フレーム
 	m_enemySquareFrame.SetP0wner(m_p0wner);
 	m_enemySquareFrame.SetTex(&squareframeTex);
 	m_enemySquareFrame.Init();
@@ -84,30 +85,30 @@ void C_Enemy::Init()
 	m_sun->Init();
 
 	// メンバ変数
-	m_enemyHitpoint = EnemyHp;						// 敵のHP
-	m_damagePoint	= 1.0f;							// ダメージ量
-	m_autoRecoveryRate = 0.02f;	// 自然回復量
-	m_deg			= systm->RndBtwn(0, 360);		// 角度
-	m_movDeg		= 0;							// 移動量(角度)
-	m_circleRadius	= FourRadius;					// 円の半径
-	m_ebulletSpdScl = 0.4f;							// 敵の弾のスピード倍率
-	m_bMoveFlg = false;		// 動いているかフラグ
-	m_isRisingScl= false;		// 敵のの拡大率増減フラグ
-	m_deltaScl = 0.013f;				// 敵の拡大率増減量
-	m_maxDeltaScl= 0.0f;			// 最大敵の拡大率
-	m_minDeltaScl= 0.0f;			// 最小敵の拡大率
-	m_sclInitFlg= false;			// 拡大率初期化フラグ
+	m_enemyHitpoint    = EnemyHp;						// 敵のHP
+	m_damagePoint	   = 1.0f;							// ダメージ量
+	m_autoRecoveryRate = 0.02f;							// 自然回復量
+	m_deg			   = systm->RndBtwn(0, 360);		// 角度
+	m_movDeg		   = 0;								// 移動量(角度)
+	m_circleRadius	   = FourRadius;					// 円の半径
+	m_ebulletSpdScl    = 0.4f;							// 敵の弾のスピード倍率
+	m_bMoveFlg         = false;							// 動いているかフラグ
+	m_isRisingScl      = false;							// 敵のの拡大率増減フラグ
+	m_deltaScl         = 0.013f;						// 敵の拡大率増減量
+	m_maxDeltaScl      = 0.0f;							// 最大敵の拡大率
+	m_minDeltaScl      = 0.0f;							// 最小敵の拡大率
+	m_sclInitFlg       = false;							// 拡大率初期化フラグ
 
 	// オブジェクト初期化
 	m_bsst.pos.x = cos(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
 	m_bsst.pos.y = sin(systm->CnvrtToRadians(m_deg)) * m_circleRadius;
-	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { EnemyBaseScl ,EnemyBaseScl };
-	m_bsst.rot = 0;
+	m_bsst.mov   = { 0,0 };
+	m_bsst.scl   = { EnemyBaseScl ,EnemyBaseScl };
+	m_bsst.rot   = 0;
 	m_bsst.alive = true;
 	m_bsst.draw.pTex = &enemyTex;
-	m_bsst.draw.rct = { 0, 0, BIT64, BIT64 };
-	m_bsst.draw.clr = { RED ,1.0f };
+	m_bsst.draw.rct  = { 0, 0, BIT64, BIT64 };
+	m_bsst.draw.clr  = { RED ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
 }
 
@@ -161,6 +162,7 @@ void C_Enemy::Update()
 
 	m_sun->Update(m_bsst.pos,{ 3.0f,3.0f},{ RED,1.0f });
 
+	// 動いているときにパーティクルを表示する
 	if (m_bMoveFlg)
 	{
 		for (int i = 0;i < squareParticleNum; i++)
@@ -221,6 +223,7 @@ void C_Enemy::Action()
 	ScaleManager();
 
 	EnemyBulletPlayerCircleHit();
+
 	// 体力が減っていたら自然回復する
 	if (m_enemyHitpoint > 0.0f && m_enemyHitpoint < EnemyHp)
 	{
@@ -322,10 +325,12 @@ void C_Enemy::EnemyBulletPlayerCircleHit()
 
 		if (enemybulletPlayercircletTry.hypn < bulletCirclehypn)
 		{
+			// スコアが0のときは減らさない
 			if (scoremanager->GetScore() > 0)
 			{
 				scoremanager->DecreaseScore();
 			}
+			// プレイヤーの円と当たったときの処理
 			playerrenderwipe->SetShakeTime(5);
 			sound->GetPlayerCircleHitSe().inst->Play();
 			m_bullet[i].Hit();
@@ -344,6 +349,7 @@ void C_Enemy::TakeDamage()
 
 	sound->GetEnemyHitSe().inst->Play();
 
+	// パーティクル表示する
 	for (int i = 0; i < hitParticleNum;i++)
 	{
 		if (!m_enemyhitParticle[i].GetAlive())
@@ -352,7 +358,7 @@ void C_Enemy::TakeDamage()
 			m_enemyhitParticle[i].Emit(
 				{ m_bsst.pos.x + ((m_enemyhitParticle[i].Rnd() * (m_enemyRadius * 2)) - m_enemyRadius),
 				  m_bsst.pos.y + ((m_enemyhitParticle[i].Rnd() * (m_enemyRadius * 2)) - m_enemyRadius) },
-				{ m_enemyhitParticle[i].Rnd() * 10 - 5 ,m_enemyhitParticle[i].Rnd() * 10 - 5 },
+				{ m_enemyhitParticle[i].Rnd() * 12 - 6 ,m_enemyhitParticle[i].Rnd() * 12 - 6 },
 				{ _rnd,_rnd },
 				m_bsst.rot,
 				true,
@@ -364,6 +370,7 @@ void C_Enemy::TakeDamage()
 		}
 	}
 
+	// スコアを加算する
 	if (m_enemyHitpoint <= 0.0f)
 	{
 		scoremanager->AddScore();

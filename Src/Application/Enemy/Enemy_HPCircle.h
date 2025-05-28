@@ -13,8 +13,6 @@ public:
 	void Update(bool a_alive,Math::Vector2 a_pos);
 	void Action(bool a_alive,float a_hpPoint);
 
-	
-
 private:
 
 };

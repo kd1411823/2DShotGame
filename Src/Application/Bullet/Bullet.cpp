@@ -5,13 +5,15 @@ void C_Bullet::Init()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
-	m_loadOkFlg = false;	// 装填フラグ
+	// メンバ変数
+	m_loadOkFlg     = false;	// 装填フラグ
 
-	m_bsst.pos = { 0,0 };
-	m_bsst.mov = { 0,0 };
-	m_bsst.scl = { 0.0f,0.0f };
-	m_bsst.rot = 0;
-	m_bsst.alive = false;
+	// オブジェクトのステータス
+	m_bsst.pos      = { 0,0 };
+	m_bsst.mov      = { 0,0 };
+	m_bsst.scl      = { 0.0f,0.0f };
+	m_bsst.rot      = 0;
+	m_bsst.alive    = false;
 	m_bsst.draw.rct = { 0, 0, BIT256, BIT256 };
 	m_bsst.draw.clr = { GREEN ,1.0f };
 	m_bsst.mat = systm->CreateMat(m_bsst.scl, m_bsst.rot, m_bsst.pos);
@@ -48,8 +50,6 @@ void C_Bullet::Action(Math::Vector2 a_scl, Math::Color a_clr, Math::Rectangle a_
 	m_bsst.draw.rct = a_rct;
 
 	IsEndPoint();
-	
-	
 }
 
 void C_Bullet::ShotBullet(Math::Vector2 a_pos, float a_deg, float a_spdScl)
@@ -64,12 +64,12 @@ void C_Bullet::ShotBullet(Math::Vector2 a_pos, float a_deg, float a_spdScl)
 
 void C_Bullet::IsEndPoint()
 {
+	// 画面端に行ったら削除する処理
 	if (m_bsst.pos.x > ScrnRht + m_bulletRadius || m_bsst.pos.x < ScrnLft - m_bulletRadius ||
 		m_bsst.pos.y > ScrnTop + m_bulletRadius || m_bsst.pos.y < ScrnBtm - m_bulletRadius)
 	{
 		Hit();
 	}
-
 }
 
 

@@ -10,8 +10,10 @@ void C_Drop_Bullet::Init(int a_no)
 	m_sun->SetP0wner(m_p0wner);
 	m_sun->Init();
 
+	// メンバ変数
 	m_no = a_no;
 	
+	// オブジェクトのステータス
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
 	m_bsst.scl = { 0.04f,0.04f };
@@ -25,9 +27,9 @@ void C_Drop_Bullet::Init(int a_no)
 void C_Drop_Bullet::Draw()
 {
 	C_Player_Circle* playercircle = m_p0wner->GetPlayer_Circle();
+
 	if (playercircle->GetPlayerLife() == FourLife)return;
 
-	
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
 }
@@ -64,8 +66,6 @@ void C_Drop_Bullet::Action(float a_circleRadius)
 	// 弾(取得オブジェクト)を取得していたらAlpha値を下げる
 	if (!m_bsst.alive)m_bsst.draw.clr.A(0.0f);
 	else m_bsst.draw.clr = { GREEN ,1.0f };
-	
-	
 }
 
 void C_Drop_Bullet::CountHIT()
@@ -75,10 +75,10 @@ void C_Drop_Bullet::CountHIT()
 
 	m_bsst.alive = false;
 
+	// カウントする
 	player->SetDropHitCount(player->GetDropHitCount() + 1);
 
-	printf("count%d\n",player->GetDropHitCount());
-
+	// カウントによって音を変化させる
 	if (player->GetDropHitCount() >= 1 && player->GetDropHitCount() <= 3)
 	{
 		sound->GetOneGetBulletSe().inst->Play();

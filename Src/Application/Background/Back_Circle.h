@@ -6,7 +6,7 @@ class C_Back_Circle :public C_GameObject
 public:
 
 	C_Back_Circle(){}
-	virtual ~C_Back_Circle(){}
+	~C_Back_Circle(){}
 
 	void Init()override;
 	void Draw()override;

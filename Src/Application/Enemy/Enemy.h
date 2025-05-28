@@ -16,12 +16,12 @@ public:
 	C_Enemy();
 	~C_Enemy();
 
-	
 	void Init()override;
 	void Draw()override;
 	void Update()override;
 	void Action()override;
 
+	// Šg‘å—¦‚ğ•Ï‰»‚³‚¹‚éŠÖ”
 	void ScaleManager();
 	// “G‚Ì’e‚ÆƒvƒŒƒCƒ„[‚Ì‰~‚Æ“–‚½‚è”»’è
 	void EnemyBulletPlayerCircleHit();
@@ -45,7 +45,7 @@ public:
 private:
 
 	static const int squareParticleNum = 30;
-	static const int hitParticleNum = 40;
+	static const int hitParticleNum    = 40;
 
 	// ƒeƒNƒXƒ`ƒƒ
 	KdTexture enemyTex;
@@ -77,18 +77,18 @@ private:
 
 	std::shared_ptr<C_Sun> m_sun = nullptr;
 
-	const float m_enemyRadius = EnemyHpCircleScl * BIT512 * 0.5f;
-	float m_enemyHitpoint;		// “G‚ÌHP
-	float m_damagePoint;		// ƒ_ƒ[ƒW—Ê
-	float m_autoRecoveryRate;	// ©‘R‰ñ•œ—Ê
-	float m_deg;				// Šp“x
-	float m_movDeg;				// ˆÚ“®—Ê(Šp“x)
-	float m_circleRadius;		// ‰~‚Ì”¼Œa
-	float m_ebulletSpdScl;		// “G‚Ì’e‚ÌƒXƒs[ƒh”{—¦
-	bool		  m_bMoveFlg;		// “®‚¢‚Ä‚¢‚é‚©ƒtƒ‰ƒO
-	bool		  m_isRisingScl;	// “G‚Ì‚ÌŠg‘å—¦‘Œ¸ƒtƒ‰ƒO
-	float         m_deltaScl;		// “G‚ÌŠg‘å—¦‘Œ¸—Ê
+	const float   m_enemyRadius = EnemyHpCircleScl * BIT512 * 0.5f;
+	float		  m_enemyHitpoint;		// “G‚ÌHP
+	float		  m_damagePoint;		// ƒ_ƒ[ƒW—Ê
+	float		  m_autoRecoveryRate;	// ©‘R‰ñ•œ—Ê
+	float		  m_deg;				// Šp“x
+	float		  m_movDeg;				// ˆÚ“®—Ê(Šp“x)
+	float		  m_circleRadius;		// ‰~‚Ì”¼Œa
+	float		  m_ebulletSpdScl;		// “G‚Ì’e‚ÌƒXƒs[ƒh”{—¦
+	bool		  m_bMoveFlg;		    // “®‚¢‚Ä‚¢‚é‚©ƒtƒ‰ƒO
+	bool		  m_isRisingScl;	    // “G‚Ì‚ÌŠg‘å—¦‘Œ¸ƒtƒ‰ƒO
+	float         m_deltaScl;		    // “G‚ÌŠg‘å—¦‘Œ¸—Ê
 	float         m_maxDeltaScl;		// Å‘å“G‚ÌŠg‘å—¦
 	float         m_minDeltaScl;		// Å¬“G‚ÌŠg‘å—¦
-	bool          m_sclInitFlg;		// Šg‘å—¦‰Šú‰»ƒtƒ‰ƒO
+	bool          m_sclInitFlg;		    // Šg‘å—¦‰Šú‰»ƒtƒ‰ƒO
 };

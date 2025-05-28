@@ -13,7 +13,9 @@ public:
 	void Update()override;
 	void Action(Math::Vector2 a_scl,Math::Color a_clr ,Math::Rectangle a_rct);
 
+	// 弾を撃つ
 	void ShotBullet(Math::Vector2 a_pos,float a_deg,float a_spdScl = 1.0f);
+	// 画面端判定
 	void IsEndPoint();
 
 	// ゲッター
@@ -22,7 +24,6 @@ public:
 	float GetRadius()override { return m_bulletRadius; }
 	bool GetLoadOkFlg() { return m_loadOkFlg; }
 
-
 	// セッター
 	void SetLoadOkFlg(bool a_loadOkFlg) { m_loadOkFlg = a_loadOkFlg; }
 
@@ -30,5 +31,5 @@ private:
 
 	const float m_bulletRadius = 12.0f; // 弾の半径
 	const float m_bulletSpd = 35.0f;	// 弾のスピード
-	bool m_loadOkFlg;	// 装填フラグ
+	bool	    m_loadOkFlg;			// 装填フラグ
 };

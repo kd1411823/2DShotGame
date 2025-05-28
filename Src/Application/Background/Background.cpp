@@ -5,6 +5,7 @@ void C_Background::Init()
 {
 	C_Systm* systm = m_p0wner->GetSystm();
 
+	// オブジェクトのステータス
 	m_bsst.pos = { 0,0 };
 	m_bsst.mov = { 0,0 };
 	m_bsst.scl = { 1.0f,1.0f };
@@ -19,7 +20,6 @@ void C_Background::Draw()
 {
 	SHADER.m_spriteShader.SetMatrix(m_bsst.mat.compmat);
 	SHADER.m_spriteShader.DrawTex(m_bsst.draw.pTex, 0, 0, &m_bsst.draw.rct, &m_bsst.draw.clr);
-
 }
 
 void C_Background::Update()

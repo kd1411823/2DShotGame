@@ -124,6 +124,7 @@ void C_Systm::DrawStringGg(Math::Vector2 a_pos, Math::Vector2 a_scl, std::wstrin
 		else if (a_str[i] == u'x')						rct = { BIT24 * 23, BIT24 * 0, BIT24, BIT24 };	// X
 		else if (a_str[i] == u'y')						rct = { BIT24 * 24, BIT24 * 0, BIT24, BIT24 };	// Y
 		else if (a_str[i] == u'z')						rct = { BIT24 * 25,  BIT24 * 0, BIT24, BIT24 };	// Z
+		else if (a_str[i] == u'+')						rct = { BIT24 * 26,  BIT24 * 0, BIT24, BIT24 };	// +
 		else if (a_str[i] == u'　' || a_str[i] == u' ');													// 空白
 
 		// 行列作成、表示

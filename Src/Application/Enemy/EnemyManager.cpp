@@ -15,7 +15,6 @@ void C_EnemyManager::Init()
 {
 	m_enemies.clear();
 	m_spawnCount = 0; // スポーンカウント
-	
 }
 
 void C_EnemyManager::Draw()
@@ -68,6 +67,7 @@ void C_EnemyManager::Action()
 		m_enemies.clear();
 		return;
 	}
+
 	PlayerBulletHit();
 
 	for (auto& enemy : m_enemies)

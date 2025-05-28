@@ -37,7 +37,7 @@ void C_GameStartManager::Init()
 		}
 		else
 		{
-			m_control_key[i].SetTex(&keyTex);
+			m_control_key[i].SetTwoTex(&keyTex);
 		}
 		m_control_key[i].Init((eKeyType)i);
 	}

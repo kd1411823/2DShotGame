@@ -14,14 +14,16 @@ public:
 	void Draw()override;
 	void Update()override;
 	void Action(float a_circleRadius);
+
+	// いくつ弾を取得したか、カウントする
 	void CountHIT();
 
-
+	// ゲッター
 	Math::Vector2 GetPos()override { return m_bsst.pos; }
 	bool GetAlive()override { return m_bsst.alive; }
 	const float GetDropBulletRadius(){ return m_dropBulletRadius; }
-
 	std::shared_ptr<C_Sun> GetSun() { return m_sun; }
+
 
 private:
 

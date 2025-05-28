@@ -71,6 +71,7 @@
 #define gameNameText 2
 #define gameStartText 2
 #define keyNum 5
+#define controlTextScl 0.8f
 #define titleText 3
 #define WHITE  1.0f,1.0f,1.0f
 #define BLACK  0.0f,0.0f,0.0f
